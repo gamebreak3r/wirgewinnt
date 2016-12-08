@@ -63,6 +63,54 @@
         android:orientation="horizontal"
         android:visibility="visible">
         <!-- TODO: on release set VISIBILITY = GONE-->
+
+        //col1
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnColumn0"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="onClick"/>
+            <ImageView
+                android:id="@+id/iv06"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv05"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv04"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv03"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv02"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv01"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv00"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+        </LinearLayout>
+        //col2
         <LinearLayout
             android:layout_width="50dp"
             android:layout_height="wrap_content"
@@ -73,42 +121,285 @@
                 android:layout_height="50dp"
                 android:onClick="onClick"/>
             <ImageView
+                android:id="@+id/iv16"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
             <ImageView
+                android:id="@+id/iv15"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
             <ImageView
+                android:id="@+id/iv14"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
             <ImageView
+                android:id="@+id/iv13"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
             <ImageView
+                android:id="@+id/iv12"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
             <ImageView
+                android:id="@+id/iv11"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
             <ImageView
+                android:id="@+id/iv10"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            </LinearLayout>
+
+        //col 3
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnColumn2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="onClick"/>
+            <ImageView
+                android:id="@+id/iv26"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv25"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv24"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+
+            <ImageView
+                android:id="@+id/iv23"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+
+            <ImageView
+                android:id="@+id/iv22"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv21"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv20"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnCancel"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:onClick="onClick"
-            />
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnColumn3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="onClick"/>
+            <ImageView
+                android:id="@+id/iv36"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv35"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv34"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv33"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv32"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv31"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv30"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+        </LinearLayout>
+
+        //col 4
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnColumn4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="onClick"/>
+
+            <ImageView
+                android:id="@+id/iv46"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+
+            <ImageView
+                android:id="@+id/iv45"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv44"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv43"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv42"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv41"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv40"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+        </LinearLayout>
+
+        //clo 5
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnColumn5"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="onClick"/>
+            <ImageView
+                android:id="@+id/iv56"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv55"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv54"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv53"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv52"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv51"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv50"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+        </LinearLayout>
+
+        //col6
+
+        <LinearLayout
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnColumn6"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:onClick="onClick"/>
+            <ImageView
+                android:id="@+id/iv66"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv65"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv64"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv63"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv62"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv61"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+            <ImageView
+                android:id="@+id/iv60"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/black"/>
+        </LinearLayout>
+
+
 
 
 

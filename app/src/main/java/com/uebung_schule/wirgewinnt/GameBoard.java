@@ -31,6 +31,7 @@ public class GameBoard {
     public void putStone(int column, int row, boolean currentPlayer) {
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
+
         } else {
             gameBoard[column][row].status = 2;
         }

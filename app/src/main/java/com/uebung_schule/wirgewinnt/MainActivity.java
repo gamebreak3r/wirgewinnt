@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     boolean gameHasEnded = false;
-    private void onClick(View v) {
+    public void onClick(View v) {
         switch (v.getId()) {
 
             //region mode
@@ -54,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
             //endregion
 
             //region gameplay
-            case R.id.btnColumn1:
+            case R.id.btnColumn0:
                 //stein setzen
-                putStone(1);
+                putStone(0);
                 //check ob gewonnen (boolean)
                 if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
                 //wer an der reihe ist ändern
