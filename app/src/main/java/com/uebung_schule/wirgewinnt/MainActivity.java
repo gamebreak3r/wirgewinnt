@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -63,12 +64,14 @@ public class MainActivity extends AppCompatActivity {
                 findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
                 ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
                 break;
-            case R.id.btnCancel:
+            //case R.id.btnCancel:
                 //gameboard gone
                 //array zurücksetzten
                 //buttons anzeigen
 
-                break;
+                //break;
+           // ImageView a = (ImageView) findViewById(R.id.iv00);
+           // a.setId(00);
 
 
             //endregion
@@ -80,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         //steine zählen
         //draufsetzen
         gameBoard.putStone(column, gameBoard.stonesInColumn(column), currentPlayer);
-
         //TODO: UI Update
 
         //zug beendet

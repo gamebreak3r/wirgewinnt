@@ -1,5 +1,9 @@
 package com.uebung_schule.wirgewinnt;
 
+import android.graphics.Color;
+import android.view.View;
+import android.widget.ImageView;
+
 /**
  * Created by Andreas on 11/11/2016.
  */
@@ -24,6 +28,7 @@ public class GameBoard {
         int result = 0;
         for (Cell cell : gameBoard[column]) {
             if (cell.status != 0) result++;
+
         }
         return result;
     }
@@ -31,18 +36,31 @@ public class GameBoard {
     public void putStone(int column, int row, boolean currentPlayer) {
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
+            //.setBackgroundColor(Color.RED);
+            // change imageview color
+
+
+
+
+
+
+
+            //((ImageView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe");
+
+
 
         } else {
             gameBoard[column][row].status = 2;
         }
-        //TODO: setStatus(player)
+        //TODO: setStatus(player) statt else
     }
 
-    public void checkStatus(int column, int row, int status) {
+    public void checkIfWon(int column, int row, int status) {
 
         int count_x = 0;
         int count_y = 0;
         int count_xy_up = 0;
+        //TODO: Abhängigkeiten von GameSize
         int go_right = 6 - column;
         int go_up = 6 - row;
         int go_up_right = 0;

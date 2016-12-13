@@ -104,6 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
+
             <ImageView
                 android:id="@+id/iv00"
                 android:layout_width="match_parent"
@@ -351,7 +352,7 @@
                 android:background="@android:color/black"/>
         </LinearLayout>
 
-        //col6
+        //col 6
 
         <LinearLayout
             android:layout_width="50dp"
@@ -398,13 +399,6 @@
                 android:layout_height="50dp"
                 android:background="@android:color/black"/>
         </LinearLayout>
-
-
-
-
-
-
-
 
 
 
