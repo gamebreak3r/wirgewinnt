@@ -1,5 +1,7 @@
 package com.uebung_schule.wirgewinnt;
 
+import android.graphics.Color;
+
 /**
  * Created by Andreas on 11/11/2016.
  */
@@ -18,4 +20,15 @@ public class Cell {
         this.status = status;
     }
 
+    /*
+    public void setStatus(int newStatus) {
+        status = newStatus;
+        if (newStatus == 1) {
+            setBackgroundColor(Color.GREEN);
+        } else if (newStatus == 2) {
+            setBackgroundColor(Color.RED);
+        } else {
+            setBackgroundColor(Color.WHITE);
+        }
+    } */
 }

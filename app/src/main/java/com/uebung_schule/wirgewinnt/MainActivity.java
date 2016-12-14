@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        LinearLayout table = (LinearLayout)findViewById(R.id.table);
+
+        for (int i = 0; i < 7; i++){
+            ImageView column = new ImageView(this);
+            column.setMaxHeight(50);
+            column.setMaxWidth(50);
+            column.setId(i+1000);
+            column.setBackgroundColor(Color.BLACK);
+          //  column.setLayoutParams(new android.view.ViewGroup(50,50));
+            table.addView(column);
+
+        }
+
+
+     //   ImageView bla;
+     //   Button btn = (Button) View.findViewWithTag(Cell.getX().toString() + " " + Cell.getY().toString());
         gameBoard = new GameBoard(7);
     }
 
@@ -84,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
         //draufsetzen
         gameBoard.putStone(column, gameBoard.stonesInColumn(column), currentPlayer);
         //TODO: UI Update
-
         //zug beendet
         currentPlayer = !currentPlayer;
         //TODO: gameHasEnded setzen

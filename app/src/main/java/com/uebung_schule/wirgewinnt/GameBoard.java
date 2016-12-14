@@ -1,6 +1,7 @@
 package com.uebung_schule.wirgewinnt;
 
 import android.graphics.Color;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -28,7 +29,6 @@ public class GameBoard {
         int result = 0;
         for (Cell cell : gameBoard[column]) {
             if (cell.status != 0) result++;
-
         }
         return result;
     }
@@ -53,9 +53,32 @@ public class GameBoard {
             gameBoard[column][row].status = 2;
         }
         //TODO: setStatus(player) statt else
+        checkIfWon(0,0,0);
     }
 
+    /*
+    _ _ _ _ _ _ _
+    _ _ _ _ _ _ _
+    _ _ _ _ _ _ _
+    _ _ _ X X _ _
+    _ _ _ O X _ _
+    _ _ O O X _ _
+    _ _ X O X _ _
+
+        try {
+        //code
+        //exception
+        //more code
+    } catch (Exception e) {
+        Log.e("test", "checkIfWon: fehler", e);
+    } finally {
+        //code
+    }
+
+     */
+
     public void checkIfWon(int column, int row, int status) {
+
 
         int count_x = 0;
         int count_y = 0;
