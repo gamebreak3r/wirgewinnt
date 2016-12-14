@@ -114,11 +114,52 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/table"
-        android:layout_width="match_parent"
+        android:id="@+id/table00"
+        android:layout_width="47dp"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/table10"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/table20"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/table30"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/table40"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/table50"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/table60"
+        android:layout_width="47dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     </LinearLayout>
 
 </LinearLayout>

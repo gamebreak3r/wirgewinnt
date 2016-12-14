@@ -5,6 +5,7 @@ import android.media.Image;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,27 +25,69 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout table = (LinearLayout)findViewById(R.id.table);
-
-        for (int l = 0; l < 7; l++) {
-            LinearLayout layout = new LinearLayout(this);
-            layout.setOrientation(LinearLayout.VERTICAL);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layout.setLayoutParams(layoutParams);
-
+        LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
             for (int i = 0; i < 7; i++) {
                 ImageView column = new ImageView(this);
                 column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
-                column.setId(i + 1000);
+                column.setId(i + 1000 + 00);
                 column.setBackgroundColor(Color.BLACK);
-                layout.addView(column);
+                table00.addView(column);
             }
+
+        LinearLayout table10 = (LinearLayout)findViewById(R.id.table10);
+        for (int i = 0; i < 7; i++) {
+            ImageView column = new ImageView(this);
+            column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+            column.setId(i + 1000 + 10);
+            column.setBackgroundColor(Color.BLACK);
+            table10.addView(column);
         }
 
+        LinearLayout table20 = (LinearLayout)findViewById(R.id.table20);
+        for (int i = 0; i < 7; i++) {
+            ImageView column = new ImageView(this);
+            column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+            column.setId(i + 1000 + 20);
+            column.setBackgroundColor(Color.BLACK);
+            table20.addView(column);
+        }
 
-     //   ImageView bla;
-     //   Button btn = (Button) View.findViewWithTag(Cell.getX().toString() + " " + Cell.getY().toString());
+        LinearLayout table30 = (LinearLayout)findViewById(R.id.table30);
+        for (int i = 0; i < 7; i++) {
+            ImageView column = new ImageView(this);
+            column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+            column.setId(i + 1000 + 30);
+            column.setBackgroundColor(Color.BLACK);
+            table30.addView(column);
+        }
+
+        LinearLayout table40 = (LinearLayout)findViewById(R.id.table40);
+        for (int i = 0; i < 7; i++) {
+            ImageView column = new ImageView(this);
+            column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+            column.setId(i + 1000 + 40);
+            column.setBackgroundColor(Color.BLACK);
+            table40.addView(column);
+        }
+
+        LinearLayout table50 = (LinearLayout)findViewById(R.id.table50);
+        for (int i = 0; i < 7; i++) {
+            ImageView column = new ImageView(this);
+            column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+            column.setId(i + 1000 + 50);
+            column.setBackgroundColor(Color.BLACK);
+            table50.addView(column);
+        }
+
+        LinearLayout table60 = (LinearLayout)findViewById(R.id.table60);
+        for (int i = 0; i < 7; i++) {
+            ImageView column = new ImageView(this);
+            column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+            column.setId(i + 1000 + 60);
+            column.setBackgroundColor(Color.BLACK);
+            table60.addView(column);
+        }
+        
         gameBoard = new GameBoard(7);
     }
 
