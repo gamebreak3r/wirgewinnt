@@ -1,6 +1,8 @@
 package com.uebung_schule.wirgewinnt;
 
 import android.graphics.Color;
+import android.media.Image;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,15 +26,20 @@ public class MainActivity extends AppCompatActivity {
 
         LinearLayout table = (LinearLayout)findViewById(R.id.table);
 
-        for (int i = 0; i < 7; i++){
-            ImageView column = new ImageView(this);
-            column.setMaxHeight(50);
-            column.setMaxWidth(50);
-            column.setId(i+1000);
-            column.setBackgroundColor(Color.BLACK);
-          //  column.setLayoutParams(new android.view.ViewGroup(50,50));
-            table.addView(column);
+        for (int l = 0; l < 7; l++) {
+            LinearLayout layout = new LinearLayout(this);
+            layout.setOrientation(LinearLayout.VERTICAL);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layout.setLayoutParams(layoutParams);
 
+            for (int i = 0; i < 7; i++) {
+                ImageView column = new ImageView(this);
+                column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
+                column.setId(i + 1000);
+                column.setBackgroundColor(Color.BLACK);
+                layout.addView(column);
+            }
         }
 
 
@@ -89,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
                 //break;
            // ImageView a = (ImageView) findViewById(R.id.iv00);
            // a.setId(00);
-
 
             //endregion
         }

@@ -68,44 +68,44 @@
         //col1 alles in activity machen
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="47dp"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnColumn0"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
 
             <Button
                 android:id="@+id/btnColumn1"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
 
             <Button
                 android:id="@+id/btnColumn2"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
             <Button
                 android:id="@+id/btnColumn3"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
             <Button
                 android:id="@+id/btnColumn4"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
             <Button
                 android:id="@+id/btnColumn5"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
             <Button
                 android:id="@+id/btnColumn6"
-                android:layout_width="50dp"
+                android:layout_width="47dp"
                 android:layout_height="match_parent"
                 android:onClick="onClick"/>
         </LinearLayout>
