@@ -37,11 +37,11 @@ public class GameBoard {
         ImageView table = (ImageView) view.findViewById(1000+column+row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
-            table.setBackgroundColor(Color.BLUE);
+            table.setBackgroundColor(Color.RED);
             }
          else {
             gameBoard[column][row].status = 2;
-            table.setBackgroundColor(Color.RED);
+            table.setBackgroundColor(Color.BLUE);
         }
         //TODO: setStatus(player) statt else
         checkIfWon(0,0,0);
