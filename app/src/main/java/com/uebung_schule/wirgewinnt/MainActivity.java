@@ -137,14 +137,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 break;
-            //case R.id.btnCancel:
-                //gameboard gone
-                //array zurücksetzten
-                //buttons anzeigen
-
-                //break;
-           // ImageView a = (ImageView) findViewById(R.id.iv00);
-           // a.setId(00);
 
             //endregion
         }
@@ -154,7 +146,10 @@ public class MainActivity extends AppCompatActivity {
         //spalten anschauen
         //steine zählen
         //draufsetzen
-        gameBoard.putStone(column, gameBoard.stonesInColumn(column), currentPlayer);
+        int row = gameBoard.stonesInColumn(column);
+        if (row <= 6) {
+            gameBoard.putStone(column, row, currentPlayer);
+        }
         //TODO: UI Update
         //zug beendet
         currentPlayer = !currentPlayer;
