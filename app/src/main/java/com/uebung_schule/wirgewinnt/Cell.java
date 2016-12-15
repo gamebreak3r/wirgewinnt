@@ -21,14 +21,19 @@ public class Cell {
         this.column = column;
         this.row = row;
         this.status = status;
+        ImageView table = (ImageView) view.findViewById(1000+column+row);
 
-        if (status == 1){
-            ImageView table = (ImageView) view.findViewById(1000+column+row);
-            table.setBackgroundColor(Color.BLUE);
-
-
-
+        switch (status){
+            case 1 :
+                table.setBackgroundColor(Color.BLUE);
+                break;
+            case 2 :
+                table.setBackgroundColor(Color.RED);
+                break;
+            default:
+                 table.setBackgroundColor(Color.BLACK);
         }
+        
     }
 
     /*
