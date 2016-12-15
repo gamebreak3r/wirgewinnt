@@ -15,11 +15,11 @@ public class GameBoard {
     private Cell[][] gameBoard;
     //endregion
 
-    public GameBoard(int boardSize) {
+    public GameBoard(int boardSize, View table) {
         gameBoard = new Cell[boardSize][boardSize];
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[x].length; y++) {
-                gameBoard[x][y] = new Cell(x, y, 0);
+                gameBoard[x][y] = new Cell(x, y, 0, table);
             }
         }
     }
@@ -36,6 +36,7 @@ public class GameBoard {
     public void putStone(int column, int row, boolean currentPlayer) {
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
+
             //.setBackgroundColor(Color.RED);
             // change imageview color
 

@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             table60.addView(column);
         }
         
-        gameBoard = new GameBoard(7);
+        gameBoard = new GameBoard(7,findViewById(R.id.activity_main));
     }
 
     boolean gameHasEnded = false;
