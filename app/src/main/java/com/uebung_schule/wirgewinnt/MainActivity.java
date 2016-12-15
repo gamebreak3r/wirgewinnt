@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
-            for (int i = 0; i < 7; i++) {
+            for (int i = 6; i >= 0; i--) {
                 ImageView column = new ImageView(this);
                 column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
                 column.setId(i + 1000 + 00);
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         LinearLayout table10 = (LinearLayout)findViewById(R.id.table10);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0; i--) {
             ImageView column = new ImageView(this);
             column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
             column.setId(i + 1000 + 10);
@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout table20 = (LinearLayout)findViewById(R.id.table20);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0; i--) {
             ImageView column = new ImageView(this);
             column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
             column.setId(i + 1000 + 20);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout table30 = (LinearLayout)findViewById(R.id.table30);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0; i--) {
             ImageView column = new ImageView(this);
             column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
             column.setId(i + 1000 + 30);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout table40 = (LinearLayout)findViewById(R.id.table40);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0; i--) {
             ImageView column = new ImageView(this);
             column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
             column.setId(i + 1000 + 40);
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout table50 = (LinearLayout)findViewById(R.id.table50);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0; i--) {
             ImageView column = new ImageView(this);
             column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
             column.setId(i + 1000 + 50);
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         LinearLayout table60 = (LinearLayout)findViewById(R.id.table60);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 6; i >= 0; i--) {
             ImageView column = new ImageView(this);
             column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
             column.setId(i + 1000 + 60);
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         //draufsetzen
         int row = gameBoard.stonesInColumn(column);
         if (row <= 6) {
-            gameBoard.putStone(column, row, currentPlayer);
+            gameBoard.putStone(column, row, currentPlayer, findViewById(R.id.activity_main));
         }
         //TODO: UI Update
         //zug beendet

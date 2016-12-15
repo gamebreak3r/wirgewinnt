@@ -33,12 +33,15 @@ public class GameBoard {
         return result;
     }
 
-    public void putStone(int column, int row, boolean currentPlayer) {
+    public void putStone(int column, int row, boolean currentPlayer, View view) {
+        ImageView table = (ImageView) view.findViewById(1000+column+row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
-
-        } else {
+            table.setBackgroundColor(Color.BLUE);
+            }
+         else {
             gameBoard[column][row].status = 2;
+            table.setBackgroundColor(Color.RED);
         }
         //TODO: setStatus(player) statt else
         checkIfWon(0,0,0);
