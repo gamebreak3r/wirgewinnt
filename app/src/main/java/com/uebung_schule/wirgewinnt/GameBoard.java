@@ -37,19 +37,6 @@ public class GameBoard {
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
 
-            //.setBackgroundColor(Color.RED);
-            // change imageview color
-
-
-
-
-
-
-
-            //((ImageView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe");
-
-
-
         } else {
             gameBoard[column][row].status = 2;
         }

@@ -128,8 +128,14 @@ public class MainActivity extends AppCompatActivity {
                 //check ob gewonnen (boolean)
                 if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
                 //wer an der reihe ist ändern
-                findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+
                 break;
             //case R.id.btnCancel:
                 //gameboard gone

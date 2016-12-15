@@ -30,10 +30,10 @@ public class Cell {
             case 2 :
                 table.setBackgroundColor(Color.RED);
                 break;
-            default:
-                 table.setBackgroundColor(Color.BLACK);
+         //   default:
+         //        table.setBackgroundColor(Color.BLACK);
         }
-        
+
     }
 
     /*
