@@ -43,7 +43,6 @@ public class GameBoard {
             gameBoard[column][row].status = 2;
             table.setBackgroundColor(Color.BLUE);
         }
-        //TODO: setStatus(player) statt else
         checkIfWon(0,0,0);
     }
 
