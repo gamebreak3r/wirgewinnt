@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity {
 
                 //Spielfeld erscheint
                 findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
-
                 break;
             case R.id.btnHotseat:
                 //Spielfeld erscheint
@@ -109,14 +108,12 @@ public class MainActivity extends AppCompatActivity {
                 //Zuganzeige (textuell, visuell)
                 findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
                 currentPlayer = true;
-
                 break;
             case R.id.btnOnline:
                 //TODO
 
                 //Spielfeld erscheint
                 findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
-
                 break;
 
             //endregion
@@ -135,9 +132,97 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
                     ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
                 }
-
                 break;
 
+            case R.id.btnColumn1:
+                //stein setzen
+                putStone(1);
+                //check ob gewonnen (boolean)
+                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
+                //wer an der reihe ist ändern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+                break;
+
+            case R.id.btnColumn2:
+                //stein setzen
+                putStone(2);
+                //check ob gewonnen (boolean)
+                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
+                //wer an der reihe ist ändern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+                break;
+
+            case R.id.btnColumn3:
+                //stein setzen
+                putStone(3);
+                //check ob gewonnen (boolean)
+                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
+                //wer an der reihe ist ändern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+                break;
+
+            case R.id.btnColumn4:
+                //stein setzen
+                putStone(4);
+                //check ob gewonnen (boolean)
+                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
+                //wer an der reihe ist ändern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+                break;
+
+            case R.id.btnColumn5:
+                //stein setzen
+                putStone(5);
+                //check ob gewonnen (boolean)
+                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
+                //wer an der reihe ist ändern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+                break;
+
+            case R.id.btnColumn6:
+                //stein setzen
+                putStone(6);
+                //check ob gewonnen (boolean)
+                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
+                //wer an der reihe ist ändern
+                if (currentPlayer) {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+                } else {
+                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+                }
+                break;
             //endregion
         }
     }

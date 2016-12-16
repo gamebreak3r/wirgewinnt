@@ -34,7 +34,7 @@ public class GameBoard {
     }
 
     public void putStone(int column, int row, boolean currentPlayer, View view) {
-        ImageView table = (ImageView) view.findViewById(1000+column+row);
+        ImageView table = (ImageView) view.findViewById(1000+column*10+row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
             table.setBackgroundColor(Color.RED);
