@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SQLDatabase.setConnection();
+       /* SQLDatabase.setConnection();
         setContentView(R.layout.activity_login);
-    }
+    } */
 
-    protected void createGeame(View view) {
+   // protected void createGeame(View view) {
         setContentView(R.layout.activity_main);
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 if (username.toString().equalsIgnoreCase("test") && passwort.toString().equalsIgnoreCase("test"))
                 {
-                    createGeame(v);
+                  //  createGeame(v);
                 }
                 //Wenn die Datenbank geht
                 /*if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
@@ -144,111 +144,68 @@ public class MainActivity extends AppCompatActivity {
             //region gameplay
             case R.id.btnColumn0:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(0);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
 
             case R.id.btnColumn1:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(1);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
 
             case R.id.btnColumn2:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(2);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
 
             case R.id.btnColumn3:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(3);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
+
 
             case R.id.btnColumn4:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(4);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
 
             case R.id.btnColumn5:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(5);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
 
             case R.id.btnColumn6:
                 //stein setzen
+                if (gameHasEnded) break;
                 putStone(6);
-                //check ob gewonnen (boolean)
-                if (gameHasEnded) ((TextView) findViewById(R.id.txtPlayer)).setText("Gewonnen!"); //TODO: String ausgliedern
-                //wer an der reihe ist ändern
-                if (currentPlayer) {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
-                } else {
-                    findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-                    ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
-                }
+                setPlayer();
                 break;
             //endregion
         }
     }
+    private void setPlayer () {
+
+
+        if (currentPlayer) {
+            findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
+            ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+        } else {
+            findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
+            ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+        }
+    }
+
 
     private void putStone(int column) {
         //spalten anschauen
@@ -261,12 +218,19 @@ public class MainActivity extends AppCompatActivity {
         //TODO: UI Update
         //zug beendet
         if (gameBoard.checkIfWon(column, row)){
-            ((TextView) findViewById(R.id.txtPlayer)).setBackgroundColor(Color.WHITE);
+            gameHasEnded = true;
+
+            TextView tv = (TextView) findViewById(R.id.txtPlayer);
+            tv.setBackgroundColor(Color.WHITE);
+            tv.setText("Gewonnen");
+
+
+         /*   ((TextView) findViewById(R.id.txtPlayer)).setBackgroundColor(Color.WHITE);
             if(currentPlayer){
                 ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 hat Gewonnen!");
             } else {
                 ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 hat Gewonnen!");
-            }
+            }*/
         }
         currentPlayer = !currentPlayer;
 

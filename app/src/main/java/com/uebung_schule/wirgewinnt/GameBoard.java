@@ -72,11 +72,11 @@ public class GameBoard {
         int horizontal = 1;
         int diagonal1 = 1;
         int diagonal2 = 1;
-        
+
         boolean checkIfWon = false;
         int status = gameBoard[column][row].status;
 
-        try {
+
 
 
             for (int i = 1; i <= 4; i++) {
@@ -91,12 +91,12 @@ public class GameBoard {
                     break;
                 }
             }
-        } catch (NullPointerException e){
-            //nicht im Spielfeld
-        }
+
 
         //gameBoard[column - i][row].status == status
+        System.out.println(checkIfWon);
         return checkIfWon;
+
     }
 
 
