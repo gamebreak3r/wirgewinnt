@@ -72,6 +72,7 @@ public class GameBoard {
         int horizontal = 1;
         int diagonal1 = 1;
         int diagonal2 = 1;
+        
         boolean checkIfWon = false;
         int status = gameBoard[column][row].status;
 
