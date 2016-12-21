@@ -237,7 +237,16 @@ public class MainActivity extends AppCompatActivity {
         }
         //TODO: UI Update
         //zug beendet
+        if (gameBoard.checkIfWon(column, row)){
+            ((TextView) findViewById(R.id.txtPlayer)).setBackgroundColor(Color.WHITE);
+            if(currentPlayer){
+                ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 hat Gewonnen!");
+            } else {
+                ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 hat Gewonnen!");
+            }
+        }
         currentPlayer = !currentPlayer;
+
         //TODO: gameHasEnded setzen
     }
 

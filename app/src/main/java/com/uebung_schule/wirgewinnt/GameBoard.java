@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by Andreas on 11/11/2016.
@@ -43,8 +44,6 @@ public class GameBoard {
             gameBoard[column][row].status = 2;
             table.setBackgroundColor(Color.BLUE);
         }
-        //TODO: setStatus(player) statt else
-        checkIfWon(0,0,0);
     }
 
     /*
@@ -68,119 +67,38 @@ public class GameBoard {
 
      */
 
-    public void checkIfWon(int column, int row, int status) {
+    public boolean checkIfWon(int column, int row) {
+        int vertical = 1;
+        int horizontal = 1;
+        int diagonal1 = 1;
+        int diagonal2 = 1;
+        boolean checkIfWon = false;
+        int status = gameBoard[column][row].status;
+
+        try {
 
 
-        int count_x = 0;
-        int count_y = 0;
-        int count_xy_up = 0;
-        //TODO: Abhängigkeiten von GameSize
-        int go_right = 6 - column;
-        int go_up = 6 - row;
-        int go_up_right = 0;
-        int go_down_left = 0;
-        int go_down_right = 0;
-        int go_up_left = 0;
-
-        //int go_left = column; wird nicht gebraucht da beide das selebe ist und nix hochgezählt wird
-        //int go_down = row; ""
-
-        //check was kleiner ist
-        if (go_up > go_right){
-            go_up_right = go_right;
-        } else {
-            go_up_right = go_up;
+            for (int i = 1; i <= 4; i++) {
+                if (row - i >= 0) {
+                    if (gameBoard[column][row - i].status == status) {
+                        vertical++;
+                        if (vertical >= 4) checkIfWon = true;
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }
+        } catch (NullPointerException e){
+            //nicht im Spielfeld
         }
 
-        //check was kleiner ist
-        if (row > column){
-            go_down_left = column;
-        } else {
-            go_down_left = row;
-        }
-
-        //check was kleiner ist
-        if (row > go_right){
-            go_down_right = go_right;
-        } else {
-            go_down_right = row;
-        }
-
-        //TODO: letzter check was größer ist
-
-
-
-        int i = 1;
-        //Rechts
-        while (i <= go_right) {
-            if (gameBoard[column + i][row].status == status) {
-                count_x++;
-                i++;
-            }
-            else {
-                break;
-            }
-        }
-
-        i = 1; //Zurücksetzen
-        // Links
-        while (i <= column) {
-            if (gameBoard[column - i][row].status == status) {
-                count_x++;
-                i++;
-            }
-            else {
-                break;
-            }
-        }
-
-        i = 1; //Zurücksetzen
-        // Hoch
-        while (i <= go_up){
-            if (gameBoard[column][row+i].status == status){
-                count_y++;
-                i++;
-            }
-            else {
-                break;
-            }
-        }
-
-        i = 1; //Zurücksetzen
-        // Runter
-        while (i <= row){
-            if (gameBoard[column][row-i].status == status){
-                count_y++;
-                i++;
-            }
-            else{
-                break;
-            }
-
-        }
-
-        i = 1; //Zurücksetzen
-
-        while (i <= go_up_right){
-            if (gameBoard[column+i][row+i].status == status){
-                count_xy_up++;
-                i++;
-            } else {
-                break;
-            }
-        }
-        i = 1; // Zurücksetzen
-        while (i <= go_down_left){
-            if (gameBoard[column-i][row-i].status == status){
-                count_xy_up++;
-                i++;
-            } else {
-                break;
-            }
-        }
-
-        i = 1; // Zurücksetzen
-
+        //gameBoard[column - i][row].status == status
+        return checkIfWon;
     }
+
+
+
 }
 
