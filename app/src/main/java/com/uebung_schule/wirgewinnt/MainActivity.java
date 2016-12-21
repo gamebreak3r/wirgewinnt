@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SQLDatabase.setConnection();
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
             for (int i = 6; i >= 0; i--) {
