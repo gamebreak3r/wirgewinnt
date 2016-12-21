@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">wirgewinnt</string>
+    <string name="textviewTitel">Wähle deinen Spielmodus!</string>
+    <string name="buttonEinzelspieler">Einzelspieler</string>
+    <string name="buttonMultiplayerOnOneDivice">Multiplayer</string>
+    <string name="buttonMultiplayerOnDiverenDevices">Multiplayer Plus</string>
+    <string name="buttonLogin">Login</string>
+    <string name="Passwort">Passwort</string>
+    <string name="TextViewUsername">Username</string>
+    <string name="buttonRegistieren">Registieren</string>
+    <string name="textE_Mail">E-Mail</string>
+    <string name="txtPasswortBestätigen">Passwort bestätigen</string>
 </resources>
