@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,8 +24,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         SQLDatabase.setConnection();
+        setContentView(R.layout.activity_login);
+    }
+
+    protected void createGeame(View view) {
+        setContentView(R.layout.activity_main);
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
             for (int i = 6; i >= 0; i--) {
@@ -95,6 +100,23 @@ public class MainActivity extends AppCompatActivity {
     boolean gameHasEnded = false;
     public void onClick(View v) {
         switch (v.getId()) {
+
+            case R.id.btnLogin:
+                TextView username = (TextView) findViewById(R.id.loginUsername);
+                TextView passwort = (TextView) findViewById(R.id.loginPasswort);
+                if (username.toString().equalsIgnoreCase("test") && passwort.toString().equalsIgnoreCase("test"))
+                {
+                    createGeame(v);
+                }
+                //Wenn die Datenbank geht
+                /*if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
+                {
+                    createGeame();
+                }
+                else{
+                    Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
+                }*/
+                break;
 
             //region mode
             case R.id.btnSingleplayer:

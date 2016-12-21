@@ -12,7 +12,7 @@ import java.sql.Statement;
 public class SQLDatabase {
 
         //MySQL Daten für das Login
-        private static String ip = "localhost";
+        private static String ip = "m1331.contabo.net";
         private static String port = "3306";
         private static String db = "viergewinnt";
         private static String username = "vierwin";
@@ -48,24 +48,33 @@ public class SQLDatabase {
         public static boolean getLoginTrue (String username, String passwort)
         {
         try {
-            String query = "";
+            String query = "Select passwort, playerID from Users where username='" + username + "'";
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next());
-            if (rs.getString("username").equals(username)) {
-                if (rs.getString("passwort").equals(passwort)){
+             if (rs.getString("passwort").equals(passwort)){
                 //Hier muss ein new Player erzeugt werden.
                 rs.getInt("playerID");
-                return true;}
-            }
+                return true;
+             }
         }catch (SQLException e) {
+            return false;
         }
         return false;
         }
 
         public static boolean isUserExisting (String username)
         {
-
+            try {
+                String query = "Select * from Users where username='" + username + "'";
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(query);
+                while (rs.next()){
+                    return true;
+                }
+            }catch (SQLException e) {
+                return false;
+            }
             return false;
         }
 }
