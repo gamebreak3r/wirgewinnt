@@ -78,9 +78,9 @@ public class GameBoard {
 
 
 
-
+            // region vertical
             for (int i = 1; i <= 4; i++) {
-                if (row - i >= 0) {
+                if (row - i >= 0 ) {
                     if (gameBoard[column][row - i].status == status) {
                         vertical++;
                         if (vertical >= 4) checkIfWon = true;
@@ -90,7 +90,40 @@ public class GameBoard {
                 } else {
                     break;
                 }
+            } // endregion
+
+            //region horizontal
+
+            //links
+            for (int i = 1; i <= 4; i++) {
+                if (column - i >= 0 ) {
+                    if (gameBoard[column-i][row].status == status) {
+                        horizontal++;
+                        if (horizontal >= 4) checkIfWon = true;
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
             }
+
+            //rechts
+            for (int i = 1; i <= 4; i++) {
+                if (column + i <= 6 ) {
+                    if (gameBoard[column+i][row].status == status) {
+                        horizontal++;
+                        if (horizontal >= 4) checkIfWon = true;
+                    } else {
+                        break;
+                    }
+                } else {
+                    break;
+                }
+            }// endregion
+
+
+
 
 
         //gameBoard[column - i][row].status == status
