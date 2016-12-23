@@ -127,6 +127,67 @@ public class GameBoard {
             }// endregion
 
 
+        // region diagonal1
+        //links
+        for (int i = 1; i <= 4; i++) {
+            if (column - i >= 0 && row - i >=0) {
+                if (gameBoard[column-i][row-i].status == status) {
+                    diagonal1++;
+                    if (diagonal1 >= 4) checkIfWon = true;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+
+        //rechts
+        for (int i = 1; i <= 4; i++) {
+            if (column + i <= 6 && row + i <= 6) {
+                if (gameBoard[column+i][row+i].status == status) {
+                    diagonal1++;
+                    if (diagonal1 >= 4) checkIfWon = true;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }// endregion
+
+
+        // region diagonal2
+        //links hoch
+        for (int i = 1; i <= 4; i++) {
+            if (column - i >= 0 && row + i <= 6) {
+                if (gameBoard[column-i][row+i].status == status) {
+                    diagonal2++;
+                    if (diagonal2 >= 4) checkIfWon = true;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+        //rechts runter
+        for (int i = 1; i <= 4; i++) {
+            if (column + i <= 6 && row - i >=0) {
+                if (gameBoard[column+i][row-i].status == status) {
+                    diagonal2++;
+                    if (diagonal2 >= 4) checkIfWon = true;
+                } else {
+                    break;
+                }
+            } else {
+                break;
+            }
+        }
+
+
+
+        // endregion
 
 
 
