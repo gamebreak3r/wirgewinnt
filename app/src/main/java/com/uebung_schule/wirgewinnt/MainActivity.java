@@ -225,9 +225,9 @@ public class MainActivity extends AppCompatActivity {
             dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     Cell[][] reset = gameBoard.getGameBorad();
-                    for (int i = 0; i < 6; i++)
+                    for (int i = 0; i <= 6; i++)
                    {
-                       for (int a = 0; a < 6; a++) {
+                       for (int a = 0; a <= 6; a++) {
                            reset[i][a].status = 0;
                            findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
                            gameHasEnded=false;
