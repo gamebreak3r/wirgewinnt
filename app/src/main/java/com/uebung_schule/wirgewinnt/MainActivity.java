@@ -1,8 +1,10 @@
 package com.uebung_schule.wirgewinnt;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.media.Image;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
@@ -220,9 +222,20 @@ public class MainActivity extends AppCompatActivity {
         if (gameBoard.checkIfWon(column, row)){
             gameHasEnded = true;
 
-            TextView tv = (TextView) findViewById(R.id.txtPlayer);
-            tv.setBackgroundColor(Color.WHITE);
-            tv.setText("Gewonnen");
+
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+            dlgAlert.setTitle("Gewonnen");
+            dlgAlert.setMessage("Spieler :" + currentPlayer +" hat gewonnen!");
+            dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    finish();
+                }
+            });
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+
+
+
 
 
          /*   ((TextView) findViewById(R.id.txtPlayer)).setBackgroundColor(Color.WHITE);
