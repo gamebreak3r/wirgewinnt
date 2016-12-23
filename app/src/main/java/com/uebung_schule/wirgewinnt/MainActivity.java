@@ -26,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-  /*      setContentView(R.layout.activity_login);
+       setContentView(R.layout.activity_login);
     }
 
-    protected void createGeame(View view) {*/
+    protected void createGeame(View view) {
         setContentView(R.layout.activity_main);
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
@@ -106,13 +106,13 @@ public class MainActivity extends AppCompatActivity {
                 TextView username = (TextView) findViewById(R.id.loginUsername);
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
-               /* if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
+               if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
                 {
                     System.out.println("Es geht!");
                 }
                 else{
                     Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
-                }*/
+                }
                 break;
 
             //region mode
@@ -209,9 +209,9 @@ public class MainActivity extends AppCompatActivity {
         if (row <= 6) {
             gameBoard.putStone(column, row, currentPlayer, findViewById(R.id.activity_main));
         }
-        if (gameBoard.checkIfWon(column, row)){
+        if (gameBoard.checkIfWon(column, row, findViewById(R.id.activity_main))){
             String playerAusgabe = null;
-            if (currentPlayer) playerAusgabe="Spieler 1";
+            if (!currentPlayer) playerAusgabe="Spieler 1";
             else playerAusgabe="Spieler 2";
 
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);

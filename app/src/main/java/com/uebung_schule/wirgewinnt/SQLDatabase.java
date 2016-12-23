@@ -13,7 +13,6 @@ public class SQLDatabase {
 
         //MySQL Daten für das Login
         private static String ip = "eu-cdbr-azure-west-a.cloudapp.net";
-        private static String port = "3306";
         private static String db = "wirgewinnt";
         private static String username = "b4908f7592fbb4";
         private static String passwort = "81a99d4e";
@@ -24,7 +23,7 @@ public class SQLDatabase {
             try {
                 // CREATE TABLE AppUser (userID int NOT NULL AUTO_INCREMENT PRIMARY KEY, username varchar(50) NOT NULL, email varchar(100), passwort varchar(100), punkte int, lastlogin varchar(50));
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                String url = "jdbc:mysql://"+ip+":"+port+"/"+db;
+                String url = "jdbc:mysql://"+ip+"/"+db;
                 conn = DriverManager.getConnection(url, username, passwort);
             }
             catch (Exception e ) {

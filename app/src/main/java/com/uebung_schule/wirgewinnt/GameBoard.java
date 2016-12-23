@@ -71,7 +71,7 @@ public class GameBoard {
 
      */
 
-    public boolean checkIfWon(int column, int row) {
+    public boolean checkIfWon(int column, int row, View v) {
         int vertical = 1;
         int horizontal = 1;
         int diagonal1 = 1;
