@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 //Wenn die Datenbank geht
                 try {
                     if (SQLDatabase.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
-                        System.out.println("Es geht!");
+                        createGeame(v);
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
                     }
