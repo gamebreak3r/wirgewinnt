@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.SQLException;
+
 public class MainActivity extends AppCompatActivity {
 
     GameBoard gameBoard;
@@ -32,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-     /*  setContentView(R.layout.activity_login);
+       setContentView(R.layout.activity_login);
     }
 
-    protected void createGeame(View view) { */
+    protected void createGeame(View view) {
         setContentView(R.layout.activity_main);
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
@@ -116,22 +118,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-
-        Cell[][] status = gameBoard.getGameBorad();
+        Cell[][] status = null;
+        try {
+            status = gameBoard.getGameBorad();
+        }catch (Exception ex){};
 
         switch (v.getId()) {
             case R.id.btnLogin:
-                SQLDatabase.setConnection();
                 TextView username = (TextView) findViewById(R.id.loginUsername);
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
-              /* if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
-                {
-                    System.out.println("Es geht!");
+                try {
+                    if (SQLDatabase.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
+                        System.out.println("Es geht!");
+                    } else {
+                        Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
+                    }
+                }catch (SQLException ex){
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                    dlgAlert.setTitle("Verbingsfehler");
+                    dlgAlert.setMessage("Es konnte keine Verbindung zur Datenbank aufgebaut werden!");
+                    dlgAlert.setPositiveButton("Verstanden",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //Nichts
+                        }
+                    });
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
                 }
-                else{
-                    Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
-                } */
                 break;
 
             //region mode

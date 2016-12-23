@@ -8,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import android.os.StrictMode;
 
 public class SQLDatabase {
 
@@ -16,15 +17,17 @@ public class SQLDatabase {
         private static String db = "wirgewinnt";
         private static String username = "b4908f7592fbb4";
         private static String passwort = "81a99d4e";
-        private static Connection conn;
+        private static Connection con;
 
         public static void setConnection ()
         {
             try {
-                // CREATE TABLE AppUser (userID int NOT NULL AUTO_INCREMENT PRIMARY KEY, username varchar(50) NOT NULL, email varchar(100), passwort varchar(100), punkte int, lastlogin varchar(50));
+                if (android.os.Build.VERSION.SDK_INT > 9) {
+                    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
+                }
                 Class.forName("com.mysql.jdbc.Driver").newInstance();
-                String url = "jdbc:mysql://"+ip+"/"+db;
-                conn = DriverManager.getConnection(url, username, passwort);
+                con=DriverManager.getConnection("jdbc:mysql://"+ip+":3306/"+db, username, passwort);
             }
             catch (Exception e ) {
                 e.printStackTrace();
@@ -34,39 +37,38 @@ public class SQLDatabase {
         public static void createNewUser (String passwort, String username)
         {
             try {
+                setConnection();
                 String query = "INSERT INTO Users SET (user=" + username + ", passwort=" + passwort + ");";
-                Statement st = conn.createStatement();
+                Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 rs.next();
+                con.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
 
         }
 
-        public static boolean getLoginTrue (String username, String passwort)
-        {
-        try {
-            String query = "Select passwort, playerID from Users where username='" + username + "'";
-            Statement st = conn.createStatement();
+        public static boolean getLoginTrue (String username, String passwort) throws SQLException {
+            setConnection();
+            String query = "Select passwort, username from user where username='" + username + "'";
+            Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
-            while (rs.next());
-             if (rs.getString("passwort").equals(passwort)){
-                //Hier muss ein new Player erzeugt werden.
-                rs.getInt("playerID");
-                return true;
-             }
-        }catch (SQLException e) {
+            while (rs.next()) {
+                if (rs.getString("passwort").equals(passwort)) {
+                    con.close();
+                    return true;
+                }
+            }
+            con.close();
             return false;
-        }
-        return false;
         }
 
         public static boolean isUserExisting (String username)
         {
             try {
                 String query = "Select * from Users where username='" + username + "'";
-                Statement st = conn.createStatement();
+                Statement st = con.createStatement();
                 ResultSet rs = st.executeQuery(query);
                 while (rs.next()){
                     return true;
