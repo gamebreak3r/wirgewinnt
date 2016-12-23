@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                     else{
                         SQLDatabase.createNewUser(register_username.getText().toString(), register_passwort.getText().toString());
                         Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
-                        // setContentView(R.layout.activity_login);
+                        setContentView(R.layout.activity_login);
                         }
                 }catch (SQLException ex)
                 {
