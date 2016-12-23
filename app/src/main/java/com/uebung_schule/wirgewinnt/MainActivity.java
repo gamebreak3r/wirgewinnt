@@ -98,10 +98,9 @@ public class MainActivity extends AppCompatActivity {
         gameBoard = new GameBoard(7,findViewById(R.id.activity_main));
     }
 
-    boolean gameHasEnded = false;
     public void onClick(View v) {
+        Cell[][] status = gameBoard.getGameBorad();
         switch (v.getId()) {
-
             case R.id.btnLogin:
                 SQLDatabase.setConnection();
                 TextView username = (TextView) findViewById(R.id.loginUsername);
@@ -142,28 +141,28 @@ public class MainActivity extends AppCompatActivity {
             //region gameplay
             case R.id.btnColumn0:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[0][6].status != 0) break;
                 putStone(0);
                 setPlayer();
                 break;
 
             case R.id.btnColumn1:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[1][6].status != 0) break;
                 putStone(1);
                 setPlayer();
                 break;
 
             case R.id.btnColumn2:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[2][6].status != 0) break;
                 putStone(2);
                 setPlayer();
                 break;
 
             case R.id.btnColumn3:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[3][6].status != 0) break;
                 putStone(3);
                 setPlayer();
                 break;
@@ -171,21 +170,21 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.btnColumn4:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[4][6].status != 0) break;
                 putStone(4);
                 setPlayer();
                 break;
 
             case R.id.btnColumn5:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[5][6].status != 0) break;
                 putStone(5);
                 setPlayer();
                 break;
 
             case R.id.btnColumn6:
                 //stein setzen
-                if (gameHasEnded) break;
+                if (status[6][6].status != 0) break;
                 putStone(6);
                 setPlayer();
                 break;
@@ -193,17 +192,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     private void setPlayer () {
-
-
         if (currentPlayer) {
             findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
-            ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe"); //TODO: String ausgliedern
+            ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe");
         } else {
             findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
-            ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe"); //TODO: String ausgliedern
+            ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 an der Reihe");
         }
     }
-
 
     private void putStone(int column) {
         //spalten anschauen
@@ -214,7 +210,6 @@ public class MainActivity extends AppCompatActivity {
             gameBoard.putStone(column, row, currentPlayer, findViewById(R.id.activity_main));
         }
         if (gameBoard.checkIfWon(column, row)){
-            gameHasEnded = true;
             String playerAusgabe = null;
             if (currentPlayer) playerAusgabe="Spieler 1";
             else playerAusgabe="Spieler 2";
@@ -224,19 +219,19 @@ public class MainActivity extends AppCompatActivity {
             dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
             dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    Cell[][] reset = gameBoard.getGameBorad();
-                    for (int i = 0; i <= 6; i++)
-                   {
-                       for (int a = 0; a <= 6; a++) {
-                           reset[i][a].status = 0;
-                           findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
-                           gameHasEnded=false;
-                       }
-                   }
+                   //Nichts
                 }
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
+            Cell[][] reset = gameBoard.getGameBorad();
+            for (int i = 0; i <= 6; i++)
+            {
+                for (int a = 0; a <= 6; a++) {
+                    reset[i][a].status = 0;
+                    findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                }
+            }
         }
         currentPlayer = !currentPlayer;
     }
