@@ -32,8 +32,12 @@ public class GameBoard {
     public boolean checkfull(){ // check für unentschieden
         boolean checkfull = true;
 
-        for (int i = 0; i <=6; i++){
-            if(gameBoard[i][6].status == 0 ) checkfull = false; break;
+        for (int i = 0; i <= 6; i++){
+            if(gameBoard[i][6].status == 0 ) {
+                checkfull = false;
+                break;
+            }
+
         }
         return checkfull;
     }
