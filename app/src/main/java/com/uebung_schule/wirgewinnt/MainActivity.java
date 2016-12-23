@@ -217,37 +217,29 @@ public class MainActivity extends AppCompatActivity {
         if (row <= 6) {
             gameBoard.putStone(column, row, currentPlayer, findViewById(R.id.activity_main));
         }
-        //TODO: UI Update
-        //zug beendet
         if (gameBoard.checkIfWon(column, row)){
             gameHasEnded = true;
-
+            String playerAusgabe = null;
+            if (currentPlayer) playerAusgabe="Spieler 1";
+            else playerAusgabe="Spieler 2";
 
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setTitle("Gewonnen");
-            dlgAlert.setMessage("Spieler :" + currentPlayer +" hat gewonnen!");
+            dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
             dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    finish();
+                   for (int i = 0; i < 6; i++)
+                   {
+                       for (int a = 0; a < 6; a++) {
+
+                       }
+                   }
                 }
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
-
-
-
-
-
-         /*   ((TextView) findViewById(R.id.txtPlayer)).setBackgroundColor(Color.WHITE);
-            if(currentPlayer){
-                ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 1 hat Gewonnen!");
-            } else {
-                ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 hat Gewonnen!");
-            }*/
         }
         currentPlayer = !currentPlayer;
-
-        //TODO: gameHasEnded setzen
     }
 
 }
