@@ -5,6 +5,7 @@ package com.uebung_schule.wirgewinnt;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -34,19 +35,13 @@ public class SQLDatabase {
             }
         }
 
-        public static void createNewUser (String passwort, String username)
+        public static void createNewUser (String passwort, String username) throws SQLException
         {
-            try {
                 setConnection();
-                String query = "INSERT INTO Users SET (user=" + username + ", passwort=" + passwort + ");";
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery(query);
-                rs.next();
+                String query = "INSERT INTO user (username, passwort) values ('" + username + "', '" + passwort + "')";
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.executeUpdate();
                 con.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
         }
 
         public static boolean getLoginTrue (String username, String passwort) throws SQLException {

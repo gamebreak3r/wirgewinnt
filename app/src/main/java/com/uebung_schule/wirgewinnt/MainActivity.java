@@ -148,6 +148,39 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
 
+            case R.id.btnRegistieren:
+                setContentView(R.layout.activity_register);
+                break;
+
+            case R.id.btnSaveRegister:
+                TextView register_username = (TextView) findViewById(R.id.register_username);
+                TextView register_passwort = (TextView) findViewById(R.id.register_passwort);
+                try {
+                    if (register_passwort.getText().toString().equals("") || register_username.getText().toString().equals(""))
+                    {
+                        Toast.makeText(this, "Bitte Usernamen und Passwort angeben!", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        SQLDatabase.createNewUser(register_username.getText().toString(), register_passwort.getText().toString());
+                        Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
+                        // setContentView(R.layout.activity_login);
+                        }
+                }catch (SQLException ex)
+                {
+                    AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+                    dlgAlert.setTitle("Verbingsfehler");
+                    dlgAlert.setMessage("Es konnte keine Verbindung zur Datenbank aufgebaut werden!");
+                    dlgAlert.setPositiveButton("Verstanden",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            //Nichts
+                        }
+                    });
+                    dlgAlert.setCancelable(true);
+                    dlgAlert.create().show();
+                    register_passwort.setText("");
+                }
+                break;
+
             //region mode
             case R.id.btnSingleplayer:
                 //TODO
