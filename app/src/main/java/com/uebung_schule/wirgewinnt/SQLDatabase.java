@@ -12,11 +12,11 @@ import java.sql.Statement;
 public class SQLDatabase {
 
         //MySQL Daten für das Login
-        private static String ip = "m1331.contabo.net";
+        private static String ip = "eu-cdbr-azure-west-a.cloudapp.net";
         private static String port = "3306";
-        private static String db = "viergewinnt";
-        private static String username = "vierwin";
-        private static String passwort = "asdfg-01";
+        private static String db = "wirgewinnt";
+        private static String username = "b4908f7592fbb4";
+        private static String passwort = "81a99d4e";
         private static Connection conn;
 
         public static void setConnection ()

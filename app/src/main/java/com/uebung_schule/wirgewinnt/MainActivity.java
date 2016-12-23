@@ -26,11 +26,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* SQLDatabase.setConnection();
-        setContentView(R.layout.activity_login);
-    } */
+  /*      setContentView(R.layout.activity_login);
+    }
 
-   // protected void createGeame(View view) {
+    protected void createGeame(View view) {*/
         setContentView(R.layout.activity_main);
 
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
@@ -104,16 +103,13 @@ public class MainActivity extends AppCompatActivity {
         switch (v.getId()) {
 
             case R.id.btnLogin:
+                SQLDatabase.setConnection();
                 TextView username = (TextView) findViewById(R.id.loginUsername);
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
-                if (username.toString().equalsIgnoreCase("test") && passwort.toString().equalsIgnoreCase("test"))
-                {
-                  //  createGeame(v);
-                }
                 //Wenn die Datenbank geht
-                /*if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
+               /* if (SQLDatabase.getLoginTrue(username.toString(), passwort.toString()))
                 {
-                    createGeame();
+                    System.out.println("Es geht!");
                 }
                 else{
                     Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
@@ -228,10 +224,13 @@ public class MainActivity extends AppCompatActivity {
             dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
             dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                   for (int i = 0; i < 6; i++)
+                    Cell[][] reset = gameBoard.getGameBorad();
+                    for (int i = 0; i < 6; i++)
                    {
                        for (int a = 0; a < 6; a++) {
-
+                           reset[i][a].status = 0;
+                           findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                           gameHasEnded=false;
                        }
                    }
                 }
