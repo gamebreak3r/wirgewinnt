@@ -340,7 +340,7 @@ public class MainActivity extends AppCompatActivity {
         if (gameBoard.checkfull()){
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setTitle("Unentschieden");
-            dlgAlert.setMessage("Keiner hat gewonnen! Ein neues Siepl wurde erstellt.");
+            dlgAlert.setMessage("Keiner hat gewonnen! Ein neues Spiel wurde erstellt.");
             dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     //Nichts
