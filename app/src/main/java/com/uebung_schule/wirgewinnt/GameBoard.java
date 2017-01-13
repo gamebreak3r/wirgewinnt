@@ -83,10 +83,6 @@ public class GameBoard {
                     vertical++;
                     if (vertical >= 4) {
                         checkIfWon = true;
-
-                       /* for(int j = 0; j <= 3; j++){
-                            v.findViewById(1000+row-j+column*10).setBackgroundColor(Color.WHITE);
-                        } */
                     }
                 } else {
                     break;

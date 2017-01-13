@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 6; i >= 0; i--) {
                 ImageView column = new ImageView(this);
                 column.setLayoutParams(new android.view.ViewGroup.LayoutParams(93, 93));
-                column.setId(i + 1000 + 00);
+                column.setId(i + 1000 );
                 column.setBackgroundColor(Color.BLACK);
                 table00.addView(column);
             }
@@ -106,6 +106,20 @@ public class MainActivity extends AppCompatActivity {
 
     private int random () {
         Cell[][] status = gameBoard.getGameBorad();
+        int count = 0;
+
+        for (int i = 0; i < 6; i++){ //Spalten durchgehen
+            for (int j = 0; i < 6; j++){ //Zeilen durchgehen
+                if (status[i][j].status == 1) {
+                    count++;
+                    if (count == 3 && status[i][6].status == 0) return i;
+                } else {
+                    count = 0;
+                }
+            }
+        }
+
+
         int random = (int)Math.floor(Math.random() * 6+0.5);
 
         while (status[random][6].status != 0){
