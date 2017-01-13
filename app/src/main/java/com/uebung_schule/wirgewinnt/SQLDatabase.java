@@ -14,10 +14,10 @@ import android.os.StrictMode;
 public class SQLDatabase {
 
         //MySQL Daten für das Login
-        private static String ip = "eu-cdbr-azure-west-a.cloudapp.net";
+        private static String ip = "wirgewinnt.square7.ch";
         private static String db = "wirgewinnt";
-        private static String username = "b4908f7592fbb4";
-        private static String passwort = "81a99d4e";
+        private static String username = "wirgewinnt";
+        private static String passwort = "ABCD";
         private static Connection con;
 
         public static void setConnection ()
