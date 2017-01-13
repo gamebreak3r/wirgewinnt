@@ -106,15 +106,29 @@ public class MainActivity extends AppCompatActivity {
 
     private int random () {
         Cell[][] status = gameBoard.getGameBorad();
-        int count = 0;
+        int count_h = 0;
+        int count_v = 0;
+        int player = 1;
+
+
+        if(currentPlayer) player = 2;
 
         for (int i = 0; i < 6; i++){ //Spalten durchgehen
-            for (int j = 0; i < 6; j++){ //Zeilen durchgehen
-                if (status[i][j].status == 1) {
-                    count++;
-                    if (count == 3 && status[i][6].status == 0) return i;
+            for (int j = 0; j < 6; j++){ //Zeilen durchgehen
+
+                if (status[i][j].status == player) { //check horizontal
+                    count_h++;
+                    if (count_h == 3 && status[i][6].status == 0) return i;
                 } else {
-                    count = 0;
+                    count_h = 0;
+                }
+
+                if (status[j][i].status == player) { //check vertical
+                    count_v++;
+                    if (count_v == 3 && j-3 > -1 && status[j-3][i].status == 0 ) return j-3;
+                    if (count_v == 3 && j+1 < 7 && status[j+1][i].status ==0) return j+1;
+                } else {
+                    count_v = 0;
                 }
             }
         }
