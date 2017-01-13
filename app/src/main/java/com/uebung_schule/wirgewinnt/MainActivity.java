@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_login);
+
     }
 
     protected void createGeame(View view) {
@@ -130,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
                     }
-                }catch (SQLException ex){
+                }catch (IOException ex){
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
                     dlgAlert.setTitle("Verbingsfehler");
                     dlgAlert.setMessage("Es konnte keine Verbindung zur Datenbank aufgebaut werden!");
