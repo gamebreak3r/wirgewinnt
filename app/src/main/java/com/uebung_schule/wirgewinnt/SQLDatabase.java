@@ -3,37 +3,20 @@ package com.uebung_schule.wirgewinnt;
 /**
  * Created by consult on 16.12.2016.
  */
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpRetryException;
-import java.net.HttpURLConnection;
+import java.io.InputStreamReader;
 import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Scanner;
 import android.os.StrictMode;
-import android.util.Log;
-
-import org.apache.http.HttpException;
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-
-import javax.net.ssl.HttpsURLConnection;
+import android.provider.ContactsContract;
 
 public class SQLDatabase {
 
@@ -72,21 +55,23 @@ public class SQLDatabase {
 
         public static boolean getLoginTrue (String username, String passwort) throws IOException{
 
+
             return true;
-            /*String url = "http://wirgewinnt.square7.ch/html/login.php?username=" + username;
-            HttpClient client = new DefaultHttpClient();
-            HttpGet request = new HttpGet(url);
+            /*
+            String str=null;
+            String str1=null;
+            String url = "http://wirgewinnt.square7.ch/html/login.php?username=" + username;
 
-            ResponseHandler<String> responseHandler = new BasicResponseHandler();
+            URL url1 = new URL(url);
+            URLConnection conn = url1.openConnection();
 
-            try {
-                String response_str = client.execute(request, responseHandler);
-                Log.println(Log.ERROR, "HTTPClient", "Antwort des Requests: " + response_str);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+            str = new String();
+            while ((str1 = in.readLine()) != null) {
+                str = str +"\r\n"+ str1;
             }
+            in.close();
 
             return false;*/
         }
