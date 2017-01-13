@@ -44,4 +44,9 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/DEPENDENCIES'
     }
+    sourceSets {
+        main {
+            manifest.srcFile '/src/main/AndroidManifest.xml'
+        }
+    }
 }
