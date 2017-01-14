@@ -104,11 +104,12 @@ public class MainActivity extends AppCompatActivity {
         gameBoard = new GameBoard(7,findViewById(R.id.activity_main));
     }
 
-    private int random () {
+    private int botmove() {
         Cell[][] status = gameBoard.getGameBorad();
         int count_h = 0;
         int count_v = 0;
         int player = 1;
+        int count_d =0;
 
 
         if(currentPlayer) player = 2;
@@ -125,11 +126,24 @@ public class MainActivity extends AppCompatActivity {
 
                 if (status[j][i].status == player) { //check vertical
                     count_v++;
-                    if (count_v == 3 && j-3 > -1 && status[j-3][i].status == 0 ) return j-3;
-                    if (count_v == 3 && j+1 < 7 && status[j+1][i].status ==0) return j+1;
+
+                    if (count_v == 3 && j-3 > -1 && status[j-3][i].status == 0 ) {
+                        if (i-1 < 0 || status[j-3][i-1].status != 0) return j-3;
+                    }
+                    if (count_v == 3 && j+1 < 7 && status[j+1][i].status ==0) {
+                        if (i-1 < 0 || status[j+1][i-1].status != 0) return j+1;
+                    }
                 } else {
                     count_v = 0;
                 }
+
+                 /*if (status[j][j].status == player) { //check diagonal 1 TODO: comming soon
+
+                } else {
+                    count_d = 0;
+                } */
+
+
             }
         }
 
@@ -260,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[0][6].status != 0) break;
                 putStone(0);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
                 break;
 
             case R.id.btnColumn1:
@@ -268,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[1][6].status != 0) break;
                 putStone(1);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
 
                 break;
 
@@ -277,7 +291,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[2][6].status != 0) break;
                 putStone(2);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
                 break;
 
             case R.id.btnColumn3:
@@ -285,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[3][6].status != 0) break;
                 putStone(3);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
                 break;
 
 
@@ -294,7 +308,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[4][6].status != 0) break;
                 putStone(4);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
                 break;
 
             case R.id.btnColumn5:
@@ -302,7 +316,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[5][6].status != 0) break;
                 putStone(5);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
                 break;
 
             case R.id.btnColumn6:
@@ -310,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[6][6].status != 0) break;
                 putStone(6);
                 setPlayer();
-                if (mode == 1) putStone(random()); setPlayer();
+                if (mode == 1) putStone(botmove()); setPlayer();
                 break;
             //endregion
         }
