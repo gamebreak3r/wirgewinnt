@@ -15,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+
 import android.os.StrictMode;
 import android.provider.ContactsContract;
 
@@ -55,25 +57,19 @@ public class SQLDatabase {
 
         public static boolean getLoginTrue (String username, String passwort) throws IOException{
 
-
-            return true;
-            /*
-            String str=null;
-            String str1=null;
-            String url = "http://wirgewinnt.square7.ch/html/login.php?username=" + username;
-
-            URL url1 = new URL(url);
-            URLConnection conn = url1.openConnection();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-
-            str = new String();
-            while ((str1 = in.readLine()) != null) {
-                str = str +"\r\n"+ str1;
+            //return true;
+            try {
+                String output = new getURLData()
+                                .execute("http://wirgewinnt.square7.ch/html/login.php?username=" + username)
+                                .get();
+                System.out.println(output);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
             }
-            in.close();
 
-            return false;*/
+            return false;
         }
 
         public static boolean isUserExisting (String username)
