@@ -136,16 +136,20 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     count_v = 0;
                 }
+                /*
 
-                 /*if (status[j][j].status == player) { //check diagonal 1 TODO: comming soon
+                if (j+i < 7){
+                    if (status[j+i][j].status == player){
+                        count_d++;
 
-                } else {
-                    count_d = 0;
+                    } else {
+                        count_d = 0;
+                    }
                 } */
-
-
             }
         }
+
+
 
 
         int random = (int)Math.floor(Math.random() * 6+0.5);
@@ -161,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
         Cell[][] status = null;
         try {
             status = gameBoard.getGameBorad();
-        }catch (Exception ex){};
+        }catch (Exception ex){}
 
         switch (v.getId()) {
             case R.id.btnLogin:
