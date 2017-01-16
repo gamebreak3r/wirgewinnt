@@ -29,6 +29,19 @@
         android:ems="10"
         android:id="@+id/register_passwort" />
 
+    <TextView
+        android:text="Passwort Wiederholen:"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textview6" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/register_passwort2" />
+
     <Button
         android:text="Button"
         android:layout_width="match_parent"

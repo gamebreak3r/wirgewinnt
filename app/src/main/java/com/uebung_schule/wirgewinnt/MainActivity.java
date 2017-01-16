@@ -199,16 +199,26 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnSaveRegister:
                 TextView register_username = (TextView) findViewById(R.id.register_username);
                 TextView register_passwort = (TextView) findViewById(R.id.register_passwort);
+                TextView register_passwort2 = (TextView) findViewById(R.id.register_passwort2);
                 try {
                     if (register_passwort.getText().toString().equals("") || register_username.getText().toString().equals(""))
                     {
                         Toast.makeText(this, "Bitte Usernamen und Passwort angeben!", Toast.LENGTH_LONG).show();
                     }
-                    else{
-                        SQLDatabase.createNewUser(register_username.getText().toString(), register_passwort.getText().toString());
-                        Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
-                        setContentView(R.layout.activity_login);
+                    else {
+                        if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
+                            if (SQLDatabase.createNewUser(register_username.getText().toString(), register_passwort.getText().toString())) {
+                                Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
+                            }
+                            setContentView(R.layout.activity_login);
                         }
+                        else {
+                            Toast.makeText(this, "Passwörter stimmen nicht überein.", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
                 }catch (SQLException ex)
                 {
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
