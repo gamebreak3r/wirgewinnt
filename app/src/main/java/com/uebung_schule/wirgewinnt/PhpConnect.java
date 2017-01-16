@@ -4,12 +4,10 @@ package com.uebung_schule.wirgewinnt;
  * Created by consult on 16.12.2016.
  */
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.concurrent.ExecutionException;
 
-public class SQLDatabase {
+public class PhpConnect {
 
         public static boolean createNewUser (String passwort, String username) throws SQLException
         {

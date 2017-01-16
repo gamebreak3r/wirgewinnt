@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (SQLDatabase.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
+                    if (PhpConnect.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
                         createGeame(v);
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
@@ -207,7 +207,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
-                            if (SQLDatabase.createNewUser(register_username.getText().toString(), register_passwort.getText().toString())) {
+                            if (PhpConnect.createNewUser(register_username.getText().toString(), register_passwort.getText().toString())) {
                                 Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
