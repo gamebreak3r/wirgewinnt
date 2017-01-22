@@ -114,8 +114,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(currentPlayer) player = 2;
 
-        for (int i = 0; i < 6; i++){ //Spalten durchgehen
-            for (int j = 0; j < 6; j++){ //Zeilen durchgehen
+        for (int i = 0; i < 7; i++){ //Spalten durchgehen
+            for (int j = 0; j < 7; j++){ //Zeilen durchgehen
 
                 if (status[i][j].status == player) { //check horizontal
                     count_h++;
@@ -135,19 +135,35 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     count_v = 0;
+                    continue;
                 }
-                /*
+            }
+        }
 
-                if (j+i < 7){
-                    if (status[j+i][j].status == player){
+        //TODO: NICHT GETESTET!!!
+        for (int i = 0; i < 4; i++){
+            for (int j = 0; j < 4; j++){
+                for (int k = 0; k < 3; k++){
+                    if (status[j+k][i+k].status == player){
                         count_d++;
+
+                        if (count_d == 3 && j+k-3 > -1 && i+k-3 > -1 ){
+                            if (gameBoard.stonesInColumn(j+k-3)== i+k-2) return j+k-3;
+                        }
+                        if (count_d == 3 && j+k+1 < 7 && i+k+1 < 7){
+                            if (gameBoard.stonesInColumn(j+k+1)== i+k-1) return j+k+1;
+                        }
 
                     } else {
                         count_d = 0;
+                        continue;
                     }
-                } */
+                }
+
             }
         }
+
+
 
 
 
