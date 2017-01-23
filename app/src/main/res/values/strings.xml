@@ -10,4 +10,5 @@
     <string name="buttonRegistieren">Registieren</string>
     <string name="textE_Mail">E-Mail</string>
     <string name="txtPasswortBestätigen">Passwort bestätigen</string>
+    <string name="multiplayerCreateGame">Neues Spiel erstellen</string>
 </resources>

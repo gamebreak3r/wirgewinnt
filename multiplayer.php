@@ -13,6 +13,8 @@
         $putStone = $_GET['putStone'];
         //Aufruf der aktuellen Steine
         $getPlayer = $_GET['getPlayer'];
+		//Aufruf der Aktiven Spiele
+		$getActiveGames = $_GET['getActiveGames'];
         //Datenbank
         $db_link = mysqli_connect (localhost, wirgewinnt, ABCD,  wirgewinnt);
 
@@ -29,23 +31,7 @@
                     while ($zeile = mysqli_fetch_array( $db_erg2, MYSQL_ASSOC))
                      {
                         $id = intval($zeile['MAX(gameid)']);
-                        echo "GameID:" . $id;
-                     }
-            	}
-               	else{
-  		        	echo "Fehler GameID";
-            	}
-        }
-        else if ($getPlayer != "" AND $gameID != "")
-        {
-            //http://wirgewinnt.square7.ch/html/multiplayer.php?getPlayer=1&
-                $sql = "SELECT MAX(gameid) from multiplayer";
-                $db_erg = mysqli_query( $db_link, $sql );
-
-                    while ($zeile = mysqli_fetch_array( $db_erg2, MYSQL_ASSOC))
-                     {
-                        $id = intval($zeile['MAX(gameid)']);
-                        echo "GameID:" . $id;
+                        echo "GameID;" . $id . ";";
                      }
             	}
                	else{
@@ -81,7 +67,18 @@
             	}
             }
         }
-        else{
+		else if ($getActiveGames != "")
+		{
+			//http://wirgewinnt.square7.ch/html/multiplayer.php?getActiveGames=true
+			 $sql = "Select gameid from multiplayer where active=1";
+             $db_erg = mysqli_query( $db_link, $sql );
+             while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
+             {
+                $id = intval($zeile['gameid']);
+                echo ";" . $id . ";";
+             }
+		}
+		        else{
             echo "Fehler";
         }
 ?>

@@ -29,11 +29,11 @@ public class getURLData extends AsyncTask<String, Integer, String> {
             line = EntityUtils.toString(httpEntity);
 
         } catch (UnsupportedEncodingException e) {
-            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+            line = "Error";
         } catch (MalformedURLException e) {
-            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+            line = "Error";
         } catch (IOException e) {
-            line = "<results status=\"error\"><msg>Can't connect to server</msg></results>";
+            line = "Error";
         }
         return line;
     }

@@ -6,6 +6,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -163,11 +164,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-
-
-
-
         int random = (int)Math.floor(Math.random() * 6+0.5);
 
         while (status[random][6].status != 0){
@@ -280,11 +276,8 @@ public class MainActivity extends AppCompatActivity {
                 mode = 2;
                 break;
             case R.id.btnOnline:
-                //TODO
-
-                //Spielfeld erscheint
-
-                findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
+                Multiplayer mp = new Multiplayer(this, (Button) findViewById(R.id.btnOnline));
+                //findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
 
                 if (mode != 3){
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
