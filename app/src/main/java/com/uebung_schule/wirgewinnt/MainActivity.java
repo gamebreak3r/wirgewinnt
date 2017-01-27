@@ -18,6 +18,7 @@ import java.sql.SQLException;
 public class MainActivity extends AppCompatActivity {
 
     GameBoard gameBoard;
+    private Multiplayer mplayer;
     boolean currentPlayer;
     //currentPlayer legend:
     // true  - Player 1
@@ -289,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
                 mode = 2;
                 break;
             case R.id.btnOnline:
-                Multiplayer mp = new Multiplayer(this, (Button) findViewById(R.id.btnOnline));
+                mplayer = new Multiplayer(this, (Button) findViewById(R.id.btnOnline));
                 //findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
 
                 if (mode != 3){
@@ -311,6 +312,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(0);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
 
             case R.id.btnColumn1:
@@ -319,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(1);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
-
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
 
             case R.id.btnColumn2:
@@ -328,6 +330,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(2);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
 
             case R.id.btnColumn3:
@@ -336,6 +339,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(3);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
 
 
@@ -345,6 +349,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(4);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
 
             case R.id.btnColumn5:
@@ -353,6 +358,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(5);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
 
             case R.id.btnColumn6:
@@ -361,6 +367,7 @@ public class MainActivity extends AppCompatActivity {
                 putStone(6);
                 setPlayer();
                 if (mode == 1) putStone(botmove()); setPlayer();
+                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
                 break;
             //endregion
         }

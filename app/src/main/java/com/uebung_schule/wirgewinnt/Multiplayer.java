@@ -1,14 +1,20 @@
 package com.uebung_schule.wirgewinnt;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.view.Menu;
+import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.EditText;
+import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+import android.support.v7.app.ActionBarActivity;
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -64,6 +70,27 @@ public class Multiplayer {
     {
         int stoneID = 1000+column*10+row;
         PhpConnect.putStone(gameID, player, stoneID);
+    }
+
+    public ProgressDialog pd1;
+    public int value = 50;
+    public int max = 200;
+    public void nextPlayer (View v)
+    {
+        //TODO
+        pd1 = new ProgressDialog(v.getContext());
+        pd1.setTitle("Dein Gegner ist an der Reihe!");
+        pd1.setMessage("Bitte Warten...");
+        pd1.setCanceledOnTouchOutside(false);
+        pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        pd1.setMax(max);
+        pd1.show();
+        for (int i = 0; i < max; i++) {
+            pd1.setProgress(value+i);
+            if(max == value) {
+                pd1.cancel();
+            }
+        }
     }
 
 }
