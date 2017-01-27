@@ -10,6 +10,8 @@ import java.util.concurrent.ExecutionException;
 
 public class PhpConnect {
 
+        public static String username;
+
         public static boolean createNewUser (String passwort, String username) throws SQLException
         {
             Boolean back = false;
@@ -38,6 +40,7 @@ public class PhpConnect {
                                 .get();
                 if (output.contains("true"))
                 {
+                    PhpConnect.username = username;
                     back = true;
                 }
             } catch (InterruptedException e) {
@@ -53,13 +56,13 @@ public class PhpConnect {
      * Multiplayer
      */
 
-    public static int createNewGame()
+    public static int createNewGame(String playerName)
     {
         int gameID = 0;
         String output = null;
         try {
             output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?createGame=new")
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?createGame=" + playerName)
                     .get();
             String[] back = output.split(";");
             gameID = Integer.parseInt(back[1]);
