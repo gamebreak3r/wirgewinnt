@@ -107,15 +107,18 @@ public class MainActivity extends AppCompatActivity {
 
     private int botmove() {
         Cell[][] status = gameBoard.getGameBorad();
-        int count_h = 0;
-        int count_v = 0;
+        int count_h;
+        int count_v;
         int player = 1;
-        int count_d =0;
+        int count_d1 = 0;
+        int count_d2 = 0;
 
 
         if(currentPlayer) player = 2;
 
         for (int i = 0; i < 7; i++){ //Spalten durchgehen
+            count_v = 0;
+            count_h = 0;
             for (int j = 0; j < 7; j++){ //Zeilen durchgehen
 
                 if (status[i][j].status == player) { //check horizontal
@@ -136,31 +139,41 @@ public class MainActivity extends AppCompatActivity {
                     }
                 } else {
                     count_v = 0;
-                    continue;
                 }
             }
         }
 
         //TODO: NICHT GETESTET!!!
+
         for (int i = 0; i < 4; i++){
             for (int j = 0; j < 4; j++){
-                for (int k = 0; k < 3; k++){
+                for (int k = 0; k < 3; k++){ //diago von unten links nach rechts oben
                     if (status[j+k][i+k].status == player){
-                        count_d++;
+                        count_d1++;
 
-                        if (count_d == 3 && j+k-3 > -1 && i+k-3 > -1 ){
+                        if (count_d1 == 3 && j+k-3 > -1 && i+k-3 > -1 ){
                             if (gameBoard.stonesInColumn(j+k-3)== i+k-2) return j+k-3;
                         }
-                        if (count_d == 3 && j+k+1 < 7 && i+k+1 < 7){
+                        if (count_d1 == 3 && j+k+1 < 7 && i+k+1 < 7){
                             if (gameBoard.stonesInColumn(j+k+1)== i+k-1) return j+k+1;
                         }
 
                     } else {
-                        count_d = 0;
-                        continue;
+                        count_d1 = 0;
+                        break;
                     }
                 }
+                for (int k = 0; k < 3;  k++){ //diago von links oben nach rechts unten
+                    if (status[j+3+k][i+3-k].status == player){
+                        count_d2++;
 
+                        //if (count_d2 == 3 && j-3<-1 && i+)
+
+                    } else {
+                        count_d2 = 0;
+                        break;
+                    }
+                }
             }
         }
 
