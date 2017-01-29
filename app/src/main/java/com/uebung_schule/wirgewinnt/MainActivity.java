@@ -124,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (status[i][j].status == player) { //check horizontal
                     count_h++;
-                    if (count_h == 3 && status[i][6].status == 0) return i;
+                    if (count_h == 3 && j+1 < 7 && status[i][j+1].status == 0) return i;
+                    if (count_h == 3) count_h = 0;
                 } else {
                     count_h = 0;
                 }
@@ -138,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     if (count_v == 3 && j+1 < 7 && status[j+1][i].status ==0) {
                         if (i-1 < 0 || status[j+1][i-1].status != 0) return j+1;
                     }
+                    if (count_v == 3) count_v = 0;
                 } else {
                     count_v = 0;
                 }
@@ -158,6 +160,7 @@ public class MainActivity extends AppCompatActivity {
                         if (count_d1 == 3 && j+k+1 < 7 && i+k+1 < 7){
                             if (gameBoard.stonesInColumn(j+k+1)== i+k-1) return j+k+1;
                         }
+                        if (count_d1 == 3) count_d1 = 0;
 
                     } else {
                         count_d1 = 0;
@@ -168,9 +171,13 @@ public class MainActivity extends AppCompatActivity {
                     if (status[j+k][i+3-k].status == player){
                         count_d2++;
 
-                      //  if (count_d2 == 3 && j-1>-1 && i+1 < 7 ){
-                          //  if (gameBoard.stonesInColumn(j-1)== i)
-                       // }
+                        if (count_d2 == 3 && j-1>-1 && i+1 < 7 ){
+                            if (gameBoard.stonesInColumn(j-1)== i-1) return j-1;
+                        }
+                        if (count_d2 == 3 && j+k+1 < 7 && i-k-1 >-1){
+                            if (gameBoard.stonesInColumn(j+k+1)== i-2) return j+k+1;
+                        }
+                        if (count_d2 == 3) count_d2 = 0;
 
                     } else {
                         count_d2 = 0;
