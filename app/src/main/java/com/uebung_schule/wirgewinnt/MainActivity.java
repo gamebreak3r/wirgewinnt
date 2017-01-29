@@ -165,10 +165,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 for (int k = 0; k < 3;  k++){ //diago von links oben nach rechts unten
-                    if (status[j+3+k][i+3-k].status == player){
+                    if (status[j+k][i+3-k].status == player){
                         count_d2++;
 
-                        //if (count_d2 == 3 && j-3<-1 && i+)
+                      //  if (count_d2 == 3 && j-1>-1 && i+1 < 7 ){
+                          //  if (gameBoard.stonesInColumn(j-1)== i)
+                       // }
 
                     } else {
                         count_d2 = 0;
