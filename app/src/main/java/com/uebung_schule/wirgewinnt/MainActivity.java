@@ -309,66 +309,96 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btnColumn0:
                 //stein setzen
                 if (status[0][6].status != 0) break;
-                putStone(0);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(0);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                }
                 break;
 
             case R.id.btnColumn1:
                 //stein setzen
                 if (status[1][6].status != 0) break;
-                putStone(1);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
-                break;
+
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(1);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                }break;
 
             case R.id.btnColumn2:
                 //stein setzen
                 if (status[2][6].status != 0) break;
-                putStone(2);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
-                break;
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(2);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                } break;
 
             case R.id.btnColumn3:
                 //stein setzen
                 if (status[3][6].status != 0) break;
-                putStone(3);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
-                break;
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(3);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                }break;
 
 
             case R.id.btnColumn4:
                 //stein setzen
                 if (status[4][6].status != 0) break;
-                putStone(4);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
-                break;
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(4);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                }break;
 
             case R.id.btnColumn5:
                 //stein setzen
                 if (status[5][6].status != 0) break;
-                putStone(5);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
-                break;
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(5);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                }break;
 
             case R.id.btnColumn6:
                 //stein setzen
                 if (status[6][6].status != 0) break;
-                putStone(6);
-                setPlayer();
-                if (mode == 1) putStone(botmove()); setPlayer();
-                if (mode == 3) mplayer.nextPlayer(findViewById(R.id.activity_main));
-                break;
+                if (mode == 3)
+                {
+                    mplayer.nextPlayer(findViewById(R.id.activity_main));
+                }else {
+                    putStone(6);
+                    setPlayer();
+                    if (mode == 1) putStone(botmove());
+                    setPlayer();
+                }break;
             //endregion
         }
     }

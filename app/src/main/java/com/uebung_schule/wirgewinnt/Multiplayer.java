@@ -7,14 +7,6 @@ import android.widget.Button;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-import android.support.v7.app.ActionBarActivity;
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
 import java.util.ArrayList;
 

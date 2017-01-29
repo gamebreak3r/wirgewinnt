@@ -1,14 +1,8 @@
 package com.uebung_schule.wirgewinnt;
 
 import android.graphics.Color;
-import android.support.annotation.ArrayRes;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 /**
  * Created by Andreas on 11/11/2016.
