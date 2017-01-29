@@ -1,7 +1,9 @@
 package com.uebung_schule.wirgewinnt;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 /**
  * Created by consult on 23.01.2017.
@@ -18,9 +21,12 @@ public class Multiplayer {
 
     private int gameID;
     private boolean player;
+    public ProgressDialog pd1;
+    private MainActivity ma;
 
     public Multiplayer(final MainActivity ma, Button button)
     {
+        this.ma = ma;
         final PopupMenu popup = new PopupMenu(ma, button);
         popup.getMenuInflater()
                 .inflate(R.menu.multiplayer, popup.getMenu());
@@ -58,31 +64,59 @@ public class Multiplayer {
         popup.show();
     }
 
-    public void putStone(int column , int row, boolean player)
+    private void putStone(int column , int row, boolean player)
     {
         int stoneID = 1000+column*10+row;
         PhpConnect.putStone(gameID, player, stoneID);
     }
 
-    public ProgressDialog pd1;
-    public int value = 50;
-    public int max = 200;
-    public void nextPlayer (View v)
+    public void nextPlayer (View v, int column, GameBoard gameboard)
     {
-        //TODO
+        int row = gameboard.stonesInColumn(column);
+        if (row <= 6) {
+            //In APP
+            gameboard.putStone(column, row, player, v);
+            //PhP
+            putStone(column, row, player);
+        }
+        if (gameboard.checkIfWon(column, row, v)){
+            String playerAusgabe = null;
+            playerAusgabe="Du hast gewonnen!";
+
+            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(v.getContext());
+            dlgAlert.setTitle("Gewonnen");
+            dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
+            dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    //Nichts
+                }
+            });
+            dlgAlert.setCancelable(true);
+            dlgAlert.create().show();
+            ma.rest();
+        }
         pd1 = new ProgressDialog(v.getContext());
         pd1.setTitle("Dein Gegner ist an der Reihe!");
         pd1.setMessage("Bitte Warten...");
         pd1.setCanceledOnTouchOutside(false);
         pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        pd1.setMax(max);
+        pd1.setMax(100);
         pd1.show();
-        for (int i = 0; i < max; i++) {
-            pd1.setProgress(value+i);
-            if(max == value) {
+
+        new Thread(new Runnable() {
+            int value = 0;
+            public void run() {
+                for (; value <= 100; value++) {
+                    try {
+                        Thread.sleep(100);
+                        pd1.setProgress(value);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
                 pd1.cancel();
             }
-        }
+        }).start();
     }
 
 }
