@@ -70,8 +70,7 @@ public class Multiplayer {
         PhpConnect.putStone(gameID, player, stoneID);
     }
 
-    public void nextPlayer (View v, int column, GameBoard gameboard)
-    {
+    public void nextPlayer (View v, int column, GameBoard gameboard) {
         int row = gameboard.stonesInColumn(column);
         if (row <= 6) {
             //In APP
@@ -79,14 +78,14 @@ public class Multiplayer {
             //PhP
             putStone(column, row, player);
         }
-        if (gameboard.checkIfWon(column, row, v)){
+        if (gameboard.checkIfWon(column, row, v)) {
             String playerAusgabe = null;
-            playerAusgabe="Du hast gewonnen!";
+            playerAusgabe = "Du hast gewonnen!";
 
-            AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(v.getContext());
+            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
             dlgAlert.setTitle("Gewonnen");
-            dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
-            dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            dlgAlert.setMessage("Spieler: " + playerAusgabe + " hat gewonnen!");
+            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
                     //Nichts
                 }
@@ -94,29 +93,31 @@ public class Multiplayer {
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
             ma.rest();
-        }
-        pd1 = new ProgressDialog(v.getContext());
-        pd1.setTitle("Dein Gegner ist an der Reihe!");
-        pd1.setMessage("Bitte Warten...");
-        pd1.setCanceledOnTouchOutside(false);
-        pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-        pd1.setMax(100);
-        pd1.show();
+        } else {
+            pd1 = new ProgressDialog(v.getContext());
+            pd1.setTitle("Dein Gegner ist an der Reihe!");
+            pd1.setMessage("Bitte Warten...");
+            pd1.setCanceledOnTouchOutside(false);
+            pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+            pd1.setMax(100);
+            pd1.show();
 
-        new Thread(new Runnable() {
-            int value = 0;
-            public void run() {
-                for (; value <= 100; value++) {
-                    try {
-                        Thread.sleep(100);
-                        pd1.setProgress(value);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+            new Thread(new Runnable() {
+                int value = 0;
+
+                public void run() {
+                    for (; value <= 100; value++) {
+                        try {
+                            Thread.sleep(100);
+                            pd1.setProgress(value);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
+                    pd1.cancel();
                 }
-                pd1.cancel();
-            }
-        }).start();
+            }).start();
+        }
     }
 
 }
