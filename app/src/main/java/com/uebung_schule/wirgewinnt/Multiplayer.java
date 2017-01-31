@@ -21,6 +21,7 @@ public class Multiplayer {
 
     private int gameID;
     private boolean player;
+    private boolean stopTime = false;
     public ProgressDialog pd1;
     private MainActivity ma;
 
@@ -64,10 +65,21 @@ public class Multiplayer {
         popup.show();
     }
 
-    private void putStone(int column , int row, boolean player)
+    private void putStone(int column , int row)
     {
         int stoneID = 1000+column*10+row;
-        PhpConnect.putStone(gameID, player, stoneID);
+        int playerID;
+        if (player)
+        {
+         playerID = 1;
+        }
+        else {
+            playerID = 2;
+        }
+        if (!PhpConnect.putStone(gameID, playerID, stoneID))
+        {
+            System.out.println("Fehler");
+        }
     }
 
     public void nextPlayer (View v, int column, GameBoard gameboard) {
@@ -76,7 +88,7 @@ public class Multiplayer {
             //In APP
             gameboard.putStone(column, row, player, v);
             //PhP
-            putStone(column, row, player);
+            putStone(column, row);
         }
         if (gameboard.checkIfWon(column, row, v)) {
             String playerAusgabe = null;
@@ -104,9 +116,12 @@ public class Multiplayer {
 
             new Thread(new Runnable() {
                 int value = 0;
-
                 public void run() {
                     for (; value <= 100; value++) {
+                        if (stopTime)
+                        {
+                            break;
+                        }
                         try {
                             Thread.sleep(100);
                             pd1.setProgress(value);

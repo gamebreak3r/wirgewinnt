@@ -74,7 +74,7 @@ public class PhpConnect {
         return gameID;
     }
 
-    public static boolean putStone(int gameID, boolean player, int stoneID)
+    public static boolean putStone(int gameID, int player, int stoneID)
     {
         Boolean back = false;
         String output = null;
