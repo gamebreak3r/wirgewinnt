@@ -22,6 +22,7 @@ public class Multiplayer {
     private int gameID;
     private boolean player;
     private boolean stopTime = false;
+    private View v;
     public ProgressDialog pd1;
     private MainActivity ma;
 
@@ -83,6 +84,7 @@ public class Multiplayer {
     }
 
     public void nextPlayer (View v, int column, GameBoard gameboard) {
+        this.v = v;
         int row = gameboard.stonesInColumn(column);
         if (row <= 6) {
             //In APP
@@ -142,7 +144,7 @@ public class Multiplayer {
         new Thread(new Runnable() {
             public void run() {
                 boolean gegnerSetStone = false;
-                ArrayList gegnerStone;
+                ArrayList gegnerStone = null;
                 for (int i = 0; i < 6; i++) {
                     try {
                         Thread.sleep(5000);
@@ -160,6 +162,13 @@ public class Multiplayer {
                 if (gegnerSetStone)
                 {
                     gegnerSetStone = false;
+                    for (int i = 0; i < gegnerStone.size(); i++)
+                    {
+                        //1010
+                        int row = gegnerStone.get(i).toString().charAt(4);
+                        int col = gegnerStone.get(i).toString().charAt(3);
+                        ma.gameBoard.putStone(col, row, !player, v);
+                    }
                     //TODO
                 }
                 else {
@@ -169,5 +178,4 @@ public class Multiplayer {
             }
         }).start();
     }
-
 }
