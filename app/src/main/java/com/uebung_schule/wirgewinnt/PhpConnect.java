@@ -115,4 +115,61 @@ public class PhpConnect {
         return back;
     }
 
+    public static boolean setGameInAvtive (int gameID)
+    {
+        String output = null;
+        try {
+            output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?removeGame=" + gameID)
+                    .get();
+            if (output.contains("true"))
+            {
+                return true;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static ArrayList getStoneID (int gameID, boolean player, GameBoard gb)
+    {
+        ArrayList back = new ArrayList();
+        String output = null;
+        try {
+            output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?getStones=" + gameID)
+                    .get();
+            String[] sp = output.split("##");
+            String[] player1 = sp[1].split(";");
+            String[] player2 = sp[2].split(";");
+            int stones = 1;
+            for (int i = 0; i < 7; i++) {
+                stones = stones+gb.stonesInColumn(i);
+            }
+            if (stones == player1.length + player2.length) {
+                if (player) {
+                    for (int i = 1; i + 1 < player1.length; i++) {
+                        back.add(sp[i].toString());
+                        //Wegen Leerfelder duch die 2x ;;
+                        i++;
+                    }
+                } else {
+                    for (int i = 1; i + 1 < player2.length; i++) {
+                        back.add(sp[i].toString());
+                        //Wegen Leerfelder duch die 2x ;;
+                        i++;
+                    }
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return back;
+    }
+
 }

@@ -57,7 +57,7 @@ public class Multiplayer {
                     gameID = Integer.parseInt(stGameID[1]);
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = false;
-                    //TODO Game inaktive setzen DB
+                    PhpConnect.setGameInAvtive(gameID);
                 }
                 return true;
         }
@@ -113,6 +113,7 @@ public class Multiplayer {
             pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
             pd1.setMax(100);
             pd1.show();
+            readData();
 
             new Thread(new Runnable() {
                 int value = 0;
@@ -120,10 +121,11 @@ public class Multiplayer {
                     for (; value <= 100; value++) {
                         if (stopTime)
                         {
+                            stopTime = false;
                             break;
                         }
                         try {
-                            Thread.sleep(100);
+                            Thread.sleep(300);
                             pd1.setProgress(value);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -133,6 +135,39 @@ public class Multiplayer {
                 }
             }).start();
         }
+    }
+
+    private void readData ()
+    {
+        new Thread(new Runnable() {
+            public void run() {
+                boolean gegnerSetStone = false;
+                ArrayList gegnerStone;
+                for (int i = 0; i < 6; i++) {
+                    try {
+                        Thread.sleep(5000);
+                        gegnerStone = PhpConnect.getStoneID(gameID, player, ma.gameBoard);
+                        if (gegnerStone.size()>0)
+                        {
+                            gegnerSetStone = true;
+                            stopTime = true;
+                            break;
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (gegnerSetStone)
+                {
+                    gegnerSetStone = false;
+                    //TODO
+                }
+                else {
+                    //Toast.makeText(ma, "Der Gegner hat in 30 Sek. keinen Stein gesetzt", Toast.LENGTH_LONG).show();
+                    System.out.println("Der Gegner hat in 30 Sek. keinen Stein gesetzt");
+                }
+            }
+        }).start();
     }
 
 }

@@ -15,6 +15,10 @@
         $getPlayer = $_GET['getPlayer'];
 		//Aufruf der Aktiven Spiele
 		$getActiveGames = $_GET['getActiveGames'];
+		//Get Stones in aktive Game
+		$getStones = $_GET['getStones'];
+		//Remove aktive Game
+		$removeGame = $_GET['removeGame'];
         //Datenbank
         $db_link = mysqli_connect (localhost, wirgewinnt, ABCD,  wirgewinnt);
 
@@ -22,7 +26,7 @@
         {
             //Create new Game:
             //http://wirgewinnt.square7.ch/html/multiplayer.php?createGame=new
-                $sql = "INSERT INTO multiplayer (player1) values ('')";
+                $sql = "INSERT INTO multiplayer (playerName) values ('". $createGame ."')";
                 $db_erg = mysqli_query( $db_link, $sql );
                 if ($db_erg)
                 {
@@ -67,15 +71,36 @@
             	}
             }
         }
+		else if ($getStones != "")
+		{
+			//http://wirgewinnt.square7.ch/html/multiplayer.php?getStones=16
+			 $sql = "Select player1, player2 from multiplayer gameid=" . $getStones;
+             foreach ($db_link->query($sql) as $zeile)
+             {
+                echo "##" . $zeile['player1']. "##" .$zeile['player2'];
+             }
+		}
+		else if ($removeGame != "")
+		{
+			//http://wirgewinnt.square7.ch/html/multiplayer.php?removeGame=16
+			 $sql = "UPDATE multiplayer SET active=0 where gameid=" . $removeGame;
+                 $db_erg = mysqli_query( $db_link, $sql );
+                if ($db_erg)
+		        {
+  		        	echo "true";
+	        	}
+               	else{
+  		        	echo "false";
+            	}
+		}
 		else if ($getActiveGames != "")
 		{
 			//http://wirgewinnt.square7.ch/html/multiplayer.php?getActiveGames=true
-			 $sql = "Select gameid from multiplayer where active=1";
-             $db_erg = mysqli_query( $db_link, $sql );
-             while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
+			 $sql = "Select gameid, playerName from multiplayer where active=1";
+             foreach ($db_link->query($sql) as $zeile)
              {
                 $id = intval($zeile['gameid']);
-                echo ";" . $id . ";";
+                echo ";" . $id . "#" . $zeile['playerName'] . ";";
              }
 		}
 		        else{
