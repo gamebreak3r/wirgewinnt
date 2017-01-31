@@ -143,6 +143,7 @@ public class PhpConnect {
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?getStones=" + gameID)
                     .get();
             String[] sp = output.split("##");
+            //TODO Nachsehen was hier genau ankommt!
             String[] player1 = sp[1].split(";");
             String[] player2 = sp[2].split(";");
             int stones = 1;
