@@ -150,18 +150,14 @@ public class PhpConnect {
             for (int i = 0; i < 7; i++) {
                 stones = stones+gb.stonesInColumn(i);
             }
-            if (stones == player1.length + player2.length) {
+            if (stones == (player1.length + player2.length - 2)) {
                 if (player) {
-                    for (int i = 1; i + 1 < player1.length; i++) {
-                        back.add(sp[i].toString());
-                        //Wegen Leerfelder duch die 2x ;;
-                        i++;
+                    for (int i = 1; i < player2.length; i++) {
+                        back.add(player2[i].toString());
                     }
                 } else {
-                    for (int i = 1; i + 1 < player2.length; i++) {
-                        back.add(sp[i].toString());
-                        //Wegen Leerfelder duch die 2x ;;
-                        i++;
+                    for (int i = 1; i  < player1.length; i++) {
+                        back.add(player1[i].toString());
                     }
                 }
             }

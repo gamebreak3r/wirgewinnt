@@ -26,9 +26,10 @@ public class Multiplayer {
     public ProgressDialog pd1;
     private MainActivity ma;
 
-    public Multiplayer(final MainActivity ma, Button button)
+    public Multiplayer(final MainActivity ma, Button button, View v)
     {
         this.ma = ma;
+        this.v = v;
         final PopupMenu popup = new PopupMenu(ma, button);
         popup.getMenuInflater()
                 .inflate(R.menu.multiplayer, popup.getMenu());
@@ -83,8 +84,7 @@ public class Multiplayer {
         }
     }
 
-    public void nextPlayer (View v, int column, GameBoard gameboard) {
-        this.v = v;
+    public void nextPlayer (int column, GameBoard gameboard) {
         int row = gameboard.stonesInColumn(column);
         if (row <= 6) {
             //In APP
@@ -149,6 +149,7 @@ public class Multiplayer {
                     try {
                         Thread.sleep(5000);
                         gegnerStone = PhpConnect.getStoneID(gameID, player, ma.gameBoard);
+                        System.out.println("Test " + gegnerStone.toString());
                         if (gegnerStone.size()>0)
                         {
                             gegnerSetStone = true;
@@ -165,9 +166,11 @@ public class Multiplayer {
                     for (int i = 0; i < gegnerStone.size(); i++)
                     {
                         //1010
-                        int row = gegnerStone.get(i).toString().charAt(4);
-                        int col = gegnerStone.get(i).toString().charAt(3);
-                        ma.gameBoard.putStone(col, row, !player, v);
+                        int row = (Integer.parseInt(gegnerStone.get(i).toString())/10) % 10;
+                        int col = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
+
+                        System.out.println(row + " -- " + col);
+                        ma.putStone(col, row, false);
                     }
                     //TODO
                 }

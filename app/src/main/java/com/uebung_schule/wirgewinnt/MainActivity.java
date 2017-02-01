@@ -299,7 +299,7 @@ public class MainActivity extends AppCompatActivity {
                 mode = 2;
                 break;
             case R.id.btnOnline:
-                mplayer = new Multiplayer(this, (Button) findViewById(R.id.btnOnline));
+                mplayer = new Multiplayer(this, (Button) findViewById(R.id.btnOnline), findViewById(R.id.activity_main));
                 //findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
 
                 if (mode != 3){
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[0][6].status != 0) break;
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 0, gameBoard);
+                    mplayer.nextPlayer( 0, gameBoard);
                 }else {
                     putStone(0);
                     setPlayer();
@@ -335,7 +335,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 1, gameBoard);
+                    mplayer.nextPlayer( 1, gameBoard);
                 }else {
                     putStone(1);
                     setPlayer();
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[2][6].status != 0) break;
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 2, gameBoard);
+                    mplayer.nextPlayer( 2, gameBoard);
                 }else {
                     putStone(2);
                     setPlayer();
@@ -361,7 +361,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[3][6].status != 0) break;
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 3, gameBoard);
+                    mplayer.nextPlayer(3, gameBoard);
                 }else {
                     putStone(3);
                     setPlayer();
@@ -375,7 +375,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[4][6].status != 0) break;
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 4, gameBoard);
+                    mplayer.nextPlayer(4, gameBoard);
                 }else {
                     putStone(4);
                     setPlayer();
@@ -388,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[5][6].status != 0) break;
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 5, gameBoard);
+                    mplayer.nextPlayer( 5, gameBoard);
                 }else {
                     putStone(5);
                     setPlayer();
@@ -401,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
                 if (status[6][6].status != 0) break;
                 if (mode == 3)
                 {
-                    mplayer.nextPlayer(findViewById(R.id.activity_main), 6, gameBoard);
+                    mplayer.nextPlayer( 6, gameBoard);
                 }else {
                     putStone(6);
                     setPlayer();
@@ -474,6 +474,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    //For the MultyPlayer
+    protected void putStone (int col, int row, boolean player)
+    {
+        gameBoard.putStone(col, row, player, findViewById(R.id.activity_main));
     }
 
 }
