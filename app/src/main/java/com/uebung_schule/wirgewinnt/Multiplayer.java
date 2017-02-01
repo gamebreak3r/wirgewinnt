@@ -2,16 +2,13 @@ package com.uebung_schule.wirgewinnt;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 /**
  * Created by consult on 23.01.2017.
@@ -35,7 +32,7 @@ public class Multiplayer {
                 .inflate(R.menu.multiplayer, popup.getMenu());
 
         //Get Aktive Games
-        ArrayList games = PhpConnect.getActiveGames();
+        ArrayList games = PHPConnect.getActiveGames();
         if (games.size() == 0)
         {
             popup.getMenu().add("Es wurde kein aktives Spiel gefunden!");
@@ -49,7 +46,7 @@ public class Multiplayer {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getTitle().toString().equals(ma.getResources().getString(R.string.multiplayerCreateGame))){
-                    gameID = PhpConnect.createNewGame(PhpConnect.username);
+                    gameID = PHPConnect.createNewGame(PHPConnect.username);
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = true;
                 }
@@ -59,9 +56,8 @@ public class Multiplayer {
                     gameID = Integer.parseInt(stGameID[1]);
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = false;
-                    ma.currentPlayer = false;
                     waitingPlayer();
-                    PhpConnect.setGameInAvtive(gameID);
+                    PHPConnect.setGameInAvtive(gameID);
                 }
                 return true;
         }
@@ -80,7 +76,7 @@ public class Multiplayer {
         else {
             playerID = 2;
         }
-        if (!PhpConnect.putStone(gameID, playerID, stoneID))
+        if (!PHPConnect.putStone(gameID, playerID, stoneID))
         {
             System.out.println("Fehler");
         }
@@ -121,6 +117,7 @@ public class Multiplayer {
         pd1.setMessage("Bitte Warten...");
         pd1.setCanceledOnTouchOutside(false);
         pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        pd1.setCancelable(false);
         pd1.setMax(100);
         pd1.show();
         readData();
@@ -142,6 +139,11 @@ public class Multiplayer {
                     }
                 }
                 pd1.cancel();
+                if (value >= 100)
+                {
+                    PHPConnect.setGameInAvtive(gameID);
+                    ma.setPageHotSeat("Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt");
+                }
             }
         }).start();
     }
@@ -155,7 +157,7 @@ public class Multiplayer {
                 for (int i = 0; i < 6; i++) {
                     try {
                         Thread.sleep(5000);
-                        gegnerStone = PhpConnect.getStoneID(gameID, player, ma.gameBoard);
+                        gegnerStone = PHPConnect.getStoneID(gameID, player, ma.gameBoard);
                         System.out.println("Test " + gegnerStone.toString());
                         if (gegnerStone.size()>0)
                         {
@@ -175,17 +177,14 @@ public class Multiplayer {
                         //1010
                         int col = (Integer.parseInt(gegnerStone.get(i).toString())/10) % 10;
                         int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
-
-                        System.out.println(row + " -- " + col);
-                        ma.putStone(col, row, false);
+                        ma.putStone(col, row, !player);
                     }
-                    //TODO
                 }
                 else {
-                    //Toast.makeText(ma, "Der Gegner hat in 30 Sek. keinen Stein gesetzt", Toast.LENGTH_LONG).show();
                     System.out.println("Der Gegner hat in 30 Sek. keinen Stein gesetzt");
                 }
             }
         }).start();
     }
+
 }

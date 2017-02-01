@@ -146,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        //TODO: NICHT GETESTET!!!
-
         for (int i = 0; i < 4; i++){
             for (int j = 0; j < 4; j++){
                 for (int k = 0; k < 3; k++){ //diago von unten links nach rechts oben
@@ -208,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (PhpConnect.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
+                    if (PHPConnect.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
                         createGeame(v);
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
@@ -242,7 +240,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
-                            if (PhpConnect.createNewUser(register_username.getText().toString(), register_passwort.getText().toString())) {
+                            if (PHPConnect.createNewUser(register_username.getText().toString(), register_passwort.getText().toString())) {
                                 Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
@@ -472,8 +470,6 @@ public class MainActivity extends AppCompatActivity {
             dlgAlert.create().show();
             rest();
         }
-
-
     }
 
     //For the MultyPlayer
@@ -487,4 +483,15 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Startseite
+    protected  void setPageHotSeat (final String showText)
+    {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.btnHotseat).performClick();
+                Toast.makeText(findViewById(R.id.activity_main).getContext(), showText, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
