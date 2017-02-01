@@ -32,6 +32,8 @@ public class Multiplayer {
                 .inflate(R.menu.multiplayer, popup.getMenu());
 
         //Get Aktive Games
+
+        //TODO User kann das Menü noch schliesen, die App Crasht daraufhin, da es keine id online gibt.
         ArrayList games = PHPConnect.getActiveGames();
         if (games.size() == 0)
         {
