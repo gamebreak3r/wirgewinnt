@@ -43,7 +43,7 @@ public class Multiplayer {
         }
         for(int i  = 0; games.size() > i; i++) {
             String[] stGame = games.get(i).toString().split("#");
-            popup.getMenu().add("#" + stGame[0] + " " + stGame[1]);
+            popup.getMenu().add("#" + stGame[0] + " " + stGame[1].toUpperCase());
         }
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
@@ -59,6 +59,8 @@ public class Multiplayer {
                     gameID = Integer.parseInt(stGameID[1]);
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = false;
+                    ma.currentPlayer = false;
+                    waitingPlayer();
                     PhpConnect.setGameInAvtive(gameID);
                 }
                 return true;
@@ -108,35 +110,40 @@ public class Multiplayer {
             dlgAlert.create().show();
             ma.rest();
         } else {
-            pd1 = new ProgressDialog(v.getContext());
-            pd1.setTitle("Dein Gegner ist an der Reihe!");
-            pd1.setMessage("Bitte Warten...");
-            pd1.setCanceledOnTouchOutside(false);
-            pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            pd1.setMax(100);
-            pd1.show();
-            readData();
-
-            new Thread(new Runnable() {
-                int value = 0;
-                public void run() {
-                    for (; value <= 100; value++) {
-                        if (stopTime)
-                        {
-                            stopTime = false;
-                            break;
-                        }
-                        try {
-                            Thread.sleep(300);
-                            pd1.setProgress(value);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    pd1.cancel();
-                }
-            }).start();
+            waitingPlayer();
         }
+    }
+
+    private void waitingPlayer ()
+    {
+        pd1 = new ProgressDialog(v.getContext());
+        pd1.setTitle("Dein Gegner ist an der Reihe!");
+        pd1.setMessage("Bitte Warten...");
+        pd1.setCanceledOnTouchOutside(false);
+        pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        pd1.setMax(100);
+        pd1.show();
+        readData();
+
+        new Thread(new Runnable() {
+            int value = 0;
+            public void run() {
+                for (; value <= 100; value++) {
+                    if (stopTime)
+                    {
+                        stopTime = false;
+                        break;
+                    }
+                    try {
+                        Thread.sleep(300);
+                        pd1.setProgress(value);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                pd1.cancel();
+            }
+        }).start();
     }
 
     private void readData ()
@@ -166,8 +173,8 @@ public class Multiplayer {
                     for (int i = 0; i < gegnerStone.size(); i++)
                     {
                         //1010
-                        int row = (Integer.parseInt(gegnerStone.get(i).toString())/10) % 10;
-                        int col = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
+                        int col = (Integer.parseInt(gegnerStone.get(i).toString())/10) % 10;
+                        int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
 
                         System.out.println(row + " -- " + col);
                         ma.putStone(col, row, false);

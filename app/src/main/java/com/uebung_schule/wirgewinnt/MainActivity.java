@@ -477,9 +477,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //For the MultyPlayer
-    protected void putStone (int col, int row, boolean player)
+    protected void putStone (final int col, final int row, final boolean player)
     {
-        gameBoard.putStone(col, row, player, findViewById(R.id.activity_main));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                gameBoard.putStone(col, row, player, findViewById(R.id.activity_main));
+            }
+        });
     }
 
 }
