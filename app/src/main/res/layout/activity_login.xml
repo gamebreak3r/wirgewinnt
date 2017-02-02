@@ -35,12 +35,15 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="text|textPersonName"
         android:ems="10"
         android:id="@+id/loginUsername"
         android:layout_marginLeft="86dp"
         android:layout_above="@+id/loginPasswort"
-        android:layout_alignEnd="@+id/loginPasswort" />
+        android:layout_alignEnd="@+id/loginPasswort"
+        android:singleLine="true"
+        android:autoText="false"
+        android:textAllCaps="true" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -51,7 +54,8 @@
         android:layout_marginLeft="142dp"
         android:layout_marginStart="25dp"
         android:layout_alignTop="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
+        android:layout_toEndOf="@+id/textView"
+        android:singleLine="true" />
 
     <Button
         android:text="@string/buttonRegistieren"

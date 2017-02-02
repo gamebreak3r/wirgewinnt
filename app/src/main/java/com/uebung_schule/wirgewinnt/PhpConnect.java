@@ -12,7 +12,7 @@ public class PHPConnect {
 
         public static String username;
 
-        public static boolean createNewUser (String passwort, String username) throws SQLException
+        public static boolean createNewUser (String username, String passwort) throws SQLException
         {
             Boolean back = false;
             try {
