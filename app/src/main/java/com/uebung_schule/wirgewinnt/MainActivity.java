@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login);
 
     }
 
@@ -493,5 +493,11 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(findViewById(R.id.activity_main).getContext(), showText, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    //Zurück Button
+    @Override
+    public void onBackPressed() {
+        setContentView(R.layout.activity_login);
     }
 }
