@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Multiplayer {
 
     private int gameID;
+    public boolean isInGame = false;
     private boolean player;
     private boolean stopTime = false;
     private View v;
@@ -30,6 +31,7 @@ public class Multiplayer {
         final PopupMenu popup = new PopupMenu(ma, button);
         popup.getMenuInflater()
                 .inflate(R.menu.multiplayer, popup.getMenu());
+
         //Get Aktive Games
 
         //TODO User kann das Menü noch schliesen, die App Crasht daraufhin, da es keine id online gibt.
@@ -50,6 +52,7 @@ public class Multiplayer {
                     gameID = PHPConnect.createNewGame(PHPConnect.username);
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = true;
+                    isInGame=true;
                 }
                 else {
                     String[] getGameID = menuItem.getTitle().toString().split(" ");
@@ -59,6 +62,7 @@ public class Multiplayer {
                     player = false;
                     waitingPlayer();
                     PHPConnect.setGameInAvtive(gameID);
+                    isInGame=true;
                 }
                 return true;
         }
@@ -84,30 +88,35 @@ public class Multiplayer {
     }
 
     public void nextPlayer (int column, GameBoard gameboard) {
-        int row = gameboard.stonesInColumn(column);
-        if (row <= 6) {
-            //In APP
-            gameboard.putStone(column, row, player, v);
-            //PhP
-            putStone(column, row);
-        }
-        if (gameboard.checkIfWon(column, row, v)) {
-            String playerAusgabe = null;
-            playerAusgabe = "Du hast gewonnen!";
+        if (isInGame) {
+            int row = gameboard.stonesInColumn(column);
+            if (row <= 6) {
+                //In APP
+                gameboard.putStone(column, row, player, v);
+                //PhP
+                putStone(column, row);
+            }
+            if (gameboard.checkIfWon(column, row, v)) {
+                String playerAusgabe = null;
+                playerAusgabe = "Du hast gewonnen!";
 
-            AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
-            dlgAlert.setTitle("Gewonnen");
-            dlgAlert.setMessage("Spieler: " + playerAusgabe + " hat gewonnen!");
-            dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    //Nichts
-                }
-            });
-            dlgAlert.setCancelable(true);
-            dlgAlert.create().show();
-            ma.rest();
-        } else {
-            waitingPlayer();
+                AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
+                dlgAlert.setTitle("Gewonnen");
+                dlgAlert.setMessage("Spieler: " + playerAusgabe + " hat gewonnen!");
+                dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        //Nichts
+                    }
+                });
+                dlgAlert.setCancelable(true);
+                dlgAlert.create().show();
+                ma.rest();
+            } else {
+                waitingPlayer();
+            }
+        }
+        else{
+            ma.setPageHotSeat("Bitte erstelle zuerst ein Online Game");
         }
     }
 
@@ -121,6 +130,7 @@ public class Multiplayer {
         pd1.setCancelable(false);
         pd1.setMax(100);
         pd1.show();
+
         readData();
 
         new Thread(new Runnable() {
