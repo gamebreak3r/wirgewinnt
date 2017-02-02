@@ -30,7 +30,6 @@ public class Multiplayer {
         final PopupMenu popup = new PopupMenu(ma, button);
         popup.getMenuInflater()
                 .inflate(R.menu.multiplayer, popup.getMenu());
-
         //Get Aktive Games
 
         //TODO User kann das Menü noch schliesen, die App Crasht daraufhin, da es keine id online gibt.
