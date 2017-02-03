@@ -1,10 +1,12 @@
 package com.uebung_schule.wirgewinnt;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -472,7 +474,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //For the MultyPlayer
+    //For the MultiPlayer
     protected void putStone (final int col, final int row, final boolean player)
     {
         runOnUiThread(new Runnable() {
