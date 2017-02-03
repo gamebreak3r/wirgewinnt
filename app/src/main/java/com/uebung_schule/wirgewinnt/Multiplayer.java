@@ -105,7 +105,6 @@ public class Multiplayer {
                 dlgAlert.setMessage("Spieler: " + playerAusgabe + " hat gewonnen!");
                 dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        //Nichts
                     }
                 });
                 dlgAlert.setCancelable(true);
@@ -185,7 +184,6 @@ public class Multiplayer {
                     gegnerSetStone = false;
                     for (int i = 0; i < gegnerStone.size(); i++)
                     {
-                        //1010
                         int col = (Integer.parseInt(gegnerStone.get(i).toString())/10) % 10;
                         int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
                         ma.putStone(col, row, !player);
