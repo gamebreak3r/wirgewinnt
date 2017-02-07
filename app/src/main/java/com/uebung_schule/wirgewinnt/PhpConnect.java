@@ -4,8 +4,16 @@ package com.uebung_schule.wirgewinnt;
  * Created by consult on 16.12.2016.
  */
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.security.MessageDigest;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 import java.util.concurrent.ExecutionException;
 
 public class PHPConnect {
@@ -15,10 +23,15 @@ public class PHPConnect {
         public static boolean createNewUser (String username, String passwort) throws SQLException
         {
             Boolean back = false;
-
             try {
+                byte[] key = (passwort).getBytes("UTF-8");
+                MessageDigest sha = MessageDigest.getInstance("SHA-256");
+                key = sha.digest(key);
+                key = Arrays.copyOf(key, 16);
+                SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
+
                 String output = new getURLData()
-                        .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort)
+                        .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + secretKeySpec.getEncoded())
                         .get();
                 if (output.contains("true"))
                 {
@@ -28,6 +41,10 @@ public class PHPConnect {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
             }
             return back;
         }
@@ -36,8 +53,13 @@ public class PHPConnect {
 
             Boolean back = false;
             try {
+                byte[] key = (passwort).getBytes("UTF-8");
+                MessageDigest sha = MessageDigest.getInstance("SHA-256");
+                key = sha.digest(key);
+                key = Arrays.copyOf(key, 16);
+                SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
                 String output = new getURLData()
-                                .execute("http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + passwort)
+                                .execute("http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + secretKeySpec.getEncoded())
                                 .get();
                 if (output.contains("true"))
                 {
@@ -47,6 +69,8 @@ public class PHPConnect {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             return back;
