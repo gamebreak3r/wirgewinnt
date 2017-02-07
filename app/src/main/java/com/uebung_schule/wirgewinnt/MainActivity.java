@@ -210,12 +210,16 @@ public class MainActivity extends AppCompatActivity {
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (PHPConnect.getLoginTrue(username.getText().toString(), passwort.getText().toString())) {
+                    if (PHPConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
                         createGeame(v);
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
                     }
-                }catch (IOException ex){
+                }catch (IllegalArgumentException ex)
+                {
+                    Toast.makeText(this, "Username oder Passwort falsch!", Toast.LENGTH_LONG).show();
+                }
+                catch (IOException ex){
                     AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
                     dlgAlert.setTitle("Verbingsfehler");
                     dlgAlert.setMessage("Es konnte keine Verbindung zur Datenbank aufgebaut werden!");
@@ -244,12 +248,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
-                            if (PHPConnect.createNewUser(register_username.getText().toString(), register_passwort.getText().toString())) {
-                                Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
+                            try {
+                                if (PHPConnect.createNewUser(register_username.getText().toString().trim(), register_passwort.getText().toString())) {
+                                    Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
+                                }
+                                setContentView(R.layout.activity_login);
+                            }catch (IllegalArgumentException ex)
+                            {
+                                Toast.makeText(this, "User konte nicht angelegt werden!", Toast.LENGTH_LONG).show();
                             }
-                            setContentView(R.layout.activity_login);
                         }
                         else {
                             Toast.makeText(this, "Passwörter stimmen nicht überein.", Toast.LENGTH_LONG).show();

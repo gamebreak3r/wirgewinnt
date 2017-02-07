@@ -15,6 +15,7 @@ public class PHPConnect {
         public static boolean createNewUser (String username, String passwort) throws SQLException
         {
             Boolean back = false;
+
             try {
                 String output = new getURLData()
                         .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort)
