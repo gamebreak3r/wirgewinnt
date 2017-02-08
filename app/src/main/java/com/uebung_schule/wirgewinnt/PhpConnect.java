@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class PHPConnect {
+public class PhpConnect {
 
         public static String username;
 
@@ -45,7 +45,7 @@ public class PHPConnect {
                                 .get();
                 if (output.contains("true"))
                 {
-                    PHPConnect.username = username;
+                    PhpConnect.username = username;
                     back = true;
                 }
             } catch (InterruptedException e) {
