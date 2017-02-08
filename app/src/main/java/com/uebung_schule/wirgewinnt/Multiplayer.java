@@ -63,6 +63,7 @@ public class Multiplayer {
                     waitingPlayer();
                     PHPConnect.setGameInAvtive(gameID);
                     isInGame=true;
+                    PHPConnect.joinGame(PHPConnect.username, gameID);
                 }
                 return true;
         }

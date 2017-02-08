@@ -81,6 +81,21 @@ public class PHPConnect {
     }
 
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    public static void joinGame(String playerName, int gameID)
+    {
+        String output = null;
+        try {
+            output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?joinGameName=" + playerName + "&gameID=" + gameID)
+                    .get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean putStone(int gameID, int player, int stoneID)
     {
         Boolean back = false;
