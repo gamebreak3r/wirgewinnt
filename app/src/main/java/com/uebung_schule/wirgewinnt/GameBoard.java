@@ -12,6 +12,7 @@ public class GameBoard {
 
     //region variables
     private Cell[][] gameBoard;
+    private int status = 0;
     //endregion
 
     public GameBoard(int boardSize, View table) {
@@ -63,26 +64,29 @@ public class GameBoard {
         int horizontal = 1;
         int diagonal1 = 1;
         int diagonal2 = 1;
-        boolean linkshorizontal = true;
-        boolean rechtshorizontal = true;
-        boolean linksdiagonal1 = true;
-        boolean rechtsdiagonal1 = true;
-        boolean linksdiagonal2 = true;
-        boolean rechtsdiagonal2 = true;
+        //status 3 = vertical
+        boolean linkshorizontal = true; //status 4
+        boolean rechtshorizontal = true; //status 5
+        boolean linksdiagonal1 = true; //status 6
+        boolean rechtsdiagonal1 = true; //status 7
+        boolean linksdiagonal2 = true; //status 8
+        boolean rechtsdiagonal2 = true; //status 9
 
-        int status = gameBoard[column][row].status;
+
+        status = gameBoard[column][row].status;
 
 
         for (int i = 1; i <= 4; i++) {
-            if (row - i >= 0 ) {// region vertical
+            if (row - i >= 0 ) {//region vertical
                 if (gameBoard[column][row - i].status == status) {
                     vertical++;
 
                     if (vertical >= 4) {
-                      /*gameBoard[column][row].status = 3;
+                        gameBoard[column][row].status = 3;
                         gameBoard[column][row-1].status = 3;
                         gameBoard[column][row-2].status = 3;
-                        gameBoard[column][row-3].status = 3; */
+                        gameBoard[column][row-3].status = 3;
+                        reset(3,99);
                         return true;
                     }
                 }
@@ -92,10 +96,11 @@ public class GameBoard {
                 if (gameBoard[column - i][row].status == status && linkshorizontal) {
                     horizontal++;
                     if (horizontal >= 4) {
-                      /*gameBoard[column][row].status = 3;
-                        gameBoard[column-1][row].status = 3;
-                        gameBoard[column-2][row].status = 3;
-                        gameBoard[column-3][row].status = 3; */
+                        gameBoard[column][row].status = 4;
+                        gameBoard[column-1][row].status =4;
+                        gameBoard[column-2][row].status =4;
+                        gameBoard[column-3][row].status =4;
+                        reset(4,5);
                         return true;
                     }
                 } else{
@@ -107,6 +112,11 @@ public class GameBoard {
                 if (gameBoard[column + i][row].status == status && rechtshorizontal) {
                     horizontal++;
                     if (horizontal >= 4) {
+                        gameBoard[column][row].status = 5;
+                        gameBoard[column-1][row].status =5;
+                        gameBoard[column-2][row].status =5;
+                        gameBoard[column-3][row].status =5;
+                        reset(4,5);
                         return true;
                     }
                 } else
@@ -117,6 +127,11 @@ public class GameBoard {
                 if (gameBoard[column - i][row - i].status == status && linksdiagonal1) {
                     diagonal1++;
                     if (diagonal1 >= 4) {
+                        gameBoard[column][row].status = 6;
+                        gameBoard[column-1][row].status =6;
+                        gameBoard[column-2][row].status =6;
+                        gameBoard[column-3][row].status =6;
+                        reset(6,7);
                         return true;
                     }
                 } else{
@@ -128,6 +143,11 @@ public class GameBoard {
                 if (gameBoard[column+i][row+i].status == status && rechtsdiagonal1) {
                     diagonal1++;
                     if (diagonal1 >= 4) {
+                        gameBoard[column][row].status = 7;
+                        gameBoard[column-1][row].status =7;
+                        gameBoard[column-2][row].status =7;
+                        gameBoard[column-3][row].status =7;
+                        reset(6,7);
                         return true;
                     }
                 }else {
@@ -139,6 +159,11 @@ public class GameBoard {
                 if (gameBoard[column-i][row+i].status == status && linksdiagonal2) {
                     diagonal2++;
                     if (diagonal2 >= 4) {
+                        gameBoard[column][row].status = 8;
+                        gameBoard[column-1][row].status =8;
+                        gameBoard[column-2][row].status =8;
+                        gameBoard[column-3][row].status =8;
+                        reset(8,9);
                         return true;
                     }
                 } else {
@@ -150,6 +175,11 @@ public class GameBoard {
                 if (gameBoard[column+i][row-i].status == status && rechtsdiagonal2) {
                     diagonal2++;
                     if (diagonal2 >= 4) {
+                        gameBoard[column][row].status = 9;
+                        gameBoard[column-1][row].status =9;
+                        gameBoard[column-2][row].status =9;
+                        gameBoard[column-3][row].status =9;
+                        reset(8,9);
                         return true;
                     }
                 } else {
@@ -161,6 +191,14 @@ public class GameBoard {
 
         return false;
 
+    }
+    private void reset (int status1, int status2){
+        for (int i = 0; i <= 6; i++)
+        {
+            for (int a = 0; a <= 6; a++) {
+                if(gameBoard[i][a].status != status1 && gameBoard[i][a].status != status2) gameBoard[i][a].status = status;
+            }
+        }
     }
 
     public Cell[][] getGameBorad ()

@@ -289,7 +289,7 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.RED);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnOnline).setBackgroundColor(Color.BLUE);
-                    rest();
+                    rest(false);
                 }
                 mode = 1;
                 break;
@@ -302,7 +302,7 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.RED);
                     findViewById(R.id.btnOnline).setBackgroundColor(Color.BLUE);
-                    rest();
+                    rest(false);
                 }
                 currentPlayer = true;
                 mode = 2;
@@ -315,13 +315,22 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnOnline).setBackgroundColor(Color.RED);
-                    rest();
+                    rest(false);
                 }
 
                 mode = 3;
                 break;
 
             //endregion
+
+            case R.id.btnNewGame:
+
+                findViewById(R.id.btnNewGame).setVisibility(View.GONE);
+                rest(false);
+
+
+
+                break;
 
             //region gameplay
             case R.id.btnColumn0:
@@ -430,13 +439,23 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected void rest(){
+
+    protected void rest(boolean win){
         Cell[][] reset = gameBoard.getGameBorad();
         for (int i = 0; i <= 6; i++)
         {
+
+
             for (int a = 0; a <= 6; a++) {
-                reset[i][a].status = 0;
-                findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                System.out.println(i + a*10);
+                if (win){
+                    if (reset[i][a].status == 0) findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                    findViewById(R.id.btnNewGame).setVisibility(View.VISIBLE);
+
+                }else {
+                    reset[i][a].status = 0;
+                    findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                }
             }
         }
     }
@@ -464,7 +483,7 @@ public class MainActivity extends AppCompatActivity {
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
-            rest();
+            rest(true);
         }
         currentPlayer = !currentPlayer;
 
@@ -479,7 +498,7 @@ public class MainActivity extends AppCompatActivity {
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
-            rest();
+            rest(false);
         }
     }
 

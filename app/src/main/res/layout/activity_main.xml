@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.uebung_schule.wirgewinnt.MainActivity"
     android:orientation="vertical">
-    
+
     <LinearLayout
         android:id="@+id/llButtonRow"
         android:layout_width="match_parent"
@@ -62,10 +62,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:visibility="visible">
-        <!-- TODO: on release set VISIBILITY = GONE-->
 
-        <!-- TODO: insert layout programmatically, use TAG (google that)-->
-        //col1 alles in activity machen
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="47dp"
@@ -170,5 +169,13 @@
             android:orientation="vertical">
         </LinearLayout>
     </LinearLayout>
+
+    <Button
+
+        android:text="Spiel zu Ende Hier gehts weiter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnNewGame"
+        android:visibility="gone"/>
 
 </LinearLayout>

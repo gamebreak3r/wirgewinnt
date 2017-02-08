@@ -109,7 +109,7 @@ public class Multiplayer {
                 });
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
-                ma.rest();
+                ma.rest(false);
             } else {
                 waitingPlayer();
             }
