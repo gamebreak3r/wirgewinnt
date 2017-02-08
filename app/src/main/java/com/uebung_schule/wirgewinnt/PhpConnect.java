@@ -193,4 +193,17 @@ public class PHPConnect {
         }
         return back;
     }
+
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    public static void setWin (int gameID) {
+        try {
+            String output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&winPlayer=" + username)
+                    .get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    }
 }
