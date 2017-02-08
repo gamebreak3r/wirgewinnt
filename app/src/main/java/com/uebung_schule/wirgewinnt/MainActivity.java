@@ -442,10 +442,7 @@ public class MainActivity extends AppCompatActivity {
 
     protected void rest(boolean win){
         Cell[][] reset = gameBoard.getGameBorad();
-        for (int i = 0; i <= 6; i++)
-        {
-
-
+        for (int i = 0; i <= 6; i++) {
             for (int a = 0; a <= 6; a++) {
                 System.out.println(i + a*10);
                 if (win){
@@ -499,6 +496,7 @@ public class MainActivity extends AppCompatActivity {
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
             rest(false);
+            System.out.println();
         }
     }
 
