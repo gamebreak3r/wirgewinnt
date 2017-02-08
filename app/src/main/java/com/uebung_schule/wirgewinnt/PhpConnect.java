@@ -206,4 +206,21 @@ public class PHPConnect {
             e.printStackTrace();
         }
     }
+
+    //http://wirgewinnt.square7.ch/html/stats.php?player=test&winLose=win
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    public static int getWins () {
+        try {
+            String output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/stats.php?player" + username + "&winPlayer=win" )
+                    .get();
+            String[] sp = output.split("##");
+            return Integer.parseInt(sp[1]);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
