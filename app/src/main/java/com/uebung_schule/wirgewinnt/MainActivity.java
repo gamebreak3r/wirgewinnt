@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,7 +22,10 @@ public class MainActivity extends AppCompatActivity{
 
     GameBoard gameBoard;
     private Multiplayer mplayer;
+    private Menu mainMenu;
+    private View vw;
     boolean currentPlayer;
+    private boolean login;
     //currentPlayer legend:
     // true  - Player 1
     // false - Player 2
@@ -42,9 +46,25 @@ public class MainActivity extends AppCompatActivity{
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu, menu);
+        mainMenu = menu;
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_stats:
+                setContentView(R.layout.activity_stats);
+                return true;
+            case R.id.menu_logout:
+                setContentView(R.layout.activity_login);
+                mainMenu.findItem(R.id.menu_stats).setVisible(false);
+                mainMenu.findItem(R.id.menu_logout).setVisible(false);
+                login = false;
+                return true;
+        }
+        return false;
+    }
 
     protected void createGeame(View view) {
         setContentView(R.layout.activity_main);
@@ -205,6 +225,7 @@ public class MainActivity extends AppCompatActivity{
 
     public void onClick(View v) {
         Cell[][] status = null;
+        this.vw = v;
         try {
             status = gameBoard.getGameBorad();
         }catch (Exception ex){}
@@ -217,6 +238,9 @@ public class MainActivity extends AppCompatActivity{
                 try {
                     if (PHPConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
                         createGeame(v);
+                        mainMenu.findItem(R.id.menu_stats).setVisible(true);
+                        mainMenu.findItem(R.id.menu_logout).setVisible(true);
+                        login = true;
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
                     }
@@ -533,6 +557,10 @@ public class MainActivity extends AppCompatActivity{
     //Zurück Button
     @Override
     public void onBackPressed() {
-        setContentView(R.layout.activity_login);
+        if (login) {
+            createGeame(vw);
+        }else {
+            setContentView(R.layout.activity_login);
+        }
     }
 }
