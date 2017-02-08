@@ -10,13 +10,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.security.MessageDigest;
-import java.util.Arrays;
-import javax.crypto.Cipher;
+
 import javax.crypto.spec.SecretKeySpec;
 import java.util.concurrent.ExecutionException;
 
-public class PHPConnect {
+public class PhpConnect {
 
         public static String username;
 
@@ -31,7 +29,7 @@ public class PHPConnect {
                 SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
 
                 String output = new getURLData()
-                        .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + secretKeySpec.getEncoded())
+                        .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort)
                         .get();
                 if (output.contains("true"))
                 {
@@ -59,11 +57,11 @@ public class PHPConnect {
                 key = Arrays.copyOf(key, 16);
                 SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
                 String output = new getURLData()
-                                .execute("http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + secretKeySpec.getEncoded())
+                                .execute("http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + passwort)
                                 .get();
                 if (output.contains("true"))
                 {
-                    PHPConnect.username = username;
+                    PhpConnect.username = username;
                     back = true;
                 }
             } catch (InterruptedException e) {

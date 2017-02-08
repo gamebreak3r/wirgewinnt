@@ -1,12 +1,10 @@
 package com.uebung_schule.wirgewinnt;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -210,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (PHPConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
+                    if (PhpConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
                         createGeame(v);
                     } else {
                         Toast.makeText(this, "Username oder Passwort falsch", Toast.LENGTH_LONG).show();
@@ -249,7 +247,7 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
                             try {
-                                if (PHPConnect.createNewUser(register_username.getText().toString().trim(), register_passwort.getText().toString())) {
+                                if (PhpConnect.createNewUser(register_username.getText().toString().trim(), register_passwort.getText().toString())) {
                                     Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
