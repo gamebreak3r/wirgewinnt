@@ -3,31 +3,23 @@ package com.uebung_schule.wirgewinnt;
 /**
  * Created by consult on 16.12.2016.
  */
+import android.annotation.TargetApi;
+import android.os.Build;
+
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.crypto.spec.SecretKeySpec;
 import java.util.concurrent.ExecutionException;
 
-public class PhpConnect {
+public class PHPConnect {
 
         public static String username;
 
+        @TargetApi(Build.VERSION_CODES.CUPCAKE)
         public static boolean createNewUser (String username, String passwort) throws SQLException
         {
             Boolean back = false;
             try {
-                byte[] key = (passwort).getBytes("UTF-8");
-                MessageDigest sha = MessageDigest.getInstance("SHA-256");
-                key = sha.digest(key);
-                key = Arrays.copyOf(key, 16);
-                SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
-
                 String output = new getURLData()
                         .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort)
                         .get();
@@ -39,36 +31,26 @@ public class PhpConnect {
                 e.printStackTrace();
             } catch (ExecutionException e) {
                 e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
             }
             return back;
         }
 
+        @TargetApi(Build.VERSION_CODES.CUPCAKE)
         public static boolean getLoginTrue (String username, String passwort) throws IOException{
 
             Boolean back = false;
             try {
-                byte[] key = (passwort).getBytes("UTF-8");
-                MessageDigest sha = MessageDigest.getInstance("SHA-256");
-                key = sha.digest(key);
-                key = Arrays.copyOf(key, 16);
-                SecretKeySpec secretKeySpec = new SecretKeySpec(key, "AES");
                 String output = new getURLData()
                                 .execute("http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + passwort)
                                 .get();
                 if (output.contains("true"))
                 {
-                    PhpConnect.username = username;
+                    PHPConnect.username = username;
                     back = true;
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (NoSuchAlgorithmException e) {
                 e.printStackTrace();
             }
             return back;
@@ -79,6 +61,7 @@ public class PhpConnect {
      * Multiplayer
      */
 
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static int createNewGame(String playerName)
     {
         int gameID = 0;
@@ -97,6 +80,7 @@ public class PhpConnect {
         return gameID;
     }
 
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean putStone(int gameID, int player, int stoneID)
     {
         Boolean back = false;
@@ -116,6 +100,7 @@ public class PhpConnect {
         }
         return back;
     }
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static ArrayList getActiveGames()
     {
         ArrayList back = new ArrayList();
@@ -138,6 +123,7 @@ public class PhpConnect {
         return back;
     }
 
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean setGameInAvtive (int gameID)
     {
         String output = null;
@@ -157,6 +143,7 @@ public class PhpConnect {
         return false;
     }
 
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static ArrayList getStoneID (int gameID, boolean player, GameBoard gb)
     {
         ArrayList back = new ArrayList();
@@ -191,5 +178,4 @@ public class PhpConnect {
         }
         return back;
     }
-
 }
