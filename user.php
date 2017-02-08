@@ -14,7 +14,7 @@ if ($Lusername != "" AND $Lpasswort != "")
 		}
 	while ($zeile = mysqli_fetch_array( $db_erg, MYSQL_ASSOC))
 	{
-		if ($zeile['passwort'] == $Lpasswort)
+		if ($zeile['passwort'] == hash('sha256', $Lpasswort))
 		{
 			echo "true";
 		}
@@ -26,7 +26,8 @@ if ($Lusername != "" AND $Lpasswort != "")
 }
 else if ($Rusername != "" AND $Rpasswort != "")
 {
-	$sql = "INSERT INTO user (username, passwort) values ('" . $Rusername . "', '" . $Rpasswort . "')";
+	$hash = hash('sha256', $Rpasswort);
+	$sql = "INSERT INTO user (username, passwort) values ('" . $Rusername . "', '" . $hash . "')";
 	$db_erg = mysqli_query( $db_link, $sql );
 	if ( ! $db_erg )
 		{

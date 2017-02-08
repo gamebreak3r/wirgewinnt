@@ -34,8 +34,7 @@ public class Multiplayer {
 
         //Get Aktive Games
 
-        //TODO User kann das Menü noch schliesen, die App Crasht daraufhin, da es keine id online gibt.
-        ArrayList games = PhpConnect.getActiveGames();
+        ArrayList games = PHPConnect.getActiveGames();
         if (games.size() == 0)
         {
             popup.getMenu().add("Es wurde kein aktives Spiel gefunden!");
@@ -49,7 +48,7 @@ public class Multiplayer {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getTitle().toString().equals(ma.getResources().getString(R.string.multiplayerCreateGame))){
-                    gameID = PhpConnect.createNewGame(PhpConnect.username);
+                    gameID = PHPConnect.createNewGame(PHPConnect.username);
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = true;
                     isInGame=true;
@@ -61,8 +60,9 @@ public class Multiplayer {
                     Toast.makeText(ma, "GameID: #" + gameID, Toast.LENGTH_LONG).show();
                     player = false;
                     waitingPlayer();
-                    PhpConnect.setGameInAvtive(gameID);
+                    PHPConnect.setGameInAvtive(gameID);
                     isInGame=true;
+                    PHPConnect.joinGame(PHPConnect.username, gameID);
                 }
                 return true;
         }
@@ -81,7 +81,7 @@ public class Multiplayer {
         else {
             playerID = 2;
         }
-        if (!PhpConnect.putStone(gameID, playerID, stoneID))
+        if (!PHPConnect.putStone(gameID, playerID, stoneID))
         {
             System.out.println("Fehler");
         }
@@ -151,7 +151,8 @@ public class Multiplayer {
                 pd1.cancel();
                 if (value >= 100)
                 {
-                    PhpConnect.setGameInAvtive(gameID);
+                    PHPConnect.setGameInAvtive(gameID);
+                    PHPConnect.setWin(gameID);
                     ma.setPageHotSeat("Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt");
                 }
             }
@@ -166,8 +167,8 @@ public class Multiplayer {
                 ArrayList gegnerStone = null;
                 for (int i = 0; i < 6; i++) {
                     try {
-                        Thread.sleep(5000);
-                        gegnerStone = PhpConnect.getStoneID(gameID, player, ma.gameBoard);
+                        Thread.sleep(3500);
+                        gegnerStone = PHPConnect.getStoneID(gameID, player, ma.gameBoard);
                         System.out.println("Test " + gegnerStone.toString());
                         if (gegnerStone.size()>0)
                         {
@@ -188,9 +189,6 @@ public class Multiplayer {
                         int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
                         ma.putStone(col, row, !player);
                     }
-                }
-                else {
-                    System.out.println("Der Gegner hat in 30 Sek. keinen Stein gesetzt");
                 }
             }
         }).start();

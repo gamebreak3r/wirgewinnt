@@ -74,10 +74,10 @@
 		else if ($getStones != "")
 		{
 			//http://wirgewinnt.square7.ch/html/multiplayer.php?getStones=16
-			 $sql = "Select player1, player2 from multiplayer gameid=" . $getStones;
+			 $sql = "Select player1, player2 from multiplayer where gameid=" . $getStones;
              foreach ($db_link->query($sql) as $zeile)
              {
-                echo "##" . $zeile['player1']. "##" .$zeile['player2'];
+                echo "##" . $zeile['player1']. "##" .$zeile['player2'] . "##";
              }
 		}
 		else if ($removeGame != "")
@@ -103,9 +103,18 @@
                 echo ";" . $id . "#" . $zeile['playerName'] . ";";
              }
 		}
-		        else{
-            echo "Fehler";
-        }
-?>
+		//Clear Old Games
+		/*$sqltime = "Select UNIX_TIMESTAMP(DATE_ADD(date, INTERVAL 5 MINUTE)) as date, gameid, UNIX_TIMESTAMP(CURDATE()) as nowdate from multiplayer where active=1";
+             foreach ($db_link->query($sqltime) as $zeileTime)
+             {
+                $id = intval($zeileTime['gameid']);
+				echo $zeileTime['date'] . ' TEST ' . $zeileTime['nowdate'];
+				if ($zeileTime['date'] <= $zeileTime['nowdate']) 
+				{
+					$sql = "UPDATE multiplayer SET active=0 where gameid=" . $id;
+					$db_erg = mysqli_query( $db_link, $sql );
+				}
+             }*/
+		?>
 </body>
 </html>
