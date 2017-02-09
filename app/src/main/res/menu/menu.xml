@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-    android:id="@+id/menu_stats"
-    android:orderInCategory="100"
-    android:title="Stats"
-    android:visible="false"
-    />
+        android:id="@+id/menu_stats"
+        android:orderInCategory="100"
+        android:title="@string/menuStats"
+        android:visible="false" />
     <item
         android:id="@+id/menu_logout"
         android:orderInCategory="100"
-        android:title="Logout"
-        android:visible="false"
-    />
+        android:title="@string/menuLogout"
+        android:visible="false" />
 </menu>

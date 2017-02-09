@@ -1,68 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
-        android:text="@string/Passwort"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:layout_alignEnd="@+id/textView2"
+        android:layout_alignParentTop="true"
         android:layout_marginLeft="142dp"
         android:layout_marginTop="83dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignEnd="@+id/textView2" />
+        android:text="@string/Passwort" />
 
     <Button
-        android:text="@string/buttonLogin"
+        android:id="@+id/btnLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:id="@+id/btnLogin"
         android:layout_below="@+id/loginPasswort"
         android:layout_centerHorizontal="true"
-        android:onClick="onClick"/>
+        android:layout_marginTop="33dp"
+        android:onClick="onClick"
+        android:text="@string/buttonLogin" />
 
     <TextView
-        android:text="@string/TextViewUsername"
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/textView2"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
         android:layout_alignBaseline="@+id/loginUsername"
         android:layout_alignBottom="@+id/loginUsername"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:text="@string/TextViewUsername" />
 
     <EditText
+        android:id="@+id/loginUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="text|textPersonName"
-        android:ems="10"
-        android:id="@+id/loginUsername"
-        android:layout_marginLeft="86dp"
         android:layout_above="@+id/loginPasswort"
         android:layout_alignEnd="@+id/loginPasswort"
-        android:singleLine="true"
+        android:layout_marginLeft="86dp"
         android:autoText="false"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        android:singleLine="true"
         android:textAllCaps="true" />
 
     <EditText
+        android:id="@+id/loginPasswort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/loginPasswort"
+        android:layout_alignTop="@+id/textView"
         android:layout_marginLeft="142dp"
         android:layout_marginStart="25dp"
-        android:layout_alignTop="@+id/textView"
         android:layout_toEndOf="@+id/textView"
+        android:ems="10"
+        android:inputType="textPassword"
         android:singleLine="true" />
 
     <Button
-        android:text="@string/buttonRegistieren"
+        android:id="@+id/btnRegistieren"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnRegistieren"
-        android:layout_centerVertical="true"
         android:layout_alignStart="@+id/textView"
-        android:onClick="onClick"/>
+        android:layout_centerVertical="true"
+        android:onClick="onClick"
+        android:text="@string/buttonRegistieren" />
 </RelativeLayout>

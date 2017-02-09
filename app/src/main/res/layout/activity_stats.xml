@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="1">
 
     <TextView
-        android:text="TextView"
+        android:id="@+id/text_stats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_stats"
         android:layout_weight="0.09"
         android:clickable="false"
         android:textAllCaps="true"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="36sp"
-        android:textStyle="normal|bold"
-        android:textColor="@android:color/holo_blue_dark" />
+        android:textStyle="normal|bold" />
 
     <TextView
-        android:text="@string/textWins"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/text_Wins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textWins"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <Space
@@ -30,10 +30,10 @@
         android:layout_weight="0.09" />
 
     <TextView
-        android:text="@string/textLoses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/text_Loses"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textLoses"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
     <Space
@@ -42,9 +42,9 @@
         android:layout_weight="0.09" />
 
     <TextView
-        android:text="@string/textWinLose"
+        android:id="@+id/text_WinLose"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/text_WinLose"
+        android:text="@string/textWinLose"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 </LinearLayout>

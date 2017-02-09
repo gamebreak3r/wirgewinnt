@@ -4,44 +4,46 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.uebung_schule.wirgewinnt.MainActivity"
-    android:orientation="vertical">
+    tools:context="com.uebung_schule.wirgewinnt.MainActivity">
 
     <LinearLayout
         android:id="@+id/llButtonRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnSingleplayer"
-            android:text="Singleplayer"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:text="@string/Singleplayer" />
+
         <Button
             android:id="@+id/btnHotseat"
-            android:text="Hotseat"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:text="@string/Hotseat" />
+
         <Button
             android:id="@+id/btnOnline"
-            android:text="Online"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="50dp"
+            android:layout_weight="1"
             android:background="@color/colorPrimary"
-            android:onClick="onClick"/>
+            android:onClick="onClick"
+            android:text="@string/Online" />
 
     </LinearLayout>
 
@@ -49,11 +51,11 @@
         android:id="@+id/txtPlayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Spieler 1 ist dran"
-        android:visibility="visible"
-        android:textSize="24sp"
+        android:background="@android:color/holo_blue_light"
         android:textAlignment="center"
-        android:background="@android:color/holo_blue_light"/>
+        android:textSize="24sp"
+        android:visibility="visible"
+        android:text="@string/player1Turn" />
     <!-- TODO: on release set VISIBILITY = GONE-->
 
     <LinearLayout
@@ -62,7 +64,6 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:visibility="visible">
-
 
 
         <LinearLayout
@@ -74,39 +75,43 @@
                 android:id="@+id/btnColumn0"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
 
             <Button
                 android:id="@+id/btnColumn1"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
 
             <Button
                 android:id="@+id/btnColumn2"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
+
             <Button
                 android:id="@+id/btnColumn3"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
+
             <Button
                 android:id="@+id/btnColumn4"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
+
             <Button
                 android:id="@+id/btnColumn5"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
+
             <Button
                 android:id="@+id/btnColumn6"
                 android:layout_width="47dp"
                 android:layout_height="match_parent"
-                android:onClick="onClick"/>
+                android:onClick="onClick" />
         </LinearLayout>
 
 
@@ -119,64 +124,56 @@
         android:orientation="horizontal">
 
 
-
         <LinearLayout
             android:id="@+id/table00"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/table10"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/table20"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/table30"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/table40"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/table50"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:id="@+id/table60"
             android:layout_width="47dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-        </LinearLayout>
+            android:orientation="vertical" />
     </LinearLayout>
 
     <Button
 
-        android:text="Spiel zu Ende Hier gehts weiter"
+        android:id="@+id/btnNewGame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnNewGame"
-        android:visibility="gone"
-        android:onClick="onClick"/>
+        android:onClick="onClick"
+        android:text="@string/btnEndGame"
+        android:visibility="gone" />
 
 </LinearLayout>
