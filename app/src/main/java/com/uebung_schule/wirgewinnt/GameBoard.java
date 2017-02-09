@@ -57,6 +57,46 @@ public class GameBoard {
         }
     }
 
+    private void markStones(int mode, int column, int row, int status){
+        int i = 0;
+        int j = 1;
+        switch (mode){
+            case 1:  //vertical
+                for (; i <4; i++) gameBoard[column][row-i].status = 3;
+                break;
+            case 2: //horizontal
+                 while (column - i >= 0 && gameBoard[column-i][row].status == status) {
+                    gameBoard[column-i][row].status = 3;
+                    i++;
+                }
+                for (;i<4; i++) if (column + j <7 &&gameBoard[column+j][row].status == status) gameBoard[column+j][row].status = 3;
+                break;
+
+
+            case 3: //digonal1
+                while (column - i >= 0 && row -i >= 0 && gameBoard[column-i][row-i].status == status) {
+                    gameBoard[column-i][row-i].status = 3;
+                    i++;
+                }
+                for (;i<4; i++) if (column + j <7 && row + j < 7 &&gameBoard[column+j][row+j].status == status) gameBoard[column+j][row+j].status = 3;
+                break;
+            case 4:
+                while (column - i >= 0 && row +i <= 6 && gameBoard[column-i][row+i].status == status) {
+                    gameBoard[column-i][row+i].status = 3;
+                    i++;
+                }
+                for (;i<4; i++) if (column + j <7 && row - j >= 0 &&gameBoard[column+j][row-j].status == status) gameBoard[column+j][row-j].status = 3;
+
+                break;
+            default:
+
+                break;
+
+
+        }
+
+    }
+
 
     public boolean checkIfWon(int column, int row, View v) {
         int vertical = 1;
@@ -69,13 +109,9 @@ public class GameBoard {
         for (int i = 1; i <= 4; i++) {
             if (row - i >= 0 ) {// region vertical
                 if (gameBoard[column][row - i].status == status) {
-                    if (vertical == i) vertical++;
-
+                    vertical++;
                     if (vertical >= 4) {
-                        gameBoard[column][row].status = 3;
-                        gameBoard[column][row-1].status = 3;
-                        gameBoard[column][row-2].status = 3;
-                        gameBoard[column][row-3].status = 3;
+                        markStones(1,column, row, status);
                         return true;
                     }
                 }
@@ -85,10 +121,7 @@ public class GameBoard {
                 if (gameBoard[column - i][row].status == status) {
                     horizontal++;
                     if (horizontal >= 4) {
-                        gameBoard[column][row].status = 3;
-                        gameBoard[column-1][row].status = 3;
-                        gameBoard[column-2][row].status = 3;
-                        gameBoard[column-3][row].status = 3;
+                        markStones(2,column, row, status);
                         return true;
                     }
                 }
@@ -98,6 +131,7 @@ public class GameBoard {
                 if (gameBoard[column + i][row].status == status) {
                     horizontal++;
                     if (horizontal >= 4) {
+                        markStones(2,column, row, status);
                         return true;
                     }
                 }
@@ -107,6 +141,7 @@ public class GameBoard {
                 if (gameBoard[column - i][row - i].status == status) {
                     diagonal1++;
                     if (diagonal1 >= 4) {
+                        markStones (3,column,row,status);
                         return true;
                     }
                 }
@@ -116,6 +151,7 @@ public class GameBoard {
                 if (gameBoard[column+i][row+i].status == status) {
                     diagonal1++;
                     if (diagonal1 >= 4) {
+                        markStones (3,column,row,status);
                         return true;
                     }
                 }
@@ -125,6 +161,7 @@ public class GameBoard {
                 if (gameBoard[column-i][row+i].status == status) {
                     diagonal2++;
                     if (diagonal2 >= 4) {
+                        markStones (4,column,row,status);
                         return true;
                     }
                 }
@@ -134,6 +171,7 @@ public class GameBoard {
                 if (gameBoard[column+i][row-i].status == status) {
                     diagonal2++;
                     if (diagonal2 >= 4) {
+                        markStones (4,column,row,status);
                         return true;
                     }
                 }
