@@ -19,4 +19,5 @@
     <string name="action_settings">Settings</string>
     <string name="textWins">Wins:</string>
     <string name="textLoses">Loses:</string>
+    <string name="textWinLose">Win/Lose</string>
 </resources>

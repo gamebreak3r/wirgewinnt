@@ -212,10 +212,28 @@ public class PHPConnect {
     public static int getWins () {
         try {
             String output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/stats.php?player" + username + "&winPlayer=win" )
+                    .execute("http://wirgewinnt.square7.ch/html/stats.php?player=" + username + "&winLose=win" )
                     .get();
             String[] sp = output.split("##");
-            return Integer.parseInt(sp[1]);
+            return Integer.parseInt(sp[1].toString());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    @TargetApi(Build.VERSION_CODES.CUPCAKE)
+    public static int getLoses () {
+        try {
+            String output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/stats.php?player=" + username + "&winLose=lose" )
+                    .get();
+            if (output.contains("##")){
+                String[] sp = output.split("##");
+                return Integer.parseInt(sp[1].toString());
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

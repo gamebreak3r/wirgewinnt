@@ -57,9 +57,18 @@ public class MainActivity extends AppCompatActivity{
                 setContentView(R.layout.activity_stats);
                 TextView tv = (TextView) findViewById(R.id.text_stats);
                 tv.setText(PHPConnect.username.toUpperCase() + " Stats" + ":");
-                TextView tvWin = (TextView) findViewById(R.id.text_stats);
-                TextView tvLoses = (TextView) findViewById(R.id.text_stats);
-                
+                TextView tvWin = (TextView) findViewById(R.id.text_Wins);
+                TextView tvLoses = (TextView) findViewById(R.id.text_Loses);
+                TextView tvWinLose = (TextView) findViewById(R.id.text_WinLose);
+                int wins = PHPConnect.getWins();
+                int loses = PHPConnect.getLoses();
+                double winLose = wins;
+                if (loses != 0) {
+                    winLose = wins / loses;
+                }
+                tvWin.setText(tvWin.getText().toString() + "  " + wins);
+                tvLoses.setText(tvLoses.getText().toString() + "  " + loses);
+                tvWinLose.setText(tvWinLose.getText().toString() + "  " + winLose);
                 return true;
             case R.id.menu_logout:
                 setContentView(R.layout.activity_login);
