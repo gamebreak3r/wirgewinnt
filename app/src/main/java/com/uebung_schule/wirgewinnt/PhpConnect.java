@@ -232,7 +232,7 @@ public class PHPConnect {
     {
         try {
             String output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&hasWon=" + username)
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&hasWon=win")
                     .get();
             if (output.contains("true"))
             {

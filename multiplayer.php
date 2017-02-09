@@ -19,6 +19,14 @@
 		$getStones = $_GET['getStones'];
 		//Remove aktive Game
 		$removeGame = $_GET['removeGame'];
+		//Name des Spielers, der beitritt
+		$joinGameName = $_GET['joinGameName'];
+		//Spieler der Gewonnen hat
+		$winPlayer = $_GET['winPlayer'];
+		//Spieler hat verloren
+		$losePlayer = $_GET['losePlayer'];
+		//Hat wer gewonnen
+		$hasWon = $_GET['hasWon'];
         //Datenbank
         $db_link = mysqli_connect (localhost, wirgewinnt, ABCD,  wirgewinnt);
 
@@ -41,7 +49,18 @@
                	else{
   		        	echo "Fehler GameID";
             	}
-        }
+        }else if ($joinGameName != "" AND $gameID != "")
+		{
+                $sql = "UPDATE multiplayer SET playerName2='" . $joinGameName . "' where gameid=" . $gameID;
+                $db_erg = mysqli_query( $db_link, $sql );
+                if ($db_erg)
+		        {
+  		        	echo "true";
+	        	}
+               	else{
+  		        	echo "false";
+            	}
+		}
         else if ($gameID != "" AND $player != "" AND $putStone != "")
         {
             //Befehl zum hinzufügen eines Steins:
@@ -102,6 +121,49 @@
                 $id = intval($zeile['gameid']);
                 echo ";" . $id . "#" . $zeile['playerName'] . ";";
              }
+		}else if($gameID != "" AND $hasWon != "")
+		{
+				$sqlSel = "select count(*) as anzahl from multiplayer where gameid=" . $gameID . " and (win='' or win IS NULL)";
+				foreach ($db_link->query($sqlSel) as $zeile)
+				{
+					if ($zeile['anzahl'] == 1)
+					{
+						echo "false";
+					}
+					else {
+						echo "true";
+					}
+				}
+		}else if ($gameID != "" AND $winPlayer != "")
+		{
+				$sqlSel = "select count(*) as anzahl from multiplayer where gameid=" . $gameID . " and (win='' or win IS NULL)";
+				foreach ($db_link->query($sqlSel) as $zeile)
+				{
+					if ($zeile['anzahl'] == 1)
+					{
+						$sql = "UPDATE multiplayer SET win='" . $winPlayer . "' where gameid=" . $gameID . " and (win='' or win IS NULL)";
+						$db_erg = mysqli_query( $db_link, $sql );
+						if ($db_erg)
+						{
+							echo "true";
+						}
+					}
+					else{
+						echo "false";
+					}
+				}
+		}
+		else if ($gameID != "" AND $losePlayer != "")
+		{
+                $sql = "UPDATE multiplayer SET lose='" . $losePlayer . "' where gameid=" . $gameID;
+                $db_erg = mysqli_query( $db_link, $sql );
+                if ($db_erg)
+		        {
+  		        	echo "true";
+	        	}
+               	else{
+  		        	echo "false";
+            	}
 		}
 		//Clear Old Games
 		/*$sqltime = "Select UNIX_TIMESTAMP(DATE_ADD(date, INTERVAL 5 MINUTE)) as date, gameid, UNIX_TIMESTAMP(CURDATE()) as nowdate from multiplayer where active=1";

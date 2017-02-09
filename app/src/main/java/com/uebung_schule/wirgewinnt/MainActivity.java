@@ -526,16 +526,12 @@ public class MainActivity extends AppCompatActivity{
             dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
             dlgAlert.setPositiveButton("new game",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                    rest(true);
-                }
-            });
-            dlgAlert.setNegativeButton("show gameboard",new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
                     //Nichts
                 }
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
+            rest(true);
         }
         //niemand hat gewnnen
         currentPlayer = !currentPlayer;

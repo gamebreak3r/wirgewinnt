@@ -152,9 +152,10 @@ public class Multiplayer {
                 if (value >= 100)
                 {
                     PHPConnect.setGameInAvtive(gameID);
-                    if (!PHPConnect.setWin(gameID)){
+                    if (PHPConnect.setWin(gameID)){
                         PHPConnect.setLose(gameID);
                         ma.setPageHotSeat("Leider hast du verloren!");
+                        isInGame=false;
                     }else{
                         ma.setPageHotSeat("Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt");
                     }
@@ -177,10 +178,6 @@ public class Multiplayer {
                         {
                             gegnerSetStone = true;
                             stopTime = true;
-                            if (!PHPConnect.checkIfWon(gameID)){
-                                PHPConnect.setLose(gameID);
-                                ma.setPageHotSeat("Leider hast du verloren!");
-                            }
                             break;
                         }
                     } catch (InterruptedException e) {
@@ -190,6 +187,11 @@ public class Multiplayer {
                 if (gegnerSetStone)
                 {
                     gegnerSetStone = false;
+                    if (PHPConnect.checkIfWon(gameID)){
+                        PHPConnect.setLose(gameID);
+                        ma.setPageHotSeat("Leider hast du verloren!");
+                        isInGame=false;
+                    }
                     for (int i = 0; i < gegnerStone.size(); i++)
                     {
                         int col = (Integer.parseInt(gegnerStone.get(i).toString())/10) % 10;
