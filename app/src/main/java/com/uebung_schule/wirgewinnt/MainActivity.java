@@ -488,7 +488,9 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-
+    /**
+     * zuruecksetzung
+     */
     protected void rest(boolean win){
         Cell[][] reset = gameBoard.getGameBorad();
         for (int i = 0; i <= 6; i++) {
@@ -522,17 +524,23 @@ public class MainActivity extends AppCompatActivity{
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setTitle("Gewonnen");
             dlgAlert.setMessage("Spieler: " + playerAusgabe +" hat gewonnen!");
-            dlgAlert.setPositiveButton("OK",new DialogInterface.OnClickListener() {
+            dlgAlert.setPositiveButton("new game",new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int whichButton) {
-                   //Nichts
+                    rest(true);
+                }
+            });
+            dlgAlert.setNegativeButton("show gameboard",new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    //Nichts
                 }
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
-            rest(true);
         }
+        //niemand hat gewnnen
         currentPlayer = !currentPlayer;
 
+        //unentschieden
         if (gameBoard.checkfull()){
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setTitle("Unentschieden");
