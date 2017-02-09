@@ -96,8 +96,6 @@ public class GameBoard {
         }
 
     }
-
-
     public boolean checkIfWon(int column, int row, View v) {
         int vertical = 1;
         int horizontal = 1;
