@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity{
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (PHPConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
+                    if (PhpConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
                         createGeame(v);
                         mainMenu.findItem(R.id.menu_stats).setVisible(true);
                         mainMenu.findItem(R.id.menu_logout).setVisible(true);
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity{
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
                             try {
-                                if (PHPConnect.createNewUser(register_username.getText().toString().trim(), register_passwort.getText().toString())) {
+                                if (PhpConnect.createNewUser(register_username.getText().toString().trim(), register_passwort.getText().toString())) {
                                     Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
@@ -475,9 +475,9 @@ public class MainActivity extends AppCompatActivity{
         Cell[][] reset = gameBoard.getGameBorad();
         for (int i = 0; i <= 6; i++) {
             for (int a = 0; a <= 6; a++) {
-                System.out.println(i + a*10);
+               // System.out.println(i + a*10);
                 if (win){
-                    if (reset[i][a].status == 0) findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                    if (reset[i][a].status < 3) findViewById(1000+ a + (10*i)).setBackgroundColor(Color.BLACK);
                     findViewById(R.id.btnNewGame).setVisibility(View.VISIBLE);
 
                 }else {

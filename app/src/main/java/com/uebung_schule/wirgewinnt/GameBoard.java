@@ -197,7 +197,11 @@ public class GameBoard {
         for (int i = 0; i <= 6; i++)
         {
             for (int a = 0; a <= 6; a++) {
-                if(gameBoard[i][a].status != status1 && gameBoard[i][a].status != status2 && gameBoard[i][a].status > 2) gameBoard[i][a].status = status;
+                if(gameBoard[i][a].status != status1 && gameBoard[i][a].status != status2 && gameBoard[i][a].status > 2) {
+                    gameBoard[i][a].status = status;
+                } else {
+                    System.out.println(gameBoard[i][a].status + "x:" + i + "y: " +a);
+                }
             }
         }
     }
