@@ -97,9 +97,7 @@ public class Multiplayer {
                 putStone(column, row);
             }
             if (gameboard.checkIfWon(column, row, v)) {
-                String playerAusgabe = null;
-                playerAusgabe = "Du hast gewonnen!";
-
+                String playerAusgabe = "Du hast gewonnen!";
                 AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                 dlgAlert.setTitle("Gewonnen");
                 dlgAlert.setMessage("Spieler: " + playerAusgabe + " hat gewonnen!");
@@ -179,6 +177,9 @@ public class Multiplayer {
                         {
                             gegnerSetStone = true;
                             stopTime = true;
+                            if (!PHPConnect.checkIfWon(gameID)){
+                                ma.setPageHotSeat("Leider hast du verloren!");
+                            }
                             break;
                         }
                     } catch (InterruptedException e) {

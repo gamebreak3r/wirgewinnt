@@ -228,6 +228,24 @@ public class PHPConnect {
         return false;
     }
 
+    public static boolean checkIfWon (int gameID)
+    {
+        try {
+            String output = new getURLData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&hasWon=" + username)
+                    .get();
+            if (output.contains("true"))
+            {
+                return true;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     //http://wirgewinnt.square7.ch/html/stats.php?player=test&winLose=win
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static int getWins () {
@@ -262,4 +280,5 @@ public class PHPConnect {
         }
         return 0;
     }
+
 }
