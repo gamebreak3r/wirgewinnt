@@ -154,8 +154,12 @@ public class Multiplayer {
                 if (value >= 100)
                 {
                     PHPConnect.setGameInAvtive(gameID);
-                    PHPConnect.setWin(gameID);
-                    ma.setPageHotSeat("Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt");
+                    if (!PHPConnect.setWin(gameID)){
+                        PHPConnect.setLose(gameID);
+                        ma.setPageHotSeat("Leider hast du verloren!");
+                    }else{
+                        ma.setPageHotSeat("Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt");
+                    }
                 }
             }
         }).start();
