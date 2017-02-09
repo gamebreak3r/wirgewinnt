@@ -147,6 +147,10 @@ public class MainActivity extends AppCompatActivity{
         }
         
         gameBoard = new GameBoard(7,findViewById(R.id.activity_main));
+        findViewById(R.id.btnHotseat).setBackgroundColor(Color.RED);
+        findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
+        findViewById(R.id.btnOnline).setBackgroundColor(Color.BLUE);
+        findViewById(R.id.txtPlayer).setBackgroundColor(Color.BLUE);
     }
 
     private int botmove() {

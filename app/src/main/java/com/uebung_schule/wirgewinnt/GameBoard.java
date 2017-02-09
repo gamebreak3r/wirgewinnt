@@ -38,7 +38,7 @@ public class GameBoard {
     }
 
 
-    public int stonesInColumn(int column) {
+    public int stonesInColumn(int column) {// prüft wie viele Steine in der auktuellen Spalte sind
         int result = 0;
         for (Cell cell : gameBoard[column]) {
             if (cell.status != 0) result++;
@@ -46,7 +46,7 @@ public class GameBoard {
         return result;
     }
 
-    public void putStone(int column, int row, boolean currentPlayer, View view) {
+    public void putStone(int column, int row, boolean currentPlayer, View view) {// Setzt einen Stein in der aktuellen Spalte drauf
         ImageView table = (ImageView) view.findViewById(1000+column*10+row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
@@ -79,13 +79,11 @@ public class GameBoard {
         for (int i = 1; i <= 4; i++) {
             if (row - i >= 0 ) {//region vertical
                 if (gameBoard[column][row - i].status == status) {
+                    gameBoard[column][row-i].status = 3;
                     vertical++;
 
                     if (vertical >= 4) {
                         gameBoard[column][row].status = 3;
-                        gameBoard[column][row-1].status = 3;
-                        gameBoard[column][row-2].status = 3;
-                        gameBoard[column][row-3].status = 3;
                         reset(3,99);
                         return true;
                     }
@@ -95,6 +93,7 @@ public class GameBoard {
             if (column - i >= 0 ) {//region links horizontal
                 if (gameBoard[column - i][row].status == status && linkshorizontal) {
                     horizontal++;
+
                     if (horizontal >= 4) {
                         gameBoard[column][row].status = 4;
                         gameBoard[column-1][row].status =4;
@@ -113,9 +112,9 @@ public class GameBoard {
                     horizontal++;
                     if (horizontal >= 4) {
                         gameBoard[column][row].status = 5;
-                        gameBoard[column-1][row].status =5;
-                        gameBoard[column-2][row].status =5;
-                        gameBoard[column-3][row].status =5;
+                        gameBoard[column+1][row].status =5;
+                        gameBoard[column+2][row].status =5;
+                        gameBoard[column+3][row].status =5;
                         reset(4,5);
                         return true;
                     }
@@ -128,9 +127,9 @@ public class GameBoard {
                     diagonal1++;
                     if (diagonal1 >= 4) {
                         gameBoard[column][row].status = 6;
-                        gameBoard[column-1][row].status =6;
-                        gameBoard[column-2][row].status =6;
-                        gameBoard[column-3][row].status =6;
+                        gameBoard[column-1][row-1].status =6;
+                        gameBoard[column-2][row-2].status =6;
+                        gameBoard[column-3][row-3].status =6;
                         reset(6,7);
                         return true;
                     }
@@ -144,9 +143,9 @@ public class GameBoard {
                     diagonal1++;
                     if (diagonal1 >= 4) {
                         gameBoard[column][row].status = 7;
-                        gameBoard[column-1][row].status =7;
-                        gameBoard[column-2][row].status =7;
-                        gameBoard[column-3][row].status =7;
+                        gameBoard[column+1][row+1].status =7;
+                        gameBoard[column+2][row+2].status =7;
+                        gameBoard[column+3][row+3].status =7;
                         reset(6,7);
                         return true;
                     }
@@ -160,9 +159,9 @@ public class GameBoard {
                     diagonal2++;
                     if (diagonal2 >= 4) {
                         gameBoard[column][row].status = 8;
-                        gameBoard[column-1][row].status =8;
-                        gameBoard[column-2][row].status =8;
-                        gameBoard[column-3][row].status =8;
+                        gameBoard[column-1][row+1].status =8;
+                        gameBoard[column-2][row+2].status =8;
+                        gameBoard[column-3][row+3].status =8;
                         reset(8,9);
                         return true;
                     }
@@ -194,15 +193,14 @@ public class GameBoard {
 
     }
     private void reset (int status1, int status2){
-        for (int i = 0; i <= 6; i++)
+        for (int i = 6; i >= 0; i--)
         {
             for (int a = 0; a <= 6; a++) {
                 if(gameBoard[i][a].status != status1 && gameBoard[i][a].status != status2 && gameBoard[i][a].status > 2) {
                     gameBoard[i][a].status = status;
-                } else {
-                    System.out.println(gameBoard[i][a].status + "x:" + i + "y: " +a);
-                }
-            }
+
+                }System.out.print(gameBoard[a][i].status + " ");
+            }System.out.println();
         }
     }
 
