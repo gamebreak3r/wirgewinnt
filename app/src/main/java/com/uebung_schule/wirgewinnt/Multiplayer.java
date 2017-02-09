@@ -178,6 +178,7 @@ public class Multiplayer {
                             gegnerSetStone = true;
                             stopTime = true;
                             if (!PHPConnect.checkIfWon(gameID)){
+                                PHPConnect.setLose(gameID);
                                 ma.setPageHotSeat("Leider hast du verloren!");
                             }
                             break;
