@@ -110,6 +110,7 @@ public class Multiplayer {
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
                 ma.rest(true);
+                ma.findViewById(R.id.btnNewGame).setVisibility(View.GONE);
                 isInGame=false;
             } else {
                 waitingPlayer();
