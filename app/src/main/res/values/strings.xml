@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wirgewinnt</string>
+    <string name="app_name">Viergewinnt</string>
     <string name="textviewTitel">Wähle deinen Spielmodus!</string>
     <string name="buttonEinzelspieler">Einzelspieler</string>
     <string name="buttonMultiplayerOnOneDivice">Multiplayer</string>
