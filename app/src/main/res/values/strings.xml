@@ -1,13 +1,5 @@
 <resources>
     <string name="app_name">Viergewinnt</string>
-    <string name="buttonLogin">Login</string>
-    <string name="Passwort">Passwort</string>
-    <string name="TextViewUsername">Username</string>
-    <string name="buttonRegistieren">Registieren</string>
-    <string name="multiplayerCreateGame">Neues Spiel erstellen</string>
-    <string name="textWins">Wins:</string>
-    <string name="textLoses">Loses:</string>
-    <string name="textWinLose">Win/Lose</string>
 
     //MultiPlayer
     <string name="noGameFound">Es wurde kein aktives Spiel gefunden!</string>
@@ -19,5 +11,29 @@
     <string name="pleaseWait">Bitte Warten...</string>
     <string name="loseGame">Leider hast du verloren!</string>
     <string name="noStone">Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt</string>
+    <string name="multiplayerCreateGame">Neues Spiel erstellen</string>
+
+    //Stats
+    <string name="menuStats">Stats</string>
+    <string name="textWins">Wins:</string>
+    <string name="textLoses">Loses:</string>
+    <string name="textWinLose">Win/Lose:</string>
+
+    //User Management
+    <string name="buttonLogin">Login</string>
+    <string name="menuLogout">Logout</string>
+    <string name="Passwort">Passwort</string>
+    <string name="passwortRepeat">Passwort Wiederholen</string>
+    <string name="TextViewUsername">Username</string>
+    <string name="buttonRegistieren">Registrieren</string>
+
+    //Game Type
+    <string name="Singleplayer">Singleplayer</string>
+    <string name="Hotseat">Hotseat</string>
+    <string name="Online">Online</string>
+
+    //GamePlay
+    <string name="player1Turn">Spieler 1 ist dran</string>
+    <string name="btnEndGame">Spiel zu Ende Hier gehts weiter</string>
 
 </resources>

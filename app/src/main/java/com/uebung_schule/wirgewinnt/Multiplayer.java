@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class Multiplayer {
 
     //Game ID
-    private int gameID;
+    protected int gameID;
     //If Player is in Game = true
     public boolean isInGame = false;
     //currentPlayer legend:
@@ -84,6 +84,9 @@ public class Multiplayer {
                     //Adds the Username to the Muliplayer Game
                     PHPConnect.joinGame(PHPConnect.username, gameID);
                 }
+                //User Can't leave the multiplayer
+                ma.findViewById(R.id.btnHotseat).setClickable(false);
+                ma.findViewById(R.id.btnSingleplayer).setClickable(false);
                 return true;
             }
         });

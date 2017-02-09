@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
-        android:text="Username:"
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4" />
+        android:text="@string/TextViewUsername" />
 
     <EditText
+        android:id="@+id/register_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/textview5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Passwort" />
+
+    <EditText
+        android:id="@+id/register_passwort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:id="@+id/register_username" />
+        android:inputType="textPassword" />
 
     <TextView
-        android:text="Passwort:"
+        android:id="@+id/textview6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textview5" />
+        android:text="@string/passwortRepeat" />
 
     <EditText
+        android:id="@+id/register_passwort2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
         android:ems="10"
-        android:id="@+id/register_passwort" />
-
-    <TextView
-        android:text="Passwort Wiederholen:"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textview6" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/register_passwort2" />
+        android:inputType="textPassword" />
 
     <Button
-        android:text="Button"
+        android:id="@+id/btnSaveRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btnSaveRegister"
-        android:onClick="onClick"/>
+        android:onClick="onClick"
+        android:text="@string/buttonRegistieren" />
 
 </LinearLayout>

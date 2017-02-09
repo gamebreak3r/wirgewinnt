@@ -358,8 +358,6 @@ public class MainActivity extends AppCompatActivity{
                 break;
             case R.id.btnOnline:
                 mplayer = new Multiplayer(this, (Button) findViewById(R.id.btnOnline), findViewById(R.id.activity_main));
-                //findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
-
                 if (mode != 3){
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.BLUE);
@@ -549,7 +547,6 @@ public class MainActivity extends AppCompatActivity{
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
             rest(false);
-            System.out.println();
         }
     }
 
@@ -579,10 +576,40 @@ public class MainActivity extends AppCompatActivity{
     //Zurück Button
     @Override
     public void onBackPressed() {
-        if (login) {
-            createGeame(vw);
-        }else {
-            setContentView(R.layout.activity_login);
+        if(mplayer == null) {
+            if (login) {
+                    createGeame(vw);
+            } else {
+                setContentView(R.layout.activity_login);
+            }
+        }else{
+            leaveMultiPlayerGame(mplayer);
         }
+    }
+
+    //Leave the MultiPlayer Match
+    protected void leaveMultiPlayerGame(final Multiplayer mp)
+    {
+        AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
+        dlgAlert.setTitle("Du bist in einem Spiel");
+        dlgAlert.setMessage("Willst du das Spiel verlassen?");
+        dlgAlert.setPositiveButton("JA",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                rest(false);
+                createGeame(vw);
+                PHPConnect.setGameInAvtive(mp.gameID);
+                PHPConnect.setLose(mp.gameID);
+                findViewById(R.id.btnHotseat).setClickable(true);
+                findViewById(R.id.btnSingleplayer).setClickable(true);
+                mplayer=null;
+            }
+        });
+        dlgAlert.setNegativeButton("Nein",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //Nichts
+            }
+        });
+        dlgAlert.setCancelable(true);
+        dlgAlert.create().show();
     }
 }
