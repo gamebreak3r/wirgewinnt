@@ -16,6 +16,11 @@ import java.net.MalformedURLException;
  * Created by consult on 15.01.2017.
  */
 
+/**
+ * This is a helper Class for the PHPConnect Class
+ */
+
+//Call the Url and retuns the output.
 public class getURLData extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... params) {
