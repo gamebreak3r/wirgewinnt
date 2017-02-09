@@ -134,7 +134,7 @@ public class Multiplayer {
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
                 //Shows the Stones
-                ma.reset(true);
+                ma.rest(true);
                 //In the Multiplayer you can not restart a game directly
                 ma.findViewById(R.id.btnNewGame).setVisibility(View.GONE);
                 //Player can'T set more stones.
