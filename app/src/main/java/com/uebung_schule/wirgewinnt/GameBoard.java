@@ -57,129 +57,91 @@ public class GameBoard {
         }
     }
 
+
     public boolean checkIfWon(int column, int row, View v) {
         int vertical = 1;
         int horizontal = 1;
         int diagonal1 = 1;
         int diagonal2 = 1;
-
-        boolean checkIfWon = false;
         int status = gameBoard[column][row].status;
 
-        // region vertical
+
         for (int i = 1; i <= 4; i++) {
-            if (row - i >= 0 ) {
+            if (row - i >= 0 ) {// region vertical
                 if (gameBoard[column][row - i].status == status) {
-                    vertical++;
+                    if (vertical == i) vertical++;
+
                     if (vertical >= 4) {
-                        checkIfWon = true;
+                        gameBoard[column][row].status = 3;
+                        gameBoard[column][row-1].status = 3;
+                        gameBoard[column][row-2].status = 3;
+                        gameBoard[column][row-3].status = 3;
+                        return true;
                     }
-                } else {
-                    break;
                 }
-            } else {
-                break;
-            }
-        } // endregion
+            }// endregion
 
-        //region horizontal
-
-        //links
-        for (int i = 1; i <= 4; i++) {
-            if (column - i >= 0 ) {
-                if (gameBoard[column-i][row].status == status) {
+            if (column - i >= 0 ) {//region links horizontal
+                if (gameBoard[column - i][row].status == status) {
                     horizontal++;
-                    if (horizontal >= 4) checkIfWon = true;
-                } else {
-                    break;
+                    if (horizontal >= 4) {
+                        gameBoard[column][row].status = 3;
+                        gameBoard[column-1][row].status = 3;
+                        gameBoard[column-2][row].status = 3;
+                        gameBoard[column-3][row].status = 3;
+                        return true;
+                    }
                 }
-            } else {
-                break;
-            }
-        }
+            } //endregion
 
-        //rechts
-        for (int i = 1; i <= 4; i++) {
-            if (column + i <= 6 ) {
-                if (gameBoard[column+i][row].status == status) {
+            if (column + i <= 6 ) {//region rechts horizontal
+                if (gameBoard[column + i][row].status == status) {
                     horizontal++;
-                    if (horizontal >= 4) checkIfWon = true;
-                } else {
-                    break;
+                    if (horizontal >= 4) {
+                        return true;
+                    }
                 }
-            } else {
-                break;
-            }
-        }// endregion
+            }// endregion
 
-
-        // region diagonal1
-        //links
-        for (int i = 1; i <= 4; i++) {
-            if (column - i >= 0 && row - i >=0) {
-                if (gameBoard[column-i][row-i].status == status) {
+            if (column - i >= 0 && row - i >=0) {// region diagonal1 links
+                if (gameBoard[column - i][row - i].status == status) {
                     diagonal1++;
-                    if (diagonal1 >= 4) checkIfWon = true;
-                } else {
-                    break;
+                    if (diagonal1 >= 4) {
+                        return true;
+                    }
                 }
-            } else {
-                break;
-            }
-        }
+            }//endregion
 
-        //rechts
-        for (int i = 1; i <= 4; i++) {
-            if (column + i <= 6 && row + i <= 6) {
+            if (column + i <= 6 && row + i <= 6) {//region diagonal1 rechts
                 if (gameBoard[column+i][row+i].status == status) {
                     diagonal1++;
-                    if (diagonal1 >= 4) checkIfWon = true;
-                } else {
-                    break;
+                    if (diagonal1 >= 4) {
+                        return true;
+                    }
                 }
-            } else {
-                break;
-            }
-        }// endregion
+            }// endregion
 
-
-        // region diagonal2
-        //links hoch
-        for (int i = 1; i <= 4; i++) {
-            if (column - i >= 0 && row + i <= 6) {
+            if (column - i >= 0 && row + i <= 6) {//region diagonal2 links
                 if (gameBoard[column-i][row+i].status == status) {
                     diagonal2++;
-                    if (diagonal2 >= 4) checkIfWon = true;
-                } else {
-                    break;
+                    if (diagonal2 >= 4) {
+                        return true;
+                    }
                 }
-            } else {
-                break;
-            }
-        }
-        //rechts runter
-        for (int i = 1; i <= 4; i++) {
-            if (column + i <= 6 && row - i >=0) {
+            }//endregion
+
+            if (column + i <= 6 && row - i >=0) {//region diagonal2 rechts runter
                 if (gameBoard[column+i][row-i].status == status) {
                     diagonal2++;
-                    if (diagonal2 >= 4) checkIfWon = true;
-                } else {
-                    break;
+                    if (diagonal2 >= 4) {
+                        return true;
+                    }
                 }
-            } else {
-                break;
-            }
+            }//endregion
         }
 
 
-
-        // endregion
-
-
-
-        //gameBoard[column - i][row].status == status
-        System.out.println(checkIfWon);
-        return checkIfWon;
+        return false;
 
     }
 
