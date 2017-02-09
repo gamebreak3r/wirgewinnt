@@ -109,7 +109,8 @@ public class Multiplayer {
                 });
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
-                ma.rest(false);
+                ma.rest(true);
+                isInGame=false;
             } else {
                 waitingPlayer();
             }
@@ -167,9 +168,8 @@ public class Multiplayer {
                 ArrayList gegnerStone = null;
                 for (int i = 0; i < 6; i++) {
                     try {
-                        Thread.sleep(3500);
+                        Thread.sleep(3000);
                         gegnerStone = PHPConnect.getStoneID(gameID, player, ma.gameBoard);
-                        System.out.println("Test " + gegnerStone.toString());
                         if (gegnerStone.size()>0)
                         {
                             gegnerSetStone = true;
