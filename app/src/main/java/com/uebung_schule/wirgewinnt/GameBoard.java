@@ -45,7 +45,7 @@ public class GameBoard {
         return result;
     }
 
-    public void putStone(int column, int row, boolean currentPlayer, View view) { //
+    public void putStone(int column, int row, boolean currentPlayer, View view) { //sets the status in the array and sets the backgroundcolor of the the imageview (depending on currentplayer)
         ImageView table = (ImageView) view.findViewById(1000+column*10+row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
@@ -59,7 +59,7 @@ public class GameBoard {
 
     private void markStones(int mode, int column, int row, int status){
 
-        //hier werden die ausschlaggebenden Steine gekennzeichnet
+        //marks the deciding stones with status 3 which won't be reseted
 
         int i = 0;
         int j = 1;
@@ -84,7 +84,7 @@ public class GameBoard {
                 }
                 for (;i<4; i++) if (column + j <7 && row + j < 7 &&gameBoard[column+j][row+j].status == status) gameBoard[column+j][row+j].status = 3;
                 break;
-            case 4:
+            case 4: //digonal2
                 while (column - i >= 0 && row +i <= 6 && gameBoard[column-i][row+i].status == status) {
                     gameBoard[column-i][row+i].status = 3;
                     i++;
@@ -101,14 +101,14 @@ public class GameBoard {
 
     }
     public boolean checkIfWon(int column, int row, View v) {
-        int vertical = 1; // zählt die Steine die vertical nebeneinander sind
-        int horizontallinks = 1; //zählt die Steine die horizontall nach links nebeneinander sind
-        int horizontalrechts =1; // zählt die Steine die horizontall nach rechts nebeneinander sind
-        int diagonallinks1 = 1; // zählt die Steine die nach links unten nebeneinander sind
-        int diagonalrechts1 = 1; // zählt die Steine die nach rechts oben nebeneinander sind
-        int diagonallinks2 = 1; // zählt die Steine die nach links oben nebeneinander sind
-        int diagonalrechts2 = 1; // zählt die Steine die nach rechts unten nebeneinder sind
-        int status = gameBoard[column][row].status; // speicher den Status des aktuellen Steines (Spieler 1 / 2) für die folgenden Prüfungen
+        int vertical = 1; // counts the stones which next to each other in a vertical line
+        int horizontallinks = 1; //counts the stones which next to each other in a horizontal line (going left from original stone)
+        int horizontalrechts =1; // counts the stones which next to each other in a horizontal line (going right form original stone)
+        int diagonallinks1 = 1; // counts the stones which next to each other in a diagonal line (going left down form original stone)
+        int diagonalrechts1 = 1; // counts the stones which next to each other in a diagonal line (going right up form original stone)
+        int diagonallinks2 = 1; // counts the stones which next to each other in a diagonal line (going left up form original stone)
+        int diagonalrechts2 = 1; // counts the stones which next to each other in a diagonal line (going right down form original stone)
+        int status = gameBoard[column][row].status; // saves status from current stone ( 1 / 2 depending on player) for following events
 
 
         for (int i = 1; i < 4; i++) {
