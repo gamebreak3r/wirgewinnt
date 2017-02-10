@@ -15,6 +15,7 @@ public class GameBoard {
     //endregion
 
     public GameBoard(int boardSize, View table) {
+        //creates the gameboard object for the game
         gameBoard = new Cell[boardSize][boardSize];
         for (int x = 0; x < gameBoard.length; x++) {
             for (int y = 0; y < gameBoard[x].length; y++) {
@@ -23,21 +24,20 @@ public class GameBoard {
         }
     }
 
-    public boolean checkfull(){ // check für unentschieden
-        boolean checkfull = true;
+    public boolean checkfull(){ // checks the game for available spots to place a stone
+
 
         for (int i = 0; i <= 6; i++){
             if(gameBoard[i][6].status == 0 ) {
-                checkfull = false;
-                break;
+                return false;
             }
 
         }
-        return checkfull;
+        return true;
     }
 
 
-    public int stonesInColumn(int column) {
+    public int stonesInColumn(int column) { // returns the amount of stones in the current column
         int result = 0;
         for (Cell cell : gameBoard[column]) {
             if (cell.status != 0) result++;
@@ -45,7 +45,7 @@ public class GameBoard {
         return result;
     }
 
-    public void putStone(int column, int row, boolean currentPlayer, View view) {
+    public void putStone(int column, int row, boolean currentPlayer, View view) { //
         ImageView table = (ImageView) view.findViewById(1000+column*10+row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
