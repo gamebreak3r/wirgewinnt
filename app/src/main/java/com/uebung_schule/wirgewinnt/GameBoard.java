@@ -98,16 +98,19 @@ public class GameBoard {
     }
     public boolean checkIfWon(int column, int row, View v) {
         int vertical = 1;
-        int horizontal = 1;
-        int diagonal1 = 1;
-        int diagonal2 = 1;
+        int horizontallinks = 1;
+        int horizontalrechts =1;
+        int diagonallinks1 = 1;
+        int diagonalrechts1 = 1;
+        int diagonallinks2 = 1;
+        int diagonalrechts2 = 1;
         int status = gameBoard[column][row].status;
 
 
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i < 4; i++) {
             if (row - i >= 0 ) {// region vertical
                 if (gameBoard[column][row - i].status == status) {
-                    vertical++;
+                    if (vertical == i) vertical++;
                     if (vertical >= 4) {
                         markStones(1,column, row, status);
                         return true;
@@ -117,8 +120,8 @@ public class GameBoard {
 
             if (column - i >= 0 ) {//region links horizontal
                 if (gameBoard[column - i][row].status == status) {
-                    horizontal++;
-                    if (horizontal >= 4) {
+                    if (horizontallinks == i) horizontallinks++;
+                    if (horizontallinks + horizontalrechts -1>= 4) {
                         markStones(2,column, row, status);
                         return true;
                     }
@@ -127,8 +130,8 @@ public class GameBoard {
 
             if (column + i <= 6 ) {//region rechts horizontal
                 if (gameBoard[column + i][row].status == status) {
-                    horizontal++;
-                    if (horizontal >= 4) {
+                    if (horizontalrechts == i) horizontalrechts++;
+                    if (horizontalrechts + horizontallinks-1 >= 4) {
                         markStones(2,column, row, status);
                         return true;
                     }
@@ -137,8 +140,8 @@ public class GameBoard {
 
             if (column - i >= 0 && row - i >=0) {// region diagonal1 links
                 if (gameBoard[column - i][row - i].status == status) {
-                    diagonal1++;
-                    if (diagonal1 >= 4) {
+                    if (diagonallinks1 == i) diagonallinks1++;
+                    if (diagonallinks1 + diagonalrechts1 -1>= 4) {
                         markStones (3,column,row,status);
                         return true;
                     }
@@ -147,8 +150,8 @@ public class GameBoard {
 
             if (column + i <= 6 && row + i <= 6) {//region diagonal1 rechts
                 if (gameBoard[column+i][row+i].status == status) {
-                    diagonal1++;
-                    if (diagonal1 >= 4) {
+                    if (diagonalrechts1 == i)diagonalrechts1++;
+                    if (diagonalrechts1 + diagonallinks1 -1>= 4) {
                         markStones (3,column,row,status);
                         return true;
                     }
@@ -157,8 +160,8 @@ public class GameBoard {
 
             if (column - i >= 0 && row + i <= 6) {//region diagonal2 links
                 if (gameBoard[column-i][row+i].status == status) {
-                    diagonal2++;
-                    if (diagonal2 >= 4) {
+                    if (diagonallinks2 == i) diagonallinks2++;
+                    if (diagonallinks2 + diagonalrechts2 -1>= 4) {
                         markStones (4,column,row,status);
                         return true;
                     }
@@ -167,8 +170,8 @@ public class GameBoard {
 
             if (column + i <= 6 && row - i >=0) {//region diagonal2 rechts runter
                 if (gameBoard[column+i][row-i].status == status) {
-                    diagonal2++;
-                    if (diagonal2 >= 4) {
+                    if (diagonalrechts2 == i) diagonalrechts2++;
+                    if (diagonalrechts2 + diagonallinks2 -1 >= 4) {
                         markStones (4,column,row,status);
                         return true;
                     }
