@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity{
             column.setBackgroundColor(Color.BLACK);
             table60.addView(column);
         }
-        
+
         gameBoard = new GameBoard(7,findViewById(R.id.activity_main));
         findViewById(R.id.btnHotseat).setBackgroundColor(Color.RED);
         findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
