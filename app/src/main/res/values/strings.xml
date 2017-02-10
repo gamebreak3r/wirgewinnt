@@ -9,6 +9,7 @@
     <string name="createGame">Bitte erstelle zuerst ein Online Game</string>
     <string name="enemy">Dein Gegner ist an der Reihe!</string>
     <string name="pleaseWait">Bitte Warten...</string>
+    <string name="loseTitle">Verloren</string>
     <string name="loseGame">Leider hast du verloren!</string>
     <string name="noStone">Der Gegner hat inerhalb von 30 Sek. keinen Stein gesetzt</string>
     <string name="multiplayerCreateGame">Neues Spiel erstellen</string>

@@ -87,6 +87,8 @@ public class Multiplayer {
                 //User Can't leave the multiplayer
                 ma.findViewById(R.id.btnHotseat).setClickable(false);
                 ma.findViewById(R.id.btnSingleplayer).setClickable(false);
+                //No Player Text
+                ma.findViewById(R.id.txtPlayer).setVisibility(View.GONE);
                 return true;
             }
         });
@@ -141,6 +143,8 @@ public class Multiplayer {
                 isInGame = false;
                 //Game is out, Player has won.
                 PHPConnect.setWin(gameID);
+                //Show Player-Text
+                ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
             } else {
                 //Starts the Loding Screen
                 waitingPlayer();
@@ -167,7 +171,6 @@ public class Multiplayer {
 
         new Thread(new Runnable() {
             int value = 0;
-
             public void run() {
                 for (; value <= 100; value++) {
                     if (stopTime) {
@@ -187,7 +190,7 @@ public class Multiplayer {
                 if (value >= 100) {
                     PHPConnect.setGameInAvtive(gameID);
                     //If the other player has already won the Game
-                    if (PHPConnect.setWin(gameID)) {
+                    if (!PHPConnect.setWin(gameID)) {
                         PHPConnect.setLose(gameID);
                         //Go back to the MainPanel
                         ma.setPageHotSeat(ma.getResources().getString(R.string.loseGame));
@@ -228,7 +231,21 @@ public class Multiplayer {
                     if (PHPConnect.checkIfWon(gameID)) {
                         PHPConnect.setLose(gameID);
                         //The Player can't set a new Stone
+                        ma.rest(false);
                         isInGame = false;
+                        //Build a Lose Message
+                        AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
+                        dlgAlert.setTitle(ma.getResources().getString(R.string.loseTitle));
+                        dlgAlert.setMessage(ma.getResources().getString(R.string.loseGame));
+                        dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                //Remove the Message
+                            }
+                        });
+                        dlgAlert.setCancelable(true);
+                        dlgAlert.create().show();
+                        //Show Player-Text
+                        ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
                     }
                     for (int i = 0; i < gegnerStone.size(); i++) {
                         //Calculates the field ids

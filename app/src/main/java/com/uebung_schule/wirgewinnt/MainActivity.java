@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity{
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (PHPConnect.getLoginTrue(username.getText().toString().trim(), passwort.getText().toString().trim())) {
+                    if (PHPConnect.getLoginTrue(username.getText().toString().trim().toLowerCase(), passwort.getText().toString().trim())) {
                         createGeame(v);
                         mainMenu.findItem(R.id.menu_stats).setVisible(true);
                         mainMenu.findItem(R.id.menu_logout).setVisible(true);
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity{
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
                             try {
-                                if (PHPConnect.createNewUser(register_username.getText().toString().trim(), register_passwort.getText().toString())) {
+                                if (PHPConnect.createNewUser(register_username.getText().toString().trim().toLowerCase(), register_passwort.getText().toString())) {
                                     Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
