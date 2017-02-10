@@ -139,6 +139,8 @@ public class Multiplayer {
                 ma.findViewById(R.id.btnNewGame).setVisibility(View.GONE);
                 //Player can'T set more stones.
                 isInGame = false;
+                //Game is out, Player has won.
+                PHPConnect.setWin(gameID);
             } else {
                 //Starts the Loding Screen
                 waitingPlayer();

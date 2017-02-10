@@ -20,27 +20,28 @@ public class PHPConnect {
     /**
      * User Register and Login
      */
-
     //If User is logged in, here is his static username
     public static String username;
 
     //Create a new User in the DB
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean createNewUser(String username, String passwort) throws SQLException {
-        Boolean back = false;
         try {
-            String output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort)
-                    .get();
+            String send = "http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort;
+            //Check if User has a blank in his username or password
+            if (send.contains(" ")) {
+                return false;
+            }
+            String output = new getURLData().execute(send).get();
             if (output.contains("true")) {
-                back = true;
+                return true;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return back;
+        return false;
     }
 
     //Check if the username and the password is correct
@@ -48,9 +49,12 @@ public class PHPConnect {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean getLoginTrue(String username, String password) throws IOException {
         try {
-            String output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + password)
-                    .get();
+            String send = "http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + password;
+            //Check if User has a blank in his username or password
+            if (send.contains(" ")) {
+                return false;
+            }
+            String output = new getURLData().execute(send).get();
             if (output.contains("true")) {
                 //sets the username
                 PHPConnect.username = username;
