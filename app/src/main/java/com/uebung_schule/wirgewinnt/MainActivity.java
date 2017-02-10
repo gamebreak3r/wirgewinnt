@@ -82,6 +82,16 @@ public class MainActivity extends AppCompatActivity{
     protected void createGeame(View view) {
         setContentView(R.layout.activity_main);
 
+        /*
+        *
+        *
+        * hier wird das Spielfeld erstellt
+        * und in jeder der sieben ImageViewes neu ImageViews eingefügt
+        *
+        *
+        *
+        *
+        * */
         LinearLayout table00 = (LinearLayout)findViewById(R.id.table00);
             for (int i = 6; i >= 0; i--) {
                 ImageView column = new ImageView(this);

@@ -58,10 +58,14 @@ public class GameBoard {
     }
 
     private void markStones(int mode, int column, int row, int status){
+
+        //hier werden die ausschlaggebenden Steine gekennzeichnet
+
         int i = 0;
         int j = 1;
         switch (mode){
             case 1:  //vertical
+
                 for (; i <4; i++) gameBoard[column][row-i].status = 3;
                 break;
             case 2: //horizontal
@@ -97,18 +101,19 @@ public class GameBoard {
 
     }
     public boolean checkIfWon(int column, int row, View v) {
-        int vertical = 1;
-        int horizontallinks = 1;
-        int horizontalrechts =1;
-        int diagonallinks1 = 1;
-        int diagonalrechts1 = 1;
-        int diagonallinks2 = 1;
-        int diagonalrechts2 = 1;
-        int status = gameBoard[column][row].status;
+        int vertical = 1; // zählt die Steine die vertical nebeneinander sind
+        int horizontallinks = 1; //zählt die Steine die horizontall nach links nebeneinander sind
+        int horizontalrechts =1; // zählt die Steine die horizontall nach rechts nebeneinander sind
+        int diagonallinks1 = 1; // zählt die Steine die nach links unten nebeneinander sind
+        int diagonalrechts1 = 1; // zählt die Steine die nach rechts oben nebeneinander sind
+        int diagonallinks2 = 1; // zählt die Steine die nach links oben nebeneinander sind
+        int diagonalrechts2 = 1; // zählt die Steine die nach rechts unten nebeneinder sind
+        int status = gameBoard[column][row].status; // speicher den Status des aktuellen Steines (Spieler 1 / 2) für die folgenden Prüfungen
 
 
         for (int i = 1; i < 4; i++) {
-            if (row - i >= 0 ) {// region vertical
+            // region vertical
+            if (row - i >= 0 ) {
                 if (gameBoard[column][row - i].status == status) {
                     if (vertical == i) vertical++;
                     if (vertical >= 4) {
@@ -117,8 +122,8 @@ public class GameBoard {
                     }
                 }
             }// endregion
-
-            if (column - i >= 0 ) {//region links horizontal
+            //region links horizontal
+            if (column - i >= 0 ) {
                 if (gameBoard[column - i][row].status == status) {
                     if (horizontallinks == i) horizontallinks++;
                     if (horizontallinks + horizontalrechts -1>= 4) {
@@ -127,8 +132,8 @@ public class GameBoard {
                     }
                 }
             } //endregion
-
-            if (column + i <= 6 ) {//region rechts horizontal
+            //region rechts horizontal
+            if (column + i <= 6 ) {
                 if (gameBoard[column + i][row].status == status) {
                     if (horizontalrechts == i) horizontalrechts++;
                     if (horizontalrechts + horizontallinks-1 >= 4) {
@@ -137,8 +142,8 @@ public class GameBoard {
                     }
                 }
             }// endregion
-
-            if (column - i >= 0 && row - i >=0) {// region diagonal1 links
+            // region diagonal1 links
+            if (column - i >= 0 && row - i >=0) {
                 if (gameBoard[column - i][row - i].status == status) {
                     if (diagonallinks1 == i) diagonallinks1++;
                     if (diagonallinks1 + diagonalrechts1 -1>= 4) {
@@ -147,8 +152,8 @@ public class GameBoard {
                     }
                 }
             }//endregion
-
-            if (column + i <= 6 && row + i <= 6) {//region diagonal1 rechts
+            //region diagonal1 rechts
+            if (column + i <= 6 && row + i <= 6) {
                 if (gameBoard[column+i][row+i].status == status) {
                     if (diagonalrechts1 == i)diagonalrechts1++;
                     if (diagonalrechts1 + diagonallinks1 -1>= 4) {
@@ -157,8 +162,8 @@ public class GameBoard {
                     }
                 }
             }// endregion
-
-            if (column - i >= 0 && row + i <= 6) {//region diagonal2 links
+            //region diagonal2 links
+            if (column - i >= 0 && row + i <= 6) {
                 if (gameBoard[column-i][row+i].status == status) {
                     if (diagonallinks2 == i) diagonallinks2++;
                     if (diagonallinks2 + diagonalrechts2 -1>= 4) {
@@ -167,8 +172,8 @@ public class GameBoard {
                     }
                 }
             }//endregion
-
-            if (column + i <= 6 && row - i >=0) {//region diagonal2 rechts runter
+            //region diagonal2 rechts runter
+            if (column + i <= 6 && row - i >=0) {
                 if (gameBoard[column+i][row-i].status == status) {
                     if (diagonalrechts2 == i) diagonalrechts2++;
                     if (diagonalrechts2 + diagonallinks2 -1 >= 4) {
