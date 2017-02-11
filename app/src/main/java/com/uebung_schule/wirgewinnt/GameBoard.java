@@ -66,14 +66,19 @@ public class GameBoard {
         switch (mode){
             case 1:  //vertical
 
-                for (; i <4; i++) gameBoard[column][row-i].status = 3;
+                for (; i <4; i++) {
+                    gameBoard[column][row-i].status = 3;
+                }
                 break;
             case 2: //horizontal
                  while (column - i >= 0 && gameBoard[column-i][row].status == status) {
                     gameBoard[column-i][row].status = 3;
                     i++;
                 }
-                for (;i<4; i++) if (column + j <7 &&gameBoard[column+j][row].status == status) gameBoard[column+j][row].status = 3;
+                for (;i<4; i++) {
+                    if (column + j <7 &&gameBoard[column+j][row].status == status) gameBoard[column+j][row].status = 3;
+                    j++;
+                }
                 break;
 
 
@@ -82,14 +87,20 @@ public class GameBoard {
                     gameBoard[column-i][row-i].status = 3;
                     i++;
                 }
-                for (;i<4; i++) if (column + j <7 && row + j < 7 &&gameBoard[column+j][row+j].status == status) gameBoard[column+j][row+j].status = 3;
+                for (;i<4; i++) {
+                    if (column + j <7 && row + j < 7 &&gameBoard[column+j][row+j].status == status) gameBoard[column+j][row+j].status = 3;
+                    j++;
+                }
                 break;
             case 4: //digonal2
                 while (column - i >= 0 && row +i <= 6 && gameBoard[column-i][row+i].status == status) {
                     gameBoard[column-i][row+i].status = 3;
                     i++;
                 }
-                for (;i<4; i++) if (column + j <7 && row - j >= 0 &&gameBoard[column+j][row-j].status == status) gameBoard[column+j][row-j].status = 3;
+                for (;i<4; i++) {
+                    if (column + j <7 && row - j >= 0 &&gameBoard[column+j][row-j].status == status) gameBoard[column+j][row-j].status = 3;
+                    j++;
+                }
 
                 break;
             default:
