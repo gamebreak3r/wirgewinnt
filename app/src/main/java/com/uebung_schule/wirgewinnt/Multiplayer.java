@@ -136,7 +136,7 @@ public class Multiplayer {
                 dlgAlert.setCancelable(true);
                 dlgAlert.create().show();
                 //Shows the Stones
-                ma.rest(true);
+                ma.reset(true);
                 //In the Multiplayer you can not restart a game directly
                 ma.findViewById(R.id.btnNewGame).setVisibility(View.GONE);
                 //Player can'T set more stones.
@@ -231,7 +231,7 @@ public class Multiplayer {
                     if (PHPConnect.checkIfWon(gameID)) {
                         PHPConnect.setLose(gameID);
                         //The Player can't set a new Stone
-                        ma.rest(false);
+                        ma.reset(false);
                         isInGame = false;
                         //Build a Lose Message
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());

@@ -258,6 +258,12 @@ public class MainActivity extends AppCompatActivity{
         }catch (Exception ex){}
 
         switch (v.getId()) {
+
+            case R.id.activity_main:
+                findViewById(R.id.activity_main).setClickable(false);
+                reset(false);
+                break;
+
             case R.id.btnLogin:
                 TextView username = (TextView) findViewById(R.id.loginUsername);
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
@@ -313,7 +319,7 @@ public class MainActivity extends AppCompatActivity{
                                 setContentView(R.layout.activity_login);
                             }catch (IllegalArgumentException ex)
                             {
-                                Toast.makeText(this, "User konte nicht angelegt werden!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(this, "User konnte nicht angelegt werden!", Toast.LENGTH_LONG).show();
                             }
                         }
                         else {
@@ -347,7 +353,7 @@ public class MainActivity extends AppCompatActivity{
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.RED);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnOnline).setBackgroundColor(Color.BLUE);
-                    rest(false);
+                    reset(false);
                 }
                 mode = 1;
                 break;
@@ -360,7 +366,7 @@ public class MainActivity extends AppCompatActivity{
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.RED);
                     findViewById(R.id.btnOnline).setBackgroundColor(Color.BLUE);
-                    rest(false);
+                    reset(false);
                 }
                 currentPlayer = true;
                 mode = 2;
@@ -373,7 +379,7 @@ public class MainActivity extends AppCompatActivity{
                     findViewById(R.id.btnSingleplayer).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnHotseat).setBackgroundColor(Color.BLUE);
                     findViewById(R.id.btnOnline).setBackgroundColor(Color.RED);
-                    rest(false);
+                    reset(false);
                 }
 
                 mode = 3;
@@ -384,7 +390,7 @@ public class MainActivity extends AppCompatActivity{
             case R.id.btnNewGame:
 
                 findViewById(R.id.btnNewGame).setVisibility(View.GONE);
-                rest(false);
+                reset(false);
 
 
 
@@ -500,7 +506,7 @@ public class MainActivity extends AppCompatActivity{
     /**
      * zuruecksetzung
      */
-    protected void rest(boolean win){
+    protected void reset(boolean win){
         Cell[][] reset = gameBoard.getGameBorad();
         for (int i = 0; i <= 6; i++) {
             for (int a = 0; a <= 6; a++) {
@@ -526,7 +532,7 @@ public class MainActivity extends AppCompatActivity{
             gameBoard.putStone(column, row, currentPlayer, findViewById(R.id.activity_main));
         }
         if (gameBoard.checkIfWon(column, row, findViewById(R.id.activity_main))){
-            String playerAusgabe = null;
+            String playerAusgabe;
             if (!currentPlayer) playerAusgabe="Spieler 1";
             else playerAusgabe="Spieler 2";
 
@@ -539,10 +545,13 @@ public class MainActivity extends AppCompatActivity{
                 }
             });
             dlgAlert.setCancelable(true);
+
             dlgAlert.create().show();
-            rest(true);
+            reset(true);
+            findViewById(R.id.activity_main).setClickable(true);
+
         }
-        //niemand hat gewnnen
+        //niemand hat gewonnen
         currentPlayer = !currentPlayer;
 
         //unentschieden
@@ -557,7 +566,7 @@ public class MainActivity extends AppCompatActivity{
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
-            rest(false);
+            reset(false);
             System.out.println();
         }
     }

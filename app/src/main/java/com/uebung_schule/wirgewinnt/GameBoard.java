@@ -57,10 +57,10 @@ public class GameBoard {
         }
     }
 
-    private void markStones(int mode, int column, int row, int status){
+    private void markStones(int mode, int column, int row ){
 
         //marks the deciding stones with status 3 which won't be reseted
-
+        int status = gameBoard[column][row].status;
         int i = 0;
         int j = 1;
         switch (mode){
@@ -128,7 +128,7 @@ public class GameBoard {
                 if (gameBoard[column][row - i].status == status) {
                     if (vertical == i) vertical++;
                     if (vertical >= 4) {
-                        markStones(1,column, row, status);
+                        markStones(1,column, row);
                         return true;
                     }
                 }
@@ -138,7 +138,7 @@ public class GameBoard {
                 if (gameBoard[column - i][row].status == status) {
                     if (horizontallinks == i) horizontallinks++;
                     if (horizontallinks + horizontalrechts -1>= 4) {
-                        markStones(2,column, row, status);
+                        markStones(2,column, row);
                         return true;
                     }
                 }
@@ -148,7 +148,7 @@ public class GameBoard {
                 if (gameBoard[column + i][row].status == status) {
                     if (horizontalrechts == i) horizontalrechts++;
                     if (horizontalrechts + horizontallinks-1 >= 4) {
-                        markStones(2,column, row, status);
+                        markStones(2,column, row);
                         return true;
                     }
                 }
@@ -158,7 +158,7 @@ public class GameBoard {
                 if (gameBoard[column - i][row - i].status == status) {
                     if (diagonallinks1 == i) diagonallinks1++;
                     if (diagonallinks1 + diagonalrechts1 -1>= 4) {
-                        markStones (3,column,row,status);
+                        markStones (3,column,row);
                         return true;
                     }
                 }
@@ -168,7 +168,7 @@ public class GameBoard {
                 if (gameBoard[column+i][row+i].status == status) {
                     if (diagonalrechts1 == i)diagonalrechts1++;
                     if (diagonalrechts1 + diagonallinks1 -1>= 4) {
-                        markStones (3,column,row,status);
+                        markStones (3,column,row);
                         return true;
                     }
                 }
@@ -178,7 +178,7 @@ public class GameBoard {
                 if (gameBoard[column-i][row+i].status == status) {
                     if (diagonallinks2 == i) diagonallinks2++;
                     if (diagonallinks2 + diagonalrechts2 -1>= 4) {
-                        markStones (4,column,row,status);
+                        markStones (4,column,row);
                         return true;
                     }
                 }
@@ -188,7 +188,7 @@ public class GameBoard {
                 if (gameBoard[column+i][row-i].status == status) {
                     if (diagonalrechts2 == i) diagonalrechts2++;
                     if (diagonalrechts2 + diagonallinks2 -1 >= 4) {
-                        markStones (4,column,row,status);
+                        markStones (4,column,row);
                         return true;
                     }
                 }
