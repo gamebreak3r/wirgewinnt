@@ -387,14 +387,7 @@ public class MainActivity extends AppCompatActivity{
 
             //endregion
 
-            case R.id.btnNewGame:
 
-                findViewById(R.id.btnNewGame).setVisibility(View.GONE);
-                reset(false);
-
-
-
-                break;
 
             //region gameplay
             case R.id.btnColumn0:
@@ -513,8 +506,7 @@ public class MainActivity extends AppCompatActivity{
                // System.out.println(i + a*10);
                 if (win){
                     if (reset[i][a].status < 3) findViewById(1000+ a + (10*i)).setBackgroundColor(Color.BLACK);
-                    findViewById(R.id.btnNewGame).setVisibility(View.VISIBLE);
-
+                    findViewById(R.id.activity_main).setClickable(true);
                 }else {
                     reset[i][a].status = 0;
                     findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
@@ -545,10 +537,9 @@ public class MainActivity extends AppCompatActivity{
                 }
             });
             dlgAlert.setCancelable(true);
-
             dlgAlert.create().show();
             reset(true);
-            findViewById(R.id.activity_main).setClickable(true);
+
 
         }
         //niemand hat gewonnen

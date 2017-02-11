@@ -169,13 +169,4 @@
             android:orientation="vertical" />
     </LinearLayout>
 
-    <Button
-
-        android:id="@+id/btnNewGame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="onClick"
-        android:text="@string/btnEndGame"
-        android:visibility="gone" />
-
 </LinearLayout>

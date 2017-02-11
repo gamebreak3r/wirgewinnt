@@ -138,7 +138,7 @@ public class Multiplayer {
                 //Shows the Stones
                 ma.reset(true);
                 //In the Multiplayer you can not restart a game directly
-                ma.findViewById(R.id.btnNewGame).setVisibility(View.GONE);
+                //ma.findViewById(R.id.btnNewGame).setVisibility(View.GONE); gibt es nicht mehr
                 //Player can'T set more stones.
                 isInGame = false;
                 //Game is out, Player has won.
