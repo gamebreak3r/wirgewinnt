@@ -230,9 +230,13 @@ public class Multiplayer {
                     //Check if the other Player has already won the game
                     if (PHPConnect.checkIfWon(gameID)) {
                         PHPConnect.setLose(gameID);
-                        //The Player can't set a new Stone
-                        ma.reset(false);
+                        //The Player can't set a new Stones
                         isInGame = false;
+                        //
+                        int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size()-1).toString()) / 10) % 10;
+                        int row = Integer.parseInt(gegnerStone.get(gegnerStone.size()-1).toString()) % 10;
+                        ma.gameBoard.checkIfWon(col, row, ma.findViewById(R.id.activity_main));
+                        ma.reset(true);
                         //Build a Lose Message
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                         dlgAlert.setTitle(ma.getResources().getString(R.string.loseTitle));
