@@ -266,13 +266,13 @@ public class Multiplayer {
                         });
                         dlgAlert.create().show();
                         Looper.loop();
-                        //Show Player-Text
-                        ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
-                        //User Can leave the multiplayer
-                        ma.findViewById(R.id.btnHotseat).setClickable(true);
-                        ma.findViewById(R.id.btnSingleplayer).setClickable(true);
                     }
                 }
+                //Show Player-Text
+                ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
+                //User Can leave the multiplayer
+                ma.findViewById(R.id.btnHotseat).setClickable(true);
+                ma.findViewById(R.id.btnSingleplayer).setClickable(true);
             }
         }).start();
     }
