@@ -573,6 +573,18 @@ public class MainActivity extends AppCompatActivity{
         });
     }
 
+    //ResetGame from MultiPlayer
+    protected  void restGameMulitplayer (final int col, final int row)
+    {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                gameBoard.checkIfWon(col, row, findViewById(R.id.activity_main));
+                reset(true);
+            }
+        });
+    }
+
     //Startseite
     protected  void setPageHotSeat (final String showText)
     {

@@ -235,8 +235,8 @@ public class Multiplayer {
                         //
                         int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size()-1).toString()) / 10) % 10;
                         int row = Integer.parseInt(gegnerStone.get(gegnerStone.size()-1).toString()) % 10;
-                        ma.gameBoard.checkIfWon(col, row, ma.findViewById(R.id.activity_main));
-                        ma.reset(true);
+                        //Reset GameBorad
+                        ma.restGameMulitplayer(col , row);
                         //Build a Lose Message
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                         dlgAlert.setTitle(ma.getResources().getString(R.string.loseTitle));
