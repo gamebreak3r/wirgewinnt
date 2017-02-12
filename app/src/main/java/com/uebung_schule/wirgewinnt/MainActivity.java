@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity{
     private View vw;
     boolean currentPlayer;
     private boolean login;
+    public boolean ingame = true;
+
     //currentPlayer legend:
     // true  - Player 1
     // false - Player 2
@@ -399,8 +401,8 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     putStone(0);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 }
                 break;
 
@@ -414,21 +416,21 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     putStone(1);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 }break;
 
             case R.id.btnColumn2:
                 //stein setzen
                 if (status[2][6].status != 0) break;
-                if (mode == 3)
+                if (mode == 3 )
                 {
                     mplayer.nextPlayer( 2, gameBoard);
                 }else {
                     putStone(2);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 } break;
 
             case R.id.btnColumn3:
@@ -440,8 +442,8 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     putStone(3);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 }break;
 
 
@@ -454,8 +456,8 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     putStone(4);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 }break;
 
             case R.id.btnColumn5:
@@ -467,8 +469,8 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     putStone(5);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 }break;
 
             case R.id.btnColumn6:
@@ -480,12 +482,23 @@ public class MainActivity extends AppCompatActivity{
                 }else {
                     putStone(6);
                     setPlayer();
-                    if (mode == 1) putStone(botmove());
-                    setPlayer();
+                    if (mode == 1 && ingame) putStone(botmove());
+
                 }break;
             //endregion
         }
     }
+
+    private void locknewstones (boolean clickable){
+        findViewById(R.id.btnColumn0).setClickable(clickable);
+        findViewById(R.id.btnColumn1).setClickable(clickable);
+        findViewById(R.id.btnColumn2).setClickable(clickable);
+        findViewById(R.id.btnColumn3).setClickable(clickable);
+        findViewById(R.id.btnColumn4).setClickable(clickable);
+        findViewById(R.id.btnColumn5).setClickable(clickable);
+        findViewById(R.id.btnColumn6).setClickable(clickable);
+    }
+
     private void setPlayer () {
         if (currentPlayer) {
             findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
@@ -507,9 +520,13 @@ public class MainActivity extends AppCompatActivity{
                 if (win){
                     if (reset[i][a].status < 3) findViewById(1000+ a + (10*i)).setBackgroundColor(Color.BLACK);
                     findViewById(R.id.activity_main).setClickable(true);
+                    ingame = false;
+                    locknewstones(false);
                 }else {
                     reset[i][a].status = 0;
                     findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
+                    ingame = true;
+                    locknewstones(true);
                 }
             }
         }
