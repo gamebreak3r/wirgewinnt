@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity{
             case R.id.menu_stats:
                 setContentView(R.layout.activity_stats);
                 TextView tv = (TextView) findViewById(R.id.text_stats);
-                tv.setText(PHPConnect.username.toUpperCase() + " Stats" + ":");
+                tv.setText(PhpConnect.username.toUpperCase() + " Stats" + ":");
                 TextView tvWin = (TextView) findViewById(R.id.text_Wins);
                 TextView tvLoses = (TextView) findViewById(R.id.text_Loses);
                 TextView tvGames = (TextView) findViewById(R.id.text_games);
-                int wins = PHPConnect.getWins();
-                int loses = PHPConnect.getLoses();
+                int wins = PhpConnect.getWins();
+                int loses = PhpConnect.getLoses();
                 int games = wins + loses;
                 tvWin.setText(tvWin.getText().toString() + "  " + wins);
                 tvLoses.setText(tvLoses.getText().toString() + "  " + loses);
@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity{
                 TextView passwort = (TextView) findViewById(R.id.loginPasswort);
                 //Wenn die Datenbank geht
                 try {
-                    if (PHPConnect.getLoginTrue(username.getText().toString().trim().toLowerCase(), passwort.getText().toString().trim())) {
+                    if (PhpConnect.getLoginTrue(username.getText().toString().trim().toLowerCase(), passwort.getText().toString().trim())) {
                         createGeame(v);
                         mainMenu.findItem(R.id.menu_stats).setVisible(true);
                         mainMenu.findItem(R.id.menu_logout).setVisible(true);
@@ -310,7 +310,7 @@ public class MainActivity extends AppCompatActivity{
                     else {
                         if (register_passwort.getText().toString().equals(register_passwort2.getText().toString())) {
                             try {
-                                if (PHPConnect.createNewUser(register_username.getText().toString().trim().toLowerCase(), register_passwort.getText().toString())) {
+                                if (PhpConnect.createNewUser(register_username.getText().toString().trim().toLowerCase(), register_passwort.getText().toString())) {
                                     Toast.makeText(this, "Der User wurde angelegt", Toast.LENGTH_LONG).show();
                                 } else {
                                     Toast.makeText(this, "Username bereits vergeben!", Toast.LENGTH_LONG).show();
@@ -588,7 +588,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     //ResetGame from MultiPlayer
-    protected  void restGameMulitplayer (final int col, final int row)
+    protected  void resetGameMulitplayer(final int col, final int row)
     {
         runOnUiThread(new Runnable() {
             @Override

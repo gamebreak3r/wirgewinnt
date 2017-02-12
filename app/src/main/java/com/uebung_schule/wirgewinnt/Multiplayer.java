@@ -3,7 +3,6 @@ package com.uebung_schule.wirgewinnt;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Looper;
-import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -12,8 +11,6 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
-import java.util.logging.LogRecord;
 
 /**
  * Created by consult on 23.01.2017.
@@ -50,7 +47,7 @@ public class Multiplayer {
                 .inflate(R.menu.multiplayer, popup.getMenu());
 
         //Get active Games ArrayList
-        ArrayList games = PHPConnect.getActiveGames();
+        ArrayList games = PhpConnect.getActiveGames();
         if (games.size() == 0) {
             //If there isn't a active Game
             popup.getMenu().add(ma.getResources().getString(R.string.noGameFound));
@@ -68,7 +65,7 @@ public class Multiplayer {
             public boolean onMenuItemClick(MenuItem menuItem) {
                 if (menuItem.getTitle().toString().equals(ma.getResources().getString(R.string.multiplayerCreateGame))) {
                     //Create new Game
-                    gameID = PHPConnect.createNewGame(PHPConnect.username);
+                    gameID = PhpConnect.createNewGame(PhpConnect.username);
                     Toast.makeText(ma, ma.getResources().getString(R.string.gameID) + gameID, Toast.LENGTH_LONG).show();
                     //Player 1
                     player = true;
@@ -83,10 +80,10 @@ public class Multiplayer {
                     player = false;
                     waitingPlayer();
                     //Remove Game from active Game List
-                    PHPConnect.setGameInAvtive(gameID);
+                    PhpConnect.setGameInAvtive(gameID);
                     isInGame = true;
                     //Adds the Username to the Muliplayer Game
-                    PHPConnect.joinGame(PHPConnect.username, gameID);
+                    PhpConnect.joinGame(PhpConnect.username, gameID);
                 }
                 //User Can't leave the multiplayer
                 ma.findViewById(R.id.btnHotseat).setClickable(false);
@@ -110,7 +107,7 @@ public class Multiplayer {
             playerID = 2;
         }
         //Sets the Stone in the DB
-        PHPConnect.putStone(gameID, playerID, stoneID);
+        PhpConnect.putStone(gameID, playerID, stoneID);
     }
 
     /* If a player sets a Stone
@@ -146,7 +143,7 @@ public class Multiplayer {
                 //Player can'T set more stones.
                 isInGame = false;
                 //Game is out, Player has won.
-                PHPConnect.setWin(gameID);
+                PhpConnect.setWin(gameID);
                 //Show Player-Text
                 ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
                 //User Can leave the multiplayer
@@ -196,10 +193,10 @@ public class Multiplayer {
                 //Player hasn't set a Stone in 30 seconds
                 //Game is now over.
                 if (value >= 100) {
-                    PHPConnect.setGameInAvtive(gameID);
+                    PhpConnect.setGameInAvtive(gameID);
                     //If the other player has already won the Game
-                    if (!PHPConnect.setWin(gameID)) {
-                        PHPConnect.setLose(gameID);
+                    if (!PhpConnect.setWin(gameID)) {
+                        PhpConnect.setLose(gameID);
                         //Go back to the MainPanel
                         ma.setPageHotSeat(ma.getResources().getString(R.string.loseGame));
                         isInGame = false;
@@ -218,13 +215,13 @@ public class Multiplayer {
             public void run() {
                 //If the other Player sets a Stone this value is true
                 boolean gegnerSetStone = false;
-                ArrayList gegnerStone = null;
+                ArrayList enemyStone = null;
                 for (int i = 0; i < 6; i++) {
                     try {
                         Thread.sleep(3000);
-                        gegnerStone = PHPConnect.getStoneID(gameID, player, ma.gameBoard);
+                        enemyStone = PhpConnect.getStoneID(gameID, player, ma.gameBoard);
                         //Player set a new stone
-                        if (gegnerStone.size() > 0) {
+                        if (enemyStone.size() > 0) {
                             gegnerSetStone = true;
                             stopTime = true;
                             break;
@@ -236,26 +233,25 @@ public class Multiplayer {
                 if (gegnerSetStone) {
                     gegnerSetStone = false;
                     //Put Stone from the other Player
-                    for (int i = 0; i < gegnerStone.size(); i++) {
+                    for (int i = 0; i < enemyStone.size(); i++) {
                         //Calculates the field ids
                         //for example field ID: 1011
-                        int col = (Integer.parseInt(gegnerStone.get(i).toString()) / 10) % 10;
-                        int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
+                        int col = (Integer.parseInt(enemyStone.get(i).toString()) / 10) % 10;
+                        int row = Integer.parseInt(enemyStone.get(i).toString()) % 10;
                         ma.putStone(col, row, !player);
                     }
                     //Check if the other Player has already won the game
-                    if (PHPConnect.checkIfWon(gameID)) {
-                        PHPConnect.setLose(gameID);
+                    if (PhpConnect.checkIfWon(gameID)) {
+                        PhpConnect.setLose(gameID);
                         //The Player can't set a new Stones
                         isInGame = false;
                         //
-                        int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) / 10) % 10;
-                        int row = Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) % 10;
+                        int col = (Integer.parseInt(enemyStone.get(enemyStone.size() - 1).toString()) / 10) % 10;
+                        int row = Integer.parseInt(enemyStone.get(enemyStone.size() - 1).toString()) % 10;
                         //Reset GameBorad
-                        ma.restGameMulitplayer(col, row);
+                        ma.resetGameMulitplayer(col, row);
                         //Build a Lose Message
                         Looper.prepare();
-
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                         dlgAlert.setTitle(ma.getResources().getString(R.string.loseTitle));
                         dlgAlert.setMessage(ma.getResources().getString(R.string.loseGame));

@@ -15,7 +15,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * This Class is for the Connection to the Server via a php script
  */
-public class PHPConnect {
+public class PhpConnect {
 
     /**
      * User Register and Login
@@ -25,14 +25,14 @@ public class PHPConnect {
 
     //Create a new User in the DB
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public static boolean createNewUser(String username, String passwort) throws SQLException {
+    public static boolean createNewUser(String username, String password) throws SQLException {
         try {
-            String send = "http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + passwort;
+            String send = "http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + password;
             //Check if User has a blank in his username or password
             if (send.contains(" ")) {
                 return false;
             }
-            String output = new getURLData().execute(send).get();
+            String output = new GetUrlData().execute(send).get();
             if (output.contains("true")) {
                 return true;
             }
@@ -54,10 +54,10 @@ public class PHPConnect {
             if (send.contains(" ")) {
                 return false;
             }
-            String output = new getURLData().execute(send).get();
+            String output = new GetUrlData().execute(send).get();
             if (output.contains("true")) {
                 //sets the username
-                PHPConnect.username = username;
+                PhpConnect.username = username;
                 return true;
             }
         } catch (InterruptedException e) {
@@ -74,12 +74,12 @@ public class PHPConnect {
 
     //Create a new Multiplayer Game
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public static int createNewGame(String playerName) {
+    public static int createNewGame(String username) {
         int gameID = 0;
         String output = null;
         try {
-            output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?createGame=" + playerName)
+            output = new GetUrlData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?createGame=" + username)
                     .get();
             String[] back = output.split(";");
             gameID = Integer.parseInt(back[1]);
@@ -93,11 +93,11 @@ public class PHPConnect {
 
     //Join a existing Game
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
-    public static void joinGame(String playerName, int gameID) {
+    public static void joinGame(String username, int gameID) {
         String output = null;
         try {
-            output = new getURLData()
-                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?joinGameName=" + playerName + "&gameID=" + gameID)
+            output = new GetUrlData()
+                    .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?joinGameName=" + username + "&gameID=" + gameID)
                     .get();
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -109,21 +109,20 @@ public class PHPConnect {
     //Put the Stone
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean putStone(int gameID, int player, int stoneID) {
-        Boolean back = false;
         String output = null;
         try {
-            output = new getURLData()
+            output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&player=" + player + "&putStone=" + stoneID)
                     .get();
             if (output.contains("true")) {
-                back = true;
+                return true;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-        return back;
+        return false;
     }
 
     //Returns the active Games with the username of the host.
@@ -132,13 +131,13 @@ public class PHPConnect {
         ArrayList back = new ArrayList();
         String output = null;
         try {
-            output = new getURLData()
+            output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?getActiveGames=true")
                     .get();
             String[] sp = output.split(";");
             for (int i = 1; i + 1 < sp.length; i++) {
                 back.add(sp[i].toString());
-                //Wegen Leerfelder duch die 2x ;;
+                //Because of empty field 2x ;;
                 i++;
             }
         } catch (InterruptedException e) {
@@ -154,7 +153,7 @@ public class PHPConnect {
     public static boolean setGameInAvtive(int gameID) {
         String output = null;
         try {
-            output = new getURLData()
+            output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?removeGame=" + gameID)
                     .get();
             if (output.contains("true")) {
@@ -174,7 +173,7 @@ public class PHPConnect {
         ArrayList back = new ArrayList();
         String output = null;
         try {
-            output = new getURLData()
+            output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?getStones=" + gameID)
                     .get();
             String[] sp = output.split("##");
@@ -207,7 +206,7 @@ public class PHPConnect {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean setWin(int gameID) {
         try {
-            String output = new getURLData()
+            String output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&winPlayer=" + username)
                     .get();
             if (output.contains("true")) {
@@ -224,7 +223,7 @@ public class PHPConnect {
     //Sets the player how loses the Game
     public static boolean setLose(int gameID) {
         try {
-            String output = new getURLData()
+            String output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&losePlayer=" + username)
                     .get();
             if (output.contains("true")) {
@@ -241,7 +240,7 @@ public class PHPConnect {
     //Check if the other player has already won the Game
     public static boolean checkIfWon(int gameID) {
         try {
-            String output = new getURLData()
+            String output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/multiplayer.php?gameID=" + gameID + "&hasWon=win")
                     .get();
             //If the output contains true, the other player has already won!
@@ -265,7 +264,7 @@ public class PHPConnect {
     public static int getWins() {
         try {
             //Only the Stats from the active Player can show here!
-            String output = new getURLData()
+            String output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/stats.php?player=" + username + "&winLose=win")
                     .get();
             String[] sp = output.split("##");
@@ -284,7 +283,7 @@ public class PHPConnect {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static int getLoses() {
         try {
-            String output = new getURLData()
+            String output = new GetUrlData()
                     .execute("http://wirgewinnt.square7.ch/html/stats.php?player=" + username + "&winLose=lose")
                     .get();
             if (output.contains("##")) {

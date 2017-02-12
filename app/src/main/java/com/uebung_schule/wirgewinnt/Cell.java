@@ -22,16 +22,4 @@ public class Cell {
         this.row = row;
         this.status = status;
     }
-
-    /*
-    public void setStatus(int newStatus) {
-        status = newStatus;
-        if (newStatus == 1) {
-            setBackgroundColor(Color.GREEN);
-        } else if (newStatus == 2) {
-            setBackgroundColor(Color.RED);
-        } else {
-            setBackgroundColor(Color.WHITE);
-        }
-    } */
 }
