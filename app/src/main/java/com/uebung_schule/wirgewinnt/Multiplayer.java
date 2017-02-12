@@ -19,9 +19,9 @@ import java.util.ArrayList;
 public class Multiplayer {
 
     //Game ID
-    protected int gameID;
+    private int gameID;
     //If Player is in Game = true
-    public boolean isInGame = false;
+    private boolean isInGame = false;
     //currentPlayer legend:
     // true  - Player 1
     // false - Player 2
@@ -31,12 +31,12 @@ public class Multiplayer {
     //Main View
     private View v;
     //Wait screen
-    public ProgressDialog pd1;
+    private ProgressDialog pd1;
     //MainActivity
     private MainActivity ma;
 
 
-    public Multiplayer(final MainActivity ma, Button button, View v) {
+    protected Multiplayer(final MainActivity ma, Button button, View v) {
         //Set MainActivity
         this.ma = ma;
         //Set View
@@ -129,7 +129,7 @@ public class Multiplayer {
                 AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                 dlgAlert.setTitle(ma.getResources().getString(R.string.winTitle));
                 dlgAlert.setMessage(ma.getResources().getString(R.string.winGame));
-                dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                dlgAlert.setPositiveButton(ma.getResources().getString(R.string.OK), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //Remove the Message
                     }
@@ -249,13 +249,13 @@ public class Multiplayer {
                         int col = (Integer.parseInt(enemyStone.get(enemyStone.size() - 1).toString()) / 10) % 10;
                         int row = Integer.parseInt(enemyStone.get(enemyStone.size() - 1).toString()) % 10;
                         //Reset GameBorad
-                        ma.resetGameMulitplayer(col, row);
+                        ma.resetGameMultiplayer(col, row);
                         //Build a Lose Message
                         Looper.prepare();
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                         dlgAlert.setTitle(ma.getResources().getString(R.string.loseTitle));
                         dlgAlert.setMessage(ma.getResources().getString(R.string.loseGame));
-                        dlgAlert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        dlgAlert.setPositiveButton(ma.getResources().getString(R.string.OK), new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 //Remove the Message
                             }

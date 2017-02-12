@@ -10,11 +10,9 @@ import android.widget.ImageView;
 
 public class GameBoard {
 
-    //region variables
     private Cell[][] gameBoard;
-    //endregion
 
-    public GameBoard(int boardSize, View table) {
+    protected GameBoard(int boardSize, View table) {
         //creates the gameboard object for the game
         gameBoard = new Cell[boardSize][boardSize];
         for (int x = 0; x < gameBoard.length; x++) {
@@ -24,7 +22,7 @@ public class GameBoard {
         }
     }
 
-    public boolean checkfull() { // checks the game for available spots to place a stone
+    protected boolean checkFull() { // checks the game for available spots to place a stone
         for (int i = 0; i <= 6; i++) {
             if (gameBoard[i][6].status == 0) {
                 return false;
@@ -34,7 +32,7 @@ public class GameBoard {
     }
 
 
-    public int stonesInColumn(int column) { // returns the amount of stones in the current column
+    protected int stonesInColumn(int column) { // returns the amount of stones in the current column
         int result = 0;
         for (Cell cell : gameBoard[column]) {
             if (cell.status != 0) result++;
@@ -42,7 +40,7 @@ public class GameBoard {
         return result;
     }
 
-    public void putStone(int column, int row, boolean currentPlayer, View view) { //sets the status in the array and sets the backgroundcolor of the the imageview (depending on currentplayer)
+    protected void putStone(int column, int row, boolean currentPlayer, View view) { //sets the status in the array and sets the backgroundcolor of the the imageview (depending on currentplayer)
         ImageView table = (ImageView) view.findViewById(1000 + column * 10 + row);
         if (currentPlayer) {
             gameBoard[column][row].status = 1;
@@ -104,7 +102,7 @@ public class GameBoard {
         }
     }
 
-    public boolean checkIfWon(int column, int row, View v) {
+    protected boolean checkIfWon(int column, int row, View v) {
         int vertical = 1; // counts the stones which next to each other in a vertical line
         int horizontallinks = 1; //counts the stones which next to each other in a horizontal line (going left from original stone)
         int horizontalrechts = 1; // counts the stones which next to each other in a horizontal line (going right form original stone)
@@ -189,7 +187,7 @@ public class GameBoard {
         return false;
     }
 
-    public Cell[][] getGameBorad() {
+    protected Cell[][] getGameBorad() {
         return gameBoard;
     }
 }

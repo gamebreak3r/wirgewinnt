@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Viergewinnt</string>
+    <string name="OK">OK</string>
 
     //MultiPlayer
     <string name="noGameFound">Es wurde kein aktives Spiel gefunden!</string>
@@ -27,14 +28,31 @@
     <string name="passwortRepeat">Passwort Wiederholen</string>
     <string name="TextViewUsername">Username</string>
     <string name="buttonRegistieren">Registrieren</string>
+    <string name="enterUserPassword">Username und Passwort eingeben!</string>
+    <string name="createUser">User wurde angelegt</string>
+    <string name="forgiveUser">Username bereits vergeben!</string>
+    <string name="passwortIncorrect">Passwörter stimme nicht überein</string>
+    <string name="wrongUser">Username oder Passwort falsch!</string>
+    <string name="dbError">Verbindungsfehler</string>
 
     //Game Type
     <string name="Singleplayer">Singleplayer</string>
     <string name="Hotseat">Hotseat</string>
     <string name="Online">Online</string>
 
+    //Login
+
+
     //GamePlay
     <string name="player1Turn">Spieler 1 ist dran</string>
+    <string name="player2Turn">Spieler 2 ist dran</string>
+    <string name="player2">Spieler 2</string>
+    <string name="player1">Spieler 1</string>
+    <string name="win">Gewonnen</string>
+    <string name="player">Spieler</string>
+    <string name="hasWon">hat gewonnen!</string>
+    <string name="draw">Unentschieden</string>
+    <string name="drawMessage">Leider hat kein Spieler gewonnen!</string>
     <string name="btnEndGame">Spiel zu Ende Hier gehts weiter</string>
 
 </resources>
