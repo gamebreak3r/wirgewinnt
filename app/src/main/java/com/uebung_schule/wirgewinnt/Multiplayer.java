@@ -149,6 +149,9 @@ public class Multiplayer {
                 PHPConnect.setWin(gameID);
                 //Show Player-Text
                 ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
+                //User Can leave the multiplayer
+                ma.findViewById(R.id.btnHotseat).setClickable(true);
+                ma.findViewById(R.id.btnSingleplayer).setClickable(true);
             } else {
                 //Starts the Loding Screen
                 waitingPlayer();
@@ -249,7 +252,6 @@ public class Multiplayer {
                         int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) / 10) % 10;
                         int row = Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) % 10;
                         //Reset GameBorad
-                        System.out.print(col + " " + row);
                         ma.restGameMulitplayer(col, row);
                         //Build a Lose Message
                         Looper.prepare();
@@ -266,6 +268,9 @@ public class Multiplayer {
                         Looper.loop();
                         //Show Player-Text
                         ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
+                        //User Can leave the multiplayer
+                        ma.findViewById(R.id.btnHotseat).setClickable(true);
+                        ma.findViewById(R.id.btnSingleplayer).setClickable(true);
                     }
                 }
             }
