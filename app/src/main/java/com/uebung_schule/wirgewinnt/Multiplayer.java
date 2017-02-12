@@ -232,6 +232,14 @@ public class Multiplayer {
                 }
                 if (gegnerSetStone) {
                     gegnerSetStone = false;
+                    //Put Stone from the other Player
+                    for (int i = 0; i < gegnerStone.size(); i++) {
+                        //Calculates the field ids
+                        //for example field ID: 1011
+                        int col = (Integer.parseInt(gegnerStone.get(i).toString()) / 10) % 10;
+                        int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
+                        ma.putStone(col, row, !player);
+                    }
                     //Check if the other Player has already won the game
                     if (PHPConnect.checkIfWon(gameID)) {
                         PHPConnect.setLose(gameID);
@@ -241,6 +249,7 @@ public class Multiplayer {
                         int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) / 10) % 10;
                         int row = Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) % 10;
                         //Reset GameBorad
+                        System.out.print(col + " " + row);
                         ma.restGameMulitplayer(col, row);
                         //Build a Lose Message
                         Looper.prepare();
@@ -257,13 +266,6 @@ public class Multiplayer {
                         Looper.loop();
                         //Show Player-Text
                         ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
-                    }
-                    for (int i = 0; i < gegnerStone.size(); i++) {
-                        //Calculates the field ids
-                        //for example field ID: 1011
-                        int col = (Integer.parseInt(gegnerStone.get(i).toString()) / 10) % 10;
-                        int row = Integer.parseInt(gegnerStone.get(i).toString()) % 10;
-                        ma.putStone(col, row, !player);
                     }
                 }
             }
