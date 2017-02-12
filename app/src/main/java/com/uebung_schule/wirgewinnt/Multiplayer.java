@@ -2,6 +2,8 @@ package com.uebung_schule.wirgewinnt;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.os.Looper;
+import android.os.Message;
 import android.support.v7.app.AlertDialog;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -10,6 +12,8 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 /**
  * Created by consult on 23.01.2017.
@@ -171,6 +175,7 @@ public class Multiplayer {
 
         new Thread(new Runnable() {
             int value = 0;
+
             public void run() {
                 for (; value <= 100; value++) {
                     if (stopTime) {
@@ -233,11 +238,13 @@ public class Multiplayer {
                         //The Player can't set a new Stones
                         isInGame = false;
                         //
-                        int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size()-1).toString()) / 10) % 10;
-                        int row = Integer.parseInt(gegnerStone.get(gegnerStone.size()-1).toString()) % 10;
+                        int col = (Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) / 10) % 10;
+                        int row = Integer.parseInt(gegnerStone.get(gegnerStone.size() - 1).toString()) % 10;
                         //Reset GameBorad
-                        ma.restGameMulitplayer(col , row);
+                        ma.restGameMulitplayer(col, row);
                         //Build a Lose Message
+                        Looper.prepare();
+
                         AlertDialog.Builder dlgAlert = new AlertDialog.Builder(v.getContext());
                         dlgAlert.setTitle(ma.getResources().getString(R.string.loseTitle));
                         dlgAlert.setMessage(ma.getResources().getString(R.string.loseGame));
@@ -246,8 +253,8 @@ public class Multiplayer {
                                 //Remove the Message
                             }
                         });
-                        dlgAlert.setCancelable(true);
                         dlgAlert.create().show();
+                        Looper.loop();
                         //Show Player-Text
                         ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
                     }
