@@ -162,6 +162,8 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private int botmove() {
+
+        //bot will try to prevent the player to win if the bot cant prevent something it will set a random stone
         Cell[][] status = gameBoard.getGameBorad();
         int count_h;
         int count_v;
@@ -172,10 +174,10 @@ public class MainActivity extends AppCompatActivity{
 
         if(currentPlayer) player = 2;
 
-        for (int i = 0; i < 7; i++){ //Spalten durchgehen
+        for (int i = 0; i < 7; i++){ //go trough columns
             count_v = 0;
             count_h = 0;
-            for (int j = 0; j < 7; j++){ //Zeilen durchgehen
+            for (int j = 0; j < 7; j++){ //go trough rows
 
                 if (status[i][j].status == player) { //check horizontal
                     count_h++;
@@ -258,6 +260,7 @@ public class MainActivity extends AppCompatActivity{
 
         switch (v.getId()) {
 
+            //if the game has ended the clicking on the linearlayout will reset the gameboard
             case R.id.activity_main:
                 findViewById(R.id.activity_main).setClickable(false);
                 reset(false);
@@ -343,6 +346,7 @@ public class MainActivity extends AppCompatActivity{
                 break;
 
             //region mode
+            //switches to singleplayer
             case R.id.btnSingleplayer:
                 //TODO
 
@@ -356,6 +360,7 @@ public class MainActivity extends AppCompatActivity{
                 }
                 mode = 1;
                 break;
+            //switches to multiplayer on one device
             case R.id.btnHotseat:
                 //Spielfeld erscheint
                 findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
@@ -370,6 +375,7 @@ public class MainActivity extends AppCompatActivity{
                 currentPlayer = true;
                 mode = 2;
                 break;
+            // switches to the online mode
             case R.id.btnOnline:
                 mplayer = new Multiplayer(this, (Button) findViewById(R.id.btnOnline), findViewById(R.id.activity_main));
                 //findViewById(R.id.llGameColumns).setVisibility(View.VISIBLE);
@@ -389,8 +395,10 @@ public class MainActivity extends AppCompatActivity{
 
 
             //region gameplay
+
+            // puts a stone in clicked column
             case R.id.btnColumn0:
-                //stein setzen
+
                 if (status[0][6].status != 0) break;
                 if (mode == 3)
                 {
@@ -404,7 +412,7 @@ public class MainActivity extends AppCompatActivity{
                 break;
 
             case R.id.btnColumn1:
-                //stein setzen
+
                 if (status[1][6].status != 0) break;
 
                 if (mode == 3)
@@ -418,7 +426,7 @@ public class MainActivity extends AppCompatActivity{
                 }break;
 
             case R.id.btnColumn2:
-                //stein setzen
+
                 if (status[2][6].status != 0) break;
                 if (mode == 3 )
                 {
@@ -431,7 +439,7 @@ public class MainActivity extends AppCompatActivity{
                 } break;
 
             case R.id.btnColumn3:
-                //stein setzen
+
                 if (status[3][6].status != 0) break;
                 if (mode == 3)
                 {
@@ -445,7 +453,7 @@ public class MainActivity extends AppCompatActivity{
 
 
             case R.id.btnColumn4:
-                //stein setzen
+
                 if (status[4][6].status != 0) break;
                 if (mode == 3)
                 {
@@ -458,7 +466,7 @@ public class MainActivity extends AppCompatActivity{
                 }break;
 
             case R.id.btnColumn5:
-                //stein setzen
+
                 if (status[5][6].status != 0) break;
                 if (mode == 3)
                 {
@@ -471,7 +479,7 @@ public class MainActivity extends AppCompatActivity{
                 }break;
 
             case R.id.btnColumn6:
-                //stein setzen
+
                 if (status[6][6].status != 0) break;
                 if (mode == 3)
                 {
@@ -485,7 +493,7 @@ public class MainActivity extends AppCompatActivity{
             //endregion
         }
     }
-
+    // locks buttons to prevent new stones if game already has ended
     private void locknewstones (boolean clickable){
         findViewById(R.id.btnColumn0).setClickable(clickable);
         findViewById(R.id.btnColumn1).setClickable(clickable);
@@ -496,7 +504,7 @@ public class MainActivity extends AppCompatActivity{
         findViewById(R.id.btnColumn6).setClickable(clickable);
     }
 
-    private void setPlayer () {
+    private void setPlayer () { //switches between the two players
         if (currentPlayer) {
             findViewById(R.id.txtPlayer).setBackgroundColor(Color.RED);
             ((TextView) findViewById(R.id.txtPlayer)).setText("Spieler 2 an der Reihe");
@@ -509,17 +517,17 @@ public class MainActivity extends AppCompatActivity{
     /**
      * zuruecksetzung
      */
-    protected void reset(boolean win){
+    protected void reset(boolean win){ //resets the gameboard and can show the deciding stones
         Cell[][] reset = gameBoard.getGameBorad();
         for (int i = 0; i <= 6; i++) {
             for (int a = 0; a <= 6; a++) {
                // System.out.println(i + a*10);
-                if (win){
+                if (win){ // resets every stone without the deciding ones
                     if (reset[i][a].status < 3) findViewById(1000+ a + (10*i)).setBackgroundColor(Color.BLACK);
                     findViewById(R.id.activity_main).setClickable(true);
                     ingame = false;
                     locknewstones(false);
-                }else {
+                }else {// resets every stone
                     reset[i][a].status = 0;
                     findViewById(1000+ i + (10*a)).setBackgroundColor(Color.BLACK);
                     ingame = true;
@@ -529,18 +537,16 @@ public class MainActivity extends AppCompatActivity{
         }
     }
 
-    protected void putStone(int column) {
-        //spalten anschauen
-        //steine zählen
-        //draufsetzen
+    protected void putStone(int column) {//checks the current column for the next stone to place
+
         int row = gameBoard.stonesInColumn(column);
-        if (row <= 6) {
+        if (row <= 6) {// check for left space in column
             gameBoard.putStone(column, row, currentPlayer, findViewById(R.id.activity_main));
         }
-        if (gameBoard.checkIfWon(column, row, findViewById(R.id.activity_main))){
-            String playerAusgabe;
+        if (gameBoard.checkIfWon(column, row, findViewById(R.id.activity_main))){ //gives the function the needed parameters to check for end
+            //if game has ended an alert is shown on the screen with the winning player
+            String playerAusgabe = "Spieler 2";
             if (!currentPlayer) playerAusgabe="Spieler 1";
-            else playerAusgabe="Spieler 2";
 
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setTitle("Gewonnen");
@@ -552,15 +558,14 @@ public class MainActivity extends AppCompatActivity{
             });
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
-            reset(true);
+            reset(true); //resets gameboard without the deciding stones
 
 
         }
-        //niemand hat gewonnen
-        currentPlayer = !currentPlayer;
+        currentPlayer = !currentPlayer; //changes the current player
 
         //unentschieden
-        if (gameBoard.checkfull()){
+        if (gameBoard.checkfull()){ //if the board is full it will be reseted and shows an alert with little information
             AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(this);
             dlgAlert.setTitle("Unentschieden");
             dlgAlert.setMessage("Keiner hat gewonnen! Ein neues Spiel wurde erstellt.");
@@ -572,7 +577,6 @@ public class MainActivity extends AppCompatActivity{
             dlgAlert.setCancelable(true);
             dlgAlert.create().show();
             reset(false);
-            System.out.println();
         }
     }
 
