@@ -60,16 +60,13 @@ public class MainActivity extends AppCompatActivity{
                 tv.setText(PHPConnect.username.toUpperCase() + " Stats" + ":");
                 TextView tvWin = (TextView) findViewById(R.id.text_Wins);
                 TextView tvLoses = (TextView) findViewById(R.id.text_Loses);
-                TextView tvWinLose = (TextView) findViewById(R.id.text_WinLose);
+                TextView tvGames = (TextView) findViewById(R.id.text_games);
                 int wins = PHPConnect.getWins();
                 int loses = PHPConnect.getLoses();
-                double winLose = wins;
-                if (loses != 0) {
-                    winLose = wins / loses;
-                }
+                int games = wins + loses;
                 tvWin.setText(tvWin.getText().toString() + "  " + wins);
                 tvLoses.setText(tvLoses.getText().toString() + "  " + loses);
-                tvWinLose.setText(tvWinLose.getText().toString() + "  " + winLose);
+                tvGames.setText(tvGames.getText().toString() + "  " + games);
                 return true;
             case R.id.menu_logout:
                 setContentView(R.layout.activity_login);

@@ -42,9 +42,9 @@
         android:layout_weight="0.09" />
 
     <TextView
-        android:id="@+id/text_WinLose"
+        android:id="@+id/text_games"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/textWinLose"
+        android:text="@string/textGames"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 </LinearLayout>

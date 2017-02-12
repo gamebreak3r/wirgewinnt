@@ -18,7 +18,7 @@
     <string name="menuStats">Stats</string>
     <string name="textWins">Wins:</string>
     <string name="textLoses">Loses:</string>
-    <string name="textWinLose">Win/Lose:</string>
+    <string name="textGames">Spiele: </string>
 
     //User Management
     <string name="buttonLogin">Login</string>
