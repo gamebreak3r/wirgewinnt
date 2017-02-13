@@ -27,6 +27,8 @@ public class PhpConnect {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean createNewUser(String username, String password) throws SQLException {
         try {
+            //Get a blank in the password
+            password.replace(" ", "_");
             String send = "http://wirgewinnt.square7.ch/html/user.php?Rusername=" + username + "&Rpasswort=" + password;
             //Check if User has a blank in his username or password
             if (send.contains(" ")) {
@@ -49,8 +51,10 @@ public class PhpConnect {
     @TargetApi(Build.VERSION_CODES.CUPCAKE)
     public static boolean getLoginTrue(String username, String password) throws IOException {
         try {
+            //Get a blank in the password
+            password.replace(" ", "_");
             String send = "http://wirgewinnt.square7.ch/html/user.php?Lusername=" + username + "&Lpasswort=" + password;
-            //Check if User has a blank in his username or password
+            //Check if User has a blank in his username
             if (send.contains(" ")) {
                 return false;
             }
