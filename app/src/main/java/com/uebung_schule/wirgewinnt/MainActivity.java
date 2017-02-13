@@ -324,6 +324,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(0);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
 
@@ -336,6 +337,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(1);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
 
@@ -348,6 +350,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(2);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
 
@@ -360,6 +363,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(3);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
 
@@ -372,6 +376,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(4);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
 
@@ -384,6 +389,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(5);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
 
@@ -396,6 +402,7 @@ public class MainActivity extends AppCompatActivity {
                     putStone(6);
                     setPlayer();
                     if (mode == 1 && ingame) putStone(botmove());
+                    setPlayer();
                 }
                 break;
             //endregion
@@ -436,6 +443,7 @@ public class MainActivity extends AppCompatActivity {
                     findViewById(R.id.activity_main).setClickable(true);
                     ingame = false;
                     lockNewStones(false);
+
                 } else {// resets every stone
                     reset[i][a].status = 0;
                     findViewById(1000 + i + (10 * a)).setBackgroundColor(Color.BLACK);
