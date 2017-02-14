@@ -265,7 +265,7 @@ public class Multiplayer {
                     }
                 }
                 //Show Player-Text
-                ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
+                //ma.findViewById(R.id.txtPlayer).setVisibility(View.VISIBLE);
                 //User Can leave the multiplayer
                 ma.findViewById(R.id.btnHotseat).setClickable(true);
                 ma.findViewById(R.id.btnSingleplayer).setClickable(true);
